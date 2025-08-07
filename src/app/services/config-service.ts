@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AppConfigService {
+export class ConfigService {
 
   private appConfig: any;
 
