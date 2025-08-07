@@ -20,10 +20,4 @@ import { App } from './app';
   bootstrap: [App]
 })
 export class AppModule {
-  book: any = { };
-
-  constructor(http: HttpClient) {
-    http.get('https://api.angular.schule/book/9783864906466')
-      .subscribe(b => this.book = b);
-  }
 }
