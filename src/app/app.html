@@ -1,0 +1,21 @@
+<main class="main">
+  <div class="content">
+    <h1>Everything GitHub Demo</h1>
+    <h4>deployed with ❤️ and angular-cli-ghpages</h4>
+
+    <p>
+      This is some dynamically loaded content that we hope to find in the Google index later on:
+    </p>
+
+    <hr>
+
+    <h2>{{ book.title }}</h2>
+    <p>
+      <img [src]="book.firstThumbnailUrl" width="100" align="left">
+      {{ book.description }}
+    </p>
+  </div>
+</main>
+
+
+<router-outlet />
