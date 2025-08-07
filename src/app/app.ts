@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
+import { ConfigService } from './services/config-service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,9 @@ import { HttpClient } from '@angular/common/http';
 export class App {
   protected readonly title = signal('velopitt');
 
-  book: any = { };
+  strava: any = { };
 
-  constructor(http: HttpClient) {
-    http.get('https://api.angular.schule/book/9783864906466')
-      .subscribe(b => this.book = b);
+  constructor(private config: ConfigService) {
+    this.strava = this.config.stravaClient
   }
 }
