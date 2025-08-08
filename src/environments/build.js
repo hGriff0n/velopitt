@@ -12,7 +12,6 @@ const setEnv = () => {
   // TODO: me - Github will prevent deploying if it detects the raw string
   // Meaning we need to encode and decode the secret
   const envConfigFile = `export const environment = {
-  GH_TOKEN: '${base64.encode(process.env['GH_TOKEN'])}',
   STRAVA_ID: '${base64.encode(process.env['STRAVA_ID'])}',
   STRAVA_SECRET: '${base64.encode(process.env['STRAVA_SECRET'])}',
   STRAVA_TOKEN: '${base64.encode(process.env['STRAVA_TOKEN'])}',
