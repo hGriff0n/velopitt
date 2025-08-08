@@ -17,3 +17,19 @@ export class App {
     this.strava = this.config.stravaClient
   }
 }
+
+@Component({
+  selector: 'showcase-demo',
+  template: `
+    <mgl-map
+      [style]="'mapbox://styles/mapbox/outdoors-v9'"
+      [zoom]="[13]"
+      [center]="[11.255, 43.77]"
+    >
+      <mgl-control mglFullscreen />
+    </mgl-map>
+  `,
+  styleUrl: "./app.css",
+  standalone: false
+})
+export class FullscreenComponent {}

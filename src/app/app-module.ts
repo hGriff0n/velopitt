@@ -2,25 +2,32 @@ import { NgModule, provideBrowserGlobalErrorListeners, inject  } from '@angular/
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { provideMapboxGL } from 'ngx-mapbox-gl';
-import { MapComponent } from 'ngx-mapbox-gl';
 import { Base64 } from 'js-base64';
 
 import { ConfigService } from './services/config-service';
 import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
+import { App, FullscreenComponent } from './app';
 
 // TODO: me - Not sure how to get this from `ConfigService` if it's injected later
 import { environment } from '../environments/environment';
+import {
+  MapComponent,
+  ControlComponent,
+  FullscreenControlDirective,
+} from 'ngx-mapbox-gl';
+
 
 @NgModule({
   declarations: [
-    App,
+    App, FullscreenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule, // NEW: import HttpClientModule!
     MapComponent,
-    HttpClientModule // NEW: import HttpClientModule!
+    ControlComponent,
+    FullscreenControlDirective,
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
