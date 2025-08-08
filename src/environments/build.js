@@ -13,6 +13,7 @@ const setEnv = () => {
   STRAVA_ID: '${process.env['STRAVA_ID']}',
   STRAVA_SECRET: '${process.env['STRAVA_SECRET']}',
   STRAVA_TOKEN: '${process.env['STRAVA_TOKEN']}',
+  MAPBOX_API_KEY: '${process.env['MAPBOX_API_KEY']},
   appVersion: '${appVersion}',
   production: true,
 };`;
