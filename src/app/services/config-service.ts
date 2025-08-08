@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Base64 } from 'js-base64';
 
 import { environment } from '../../environments/environment';
 
@@ -12,15 +13,15 @@ export class ConfigService {
   // This is an example property ... you can make it however you want.
   get stravaClient() {
     return {
-        "id": environment.STRAVA_ID,
-        "secret": environment.STRAVA_SECRET,
-        "refresh": environment.STRAVA_TOKEN
+        "id": Base64.decode(environment.STRAVA_ID),
+        "secret": Base64.decode(environment.STRAVA_SECRET),
+        "refresh": Base64.decode(environment.STRAVA_TOKEN)
     }
   }
 
   get mapbox() {
     return {
-      "api_key": environment.MAPBOX_API_KEY,
+      "api_key": Base64.decode(environment.MAPBOX_API_KEY),
     }
   }
 }

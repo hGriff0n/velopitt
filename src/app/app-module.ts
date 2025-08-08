@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { provideMapboxGL } from 'ngx-mapbox-gl';
 import { MapComponent } from 'ngx-mapbox-gl';
+import { Base64 } from 'js-base64';
 
 import { ConfigService } from './services/config-service';
 import { AppRoutingModule } from './app-routing-module';
-import { App, DisplayMapComponent } from './app';
+import { App } from './app';
 
 // TODO: me - Not sure how to get this from `ConfigService` if it's injected later
 import { environment } from '../environments/environment';
@@ -14,7 +15,6 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     App,
-    DisplayMapComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,7 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideMapboxGL({accessToken: environment.MAPBOX_API_KEY}),
+    provideMapboxGL({accessToken: Base64.decode(environment.MAPBOX_API_KEY)}),
   ],
   bootstrap: [App]
 })
