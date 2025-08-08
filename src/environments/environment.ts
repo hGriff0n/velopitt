@@ -3,6 +3,7 @@ export const environment = {
   STRAVA_ID: '69847',
   STRAVA_SECRET: 'e27db3aebb572370faf8bdc3acc1e0aae016d622',
   STRAVA_TOKEN: '7511a603ab56d2772550c0b11f51a80e3dc3ab33',
+  MAPBOX_API_KEY: 'pk.eyJ1IjoiaGdyaWZmMG4iLCJhIjoiY2tzdGh5YmRkMDNlcjJvcXVsbmpub3JqcCJ9.UODDIMHH-Kus5_mViHTQyQ',
   appVersion: '0.0.0',
   production: true,
 };

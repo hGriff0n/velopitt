@@ -15,14 +15,13 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 24.x
-    - name: Send secrets to Env
-      env:
-        STRAVA_ID: ${{ secrets.STRAVA_ID }}
-        STRAVA_SECRET: ${{ secrets.STRAVA_SECRET }}
-        STRAVA_TOKEN: ${{ secrets.STRAVA_TOKEN }}
     - name: Prepare and deploy
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        STRAVA_ID: ${{ secrets.STRAVA_ID }}
+        STRAVA_SECRET: ${{ secrets.STRAVA_SECRET }}
+        STRAVA_TOKEN: ${{ secrets.STRAVA_TOKEN }}
+        MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
       run: |
         npm install
         npm run build:env
