@@ -24,7 +24,6 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    // TODO: me - This should be in github secrets
     provideMapboxGL({accessToken: environment.MAPBOX_API_KEY}),
   ],
   bootstrap: [App]

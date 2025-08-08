@@ -17,4 +17,10 @@ export class ConfigService {
         "refresh": environment.STRAVA_TOKEN
     }
   }
+
+  get mapbox() {
+    return {
+      "api_key": environment.MAPBOX_API_KEY,
+    }
+  }
 }
