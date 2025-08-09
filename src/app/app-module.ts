@@ -6,7 +6,7 @@ import { Base64 } from 'js-base64';
 
 import { ConfigService } from './services/config-service';
 import { AppRoutingModule } from './app-routing-module';
-import { App, FullscreenComponent } from './app';
+import { App } from './app';
 
 // TODO: me - Not sure how to get this from `ConfigService` if it's injected later
 import { environment } from '../environments/environment';
@@ -19,7 +19,7 @@ import {
 
 @NgModule({
   declarations: [
-    App, FullscreenComponent
+    App
   ],
   imports: [
     BrowserModule,
