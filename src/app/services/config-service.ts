@@ -15,7 +15,7 @@ export class ConfigService {
     return {
         "id": Base64.decode(environment.STRAVA_ID),
         "secret": Base64.decode(environment.STRAVA_SECRET),
-        "refresh": Base64.decode(environment.STRAVA_TOKEN)
+        "token": Base64.decode(environment.STRAVA_TOKEN)
     }
   }
 

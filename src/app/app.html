@@ -5,11 +5,12 @@
     [zoom]="15"
     [center]="[-79.997, 40.44]"
     [interactive]="true"
-    [maxZoom]=18
+    [maxZoom]=31
     [bearing]="90"
     [pitch]="70"
   >
   <!-- maxBounds -->
+    (mapLoad)="onLoad($event)"
     <!-- <mgl-layer *ngFor="let segment of starredSegments | async"></mgl-layer> -->
     <!-- < -->
   </mgl-map>

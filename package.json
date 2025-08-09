@@ -27,6 +27,8 @@
     "@angular/forms": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
+    "@mapbox/polyline": "^1.2.1",
+    "@types/mapbox__polyline": "^1.0.5",
     "bootstrap": "^5.3.7",
     "dotenv": "^17.2.1",
     "js-base64": "^3.7.7",
