@@ -8,9 +8,9 @@
     [maxZoom]=31
     [bearing]="90"
     [pitch]="70"
+    (mapLoad)="onLoad($event)"
   >
   <!-- maxBounds -->
-    (mapLoad)="onLoad($event)"
     <!-- <mgl-layer *ngFor="let segment of starredSegments | async"></mgl-layer> -->
     <!-- < -->
   </mgl-map>

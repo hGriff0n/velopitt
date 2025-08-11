@@ -1,23 +1,23 @@
 import { Injectable, inject } from '@angular/core';
-import { Strava, SummarySegment, DetailedSegment } from 'strava';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { ConfigService } from './config-service';
 
 @Injectable({ providedIn: 'root' })
 export class StravaService {
-    private strava_client: Strava;
+    private apiURL = "https://www.strava.com/api/v3/";
+    private config = inject(ConfigService).stravaClient;
 
-    constructor() {
-        var config = inject(ConfigService).stravaClient;
+    constructor(private http: HttpClient) { }
 
-        this.strava_client = new Strava({
-            client_id: config.id,
-            client_secret: config.secret,
-            refresh_token: config.token
+    getSegment(id: number): Observable<Object> {
+        let url = `${this.apiURL}/segments/${id}`;
+        const headers = new HttpHeaders({
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${this.config.token}`
         });
-    }
 
-    async getSegment(id: number): Promise<DetailedSegment> {
-        return this.strava_client.segments.getSegmentById({ id: id });
+        return this.http.get(url, { headers });
     }
 }
