@@ -1,8 +1,0 @@
-export const environment = {
-  STRAVA_ID: 'Njk4NDc=',
-  STRAVA_SECRET: 'ZTI3ZGIzYWViYjU3MjM3MGZhZjhiZGMzYWNjMWUwYWFlMDE2ZDYyMg==',
-  STRAVA_TOKEN: 'Njc2M2IyOTRmYjg5NDgzNmEzMGFiYjJiYjg5ZTljZWNlYWRiMzBhZQ==',
-  MAPBOX_API_KEY: 'cGsuZXlKMUlqb2lhR2R5YVdabU1HNGlMQ0poSWpvaVkyMWxNMlJ6WW5wdE1EWmpZVEpxY0hWbE0ycG9jbW80ZGlKOS41SWo0SjA0M000ZVdnR0t2cWZkQzVB',
-  appVersion: '0.0.0',
-  production: true,
-};

@@ -42,5 +42,5 @@ testem.log
 Thumbs.db
 
 # Local Env
-src/app/environments/.env
-src/app/environments/build.js
+/src/environments/.env
+src/environments/environment.ts
