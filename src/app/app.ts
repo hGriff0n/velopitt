@@ -4,7 +4,7 @@ import * as polyline from '@mapbox/polyline';
 
 import { ConfigService } from './services/config-service';
 // import { StravaService } from './services/strava-service';
-import { SegmentService } from './services/segment-service';
+import { SegmentService, Segment } from './services/segment-service';
 
 @Component({
   selector: 'app-root',
@@ -42,10 +42,7 @@ export class App {
     }
 
     const map = this.map;
-    const s = Object.fromEntries(Object.entries(segment));
     const idstr = `${id}`;
-    const line = polyline.toGeoJSON(s['map']['polyline']);
-    console.log(JSON.stringify(s));
 
     // TODO: How would I make a source layer into something that could be dynamically added and removed?
     // ie. How could I make it reactive (or rxjs)
@@ -54,7 +51,7 @@ export class App {
       data: {
         type: 'Feature',
         properties: {},
-        geometry: line
+        geometry: polyline.toGeoJSON(segment.map.polyline)
       },
       generateId: true,
     });
@@ -78,7 +75,7 @@ export class App {
     map.addInteraction(`segment-click-${id}`, {
       type: 'click',
       target: { layerId: idstr },
-      handler: this.handleSegmentClickEvent(s)
+      handler: this.handleSegmentClickEvent(segment)
     });
 
     map.addInteraction(`segment-hover-${id}`, {
@@ -99,8 +96,8 @@ export class App {
   }
 
   // TODO: me - It would probably be a better idea to make the segment information referencable from the event itself
-  private handleSegmentClickEvent(segment: { [k: string]: any; }) {
-    const name = segment['name'];
+  private handleSegmentClickEvent(segment: Segment) {
+    const name = segment.name;
     return (e: InteractionEvent) => {
       if (this.map == null) {
         return;
