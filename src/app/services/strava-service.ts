@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { ConfigService } from './config-service';
 
+// TODO: me - Turn this into a local script
 @Injectable({ providedIn: 'root' })
 export class StravaService {
     private apiURL = "https://www.strava.com/api/v3/";

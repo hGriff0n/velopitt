@@ -38,4 +38,3 @@ import {
 export class AppModule {
   private readonly config = inject(ConfigService);
 }
-// mat is Material
