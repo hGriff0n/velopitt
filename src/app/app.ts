@@ -17,6 +17,7 @@ export class App {
 
   private map: Map | undefined;
   private segment: SegmentService;
+  private loadedSegments: Segment[] = [];
 
   constructor(private config: ConfigService) {
     this.segment = inject(SegmentService);
@@ -27,39 +28,34 @@ export class App {
     this.map.resize();
     this.map.getCanvas().style.cursor = 'default';
 
-    this.addSegmentToMap(696322);
-    this.addSegmentToMap(815373);
+    this.addAllSegments();
   }
 
-  private addSegmentToMap(id: number) {
+  // It might make sense later on to split this up again based on
+  // what filtering we want to support
+  private addAllSegments() {
     if (this.map == null) {
-      throw new Error("Calling addSegmentToMap with unloaded map");
+      throw new Error("Map is not loaded");
     }
 
-    const segment = this.segment.getSegment(id);
-    if (segment == null) {
-      throw new Error(`No segment found for ${id} in cache`);
-    }
-
-    const map = this.map;
-    const idstr = `${id}`;
-
-    // TODO: How would I make a source layer into something that could be dynamically added and removed?
-    // ie. How could I make it reactive (or rxjs)
-    map.addSource(idstr, {
-      type: 'geojson',
+    this.map.addSource("segments", {
+      type: 'geojson', generateId: true,
       data: {
-        type: 'Feature',
-        properties: {},
-        geometry: polyline.toGeoJSON(segment.map.polyline)
-      },
-      generateId: true,
+        type: 'FeatureCollection',
+        features: this.segment.getAllSegments().map(segment => {
+          return {
+            type: 'Feature',
+            properties: {},
+            geometry: polyline.toGeoJSON(segment.map.polyline)
+          };
+        })
+      }
     });
 
-    map.addLayer({
-      id: idstr,
+    this.map.addLayer({
+      id: "segments-layer",
       type: 'line',
-      source: idstr,
+      source: "segments",
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#EE4B2B', 'line-width': [
@@ -72,40 +68,40 @@ export class App {
       }
     });
 
-    map.addInteraction(`segment-click-${id}`, {
+    const map = this.map;
+    map.addInteraction(`segment-clicks`, {
       type: 'click',
-      target: { layerId: idstr },
-      handler: this.handleSegmentClickEvent(segment)
+      target: { layerId: "segments-layer" },
+      handler: this.handleSegmentClickEvent(),
     });
 
-    map.addInteraction(`segment-hover-${id}`, {
+    map.addInteraction(`segments-hover`, {
       type: 'mouseenter',
-      target: { layerId: idstr },
+      target: { layerId: "segments-layer" },
       handler: (e) => {
         map.getCanvas().style.cursor = 'pointer';
       }
     });
 
-    map.addInteraction(`segment-leave-${id}`, {
+    map.addInteraction(`segments-leave`, {
       type: 'mouseleave',
-      target: { layerId: idstr },
+      target: { layerId: "segments-layer" },
       handler: (e) => {
         map.getCanvas().style.cursor = 'default';
       }
     });
   }
 
-  // TODO: me - It would probably be a better idea to make the segment information referencable from the event itself
-  private handleSegmentClickEvent(segment: Segment) {
-    const name = segment.name;
+  private handleSegmentClickEvent() {
     return (e: InteractionEvent) => {
       if (this.map == null) {
         return;
       }
 
+      const segment = this.segment.getSegmentByDomId(e.feature?.id as number);
       new Popup()
         .setLngLat(e.lngLat)
-        .setHTML(`<p><b>${name}</b></p>`)
+        .setHTML(`<p><b>${segment?.name}</b></p>`)
         .addTo(this.map);
     };
   }

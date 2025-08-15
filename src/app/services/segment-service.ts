@@ -4,17 +4,18 @@ import * as jsonData from './assets/segment.json';
 
 @Injectable({ providedIn: 'root' })
 export class SegmentService {
-    private segments = new Map<number, Segment>();
+    private segmentList: Segment[] = [];
 
     constructor() {
-        (jsonData as any).default.forEach((segment: any) => {
-            let s = segment as Segment;
-            this.segments.set(s.id, s);
-        });
+        this.segmentList = Array.from((jsonData as any).default);
     }
 
-    getSegment(id: number): Segment | null {
-        return this.segments.get(id) || null;
+    getAllSegments(): Segment[] {
+        return this.segmentList;
+    }
+
+    getSegmentByDomId(id: number): Segment | undefined {
+        return this.segmentList.at(id);
     }
 
     directionVector(segment: Segment): Vector2D {
