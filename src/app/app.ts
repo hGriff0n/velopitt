@@ -98,7 +98,19 @@ export class App {
         return;
       }
 
-      const segment = this.segment.getSegmentByDomId(e.feature?.id as number);
+      // TODO: me - this isn't quite "correct" as it doesn't account for the bounding box (see 18th)
+      // midpoint also doesn't work
+      const segment = this.segment.getSegmentByDomId(e.feature?.id as number) as Segment;
+      this.map.flyTo({
+        center: segment?.start_latlng as [number, number],
+        bearing: this.segment.vectorToBearing(
+          this.segment.directionVector(segment)),
+        // NOTE: I think this gets truncated to 15
+        // Either way, it may be a good idea to add a small zoom out when unclicking?
+        zoom: 16.5,
+        speed: 1
+      });
+
       new Popup()
         .setLngLat(e.lngLat)
         .setHTML(`<p><b>${segment?.name}</b></p>`)
