@@ -12,6 +12,18 @@ export class StravaService {
 
     constructor(private http: HttpClient) { }
 
+    ngOnInit() {
+        // This is currently the only way I have to refresh segment data
+        // Importantly, this gets the data in the right format for me to
+        // copy-paste it to segment.json
+        const segmentsToRefresh: number[] = [];
+        segmentsToRefresh.map(segment => {
+            this.getSegment(segment).subscribe((data: any) => {
+                console.log(JSON.stringify(data));
+            });
+        })
+    }
+
     getSegment(id: number): Observable<Object> {
         let url = `${this.apiURL}/segments/${id}`;
         const headers = new HttpHeaders({

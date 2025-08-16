@@ -1,4 +1,1442 @@
 [
-    {"id":696322,"resource_state":3,"name":"18th St Climb","activity_type":"Ride","distance":2243.98,"average_grade":6.3,"maximum_grade":10,"elevation_high":358.4,"elevation_low":216.8,"start_latlng":[40.42608495801687,-79.98083202168345],"end_latlng":[40.4193573910743,-79.98949287459254],"elevation_profile":"https://d3o5xota0a1fcr.cloudfront.net/v6/charts/IW5HON52AR2LJCQKOXSUX3INOW2H7I3EH7RHJXLWAC4M563MVTXLKKLE4MMNYVPQZSEHMAIJ3QWI77FVJJ2DEQQ=","elevation_profiles":{"light_url":"https://d3o5xota0a1fcr.cloudfront.net/v6/charts/IW5HON52AR2LJCQKOXSUX3INOW2H7I3EH7RHJXLWAC4M563MVTXLKKLE4MMNYVPQZSEHMAIJ3QWI77FVJJ2DEQQ=","dark_url":"https://d3o5xota0a1fcr.cloudfront.net/v6/charts/QX4K2DB3K4547YBZAXU7QD32VYHY4N76Y4IOHYBKPAG7ZP7PSN2RZTR6CULXHO22MZNQWEM5QODIBY4MLCL7GQQ="},"climb_category":1,"city":"Pittsburgh","state":"PA","country":"United States","private":false,"hazardous":false,"starred":false,"created_at":"2011-08-01T09:18:22Z","updated_at":"2021-05-19T08:01:56Z","total_elevation_gain":141.6,"map":{"id":"s696322","polyline":"_vvuFfgdgNn@@dAJ~@?VGJQDu@Lc@@g@Jm@Nk@Ly@VaCPkA?a@DQLM`@]RCx@Sv@@^C`@F^Jf@TjAv@b@^HLT\\|@dCtA~B`@fBPf@BPBf@SnBMXMJGR[bBCR@TIh@]lAQdAUv@Gd@DZb@b@j@v@f@~@jA~DVj@X\\rAbAR^~AlDLPTFPAVQZm@L]Pm@Vu@Va@XYHCTDd@?j@H^@d@H?JCFeA`Cw@|ASf@[jAYb@o@r@Yn@I^IR_@p@","resource_state":3},"effort_count":2637,"athlete_count":750,"star_count":5,"athlete_segment_stats":{"pr_elapsed_time":554,"pr_date":"2024-08-21","pr_visibility":"only_me","pr_activity_id":12208646196,"pr_activity_visibility":"everyone","effort_count":11},"xoms":{"kom":"6:07","qom":"7:08","overall":"6:07","destination":{"href":"strava://segments/696322/leaderboard","type":"overall","name":"All-Time"}},"local_legend":{"athlete_id":5613936,"title":"P Lee","profile":"https://dgalywyr863hv.cloudfront.net/pictures/athletes/5613936/2705118/1/large.jpg","effort_description":"4 efforts in the last 90 days","effort_count":"4","effort_counts":{"overall":"4 efforts","female":"2 efforts"},"destination":"strava://segments/696322/local_legend?categories%5B%5D=overall"}},
-    {"id":815373,"resource_state":3,"name":"Dirty Dozen Hill 8 - Sycamore (official end)","activity_type":"Ride","distance":756.3,"average_grade":11.9,"maximum_grade":23.5,"elevation_high":362.6,"elevation_low":272.4,"start_latlng":[40.43034221045673,-80.00079461373389],"end_latlng":[40.43030709028244,-80.00649481080472],"elevation_profile":"https://d3o5xota0a1fcr.cloudfront.net/v6/charts/XBSOL3N3IFBDJF4W7H7YKLM7OHT6H2UNGQIHARGLXCC3FLTC6G4CKBWNFPN3GG7DPEARPM77Q2SFVAS64AERTGA=","elevation_profiles":{"light_url":"https://d3o5xota0a1fcr.cloudfront.net/v6/charts/XBSOL3N3IFBDJF4W7H7YKLM7OHT6H2UNGQIHARGLXCC3FLTC6G4CKBWNFPN3GG7DPEARPM77Q2SFVAS64AERTGA=","dark_url":"https://d3o5xota0a1fcr.cloudfront.net/v6/charts/Q4A7MNQ6UNB2LY6K2VQM474IJSDI7IWVQ7CFIELRYBBYQDP3HOXJ2WTCK7KTYL5PAZU3BHWEK5CNPVUMWB3VQZA="},"climb_category":1,"city":"Pittsburgh","state":"PA","country":"United States","private":false,"hazardous":false,"starred":false,"created_at":"2011-11-04T15:53:22Z","updated_at":"2021-05-20T08:02:06Z","total_elevation_gain":90.2,"map":{"id":"s815373","polyline":"spwuF~chgNTMHFDNA^GJC^[l@Kh@E^]~@GXKZANLb@ZRHHVv@X~BAj@Hb@DJPBPA`@KF?PJb@Nd@ZJJj@Jj@PDLEVKJ]D_A@a@DWHQLo@zAc@bBGp@CHSXEB","resource_state":3},"effort_count":12580,"athlete_count":2463,"star_count":251,"athlete_segment_stats":{"pr_elapsed_time":311,"pr_date":"2023-10-19","pr_visibility":"everyone","pr_activity_id":10069295323,"pr_activity_visibility":"everyone","effort_count":5},"xoms":{"kom":"2:43","qom":"3:37","overall":"2:43","destination":{"href":"strava://segments/815373/leaderboard","type":"overall","name":"All-Time"}},"local_legend":{"athlete_id":6526075,"title":"Burak Tekes","profile":"https://dgalywyr863hv.cloudfront.net/pictures/athletes/6526075/2053057/13/large.jpg","effort_description":"11 efforts in the last 90 days","effort_count":"11","effort_counts":{"overall":"11 efforts","female":"2 efforts"},"destination":"strava://segments/815373/local_legend?categories%5B%5D=overall"}}
+    {
+        "id": 696322,
+        "resource_state": 3,
+        "name": "18th St Climb",
+        "activity_type": "Ride",
+        "distance": 2243.98,
+        "average_grade": 6.3,
+        "maximum_grade": 10,
+        "elevation_high": 358.4,
+        "elevation_low": 216.8,
+        "start_latlng": [
+            40.42608495801687,
+            -79.98083202168345
+        ],
+        "end_latlng": [
+            40.4193573910743,
+            -79.98949287459254
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/IW5HON52AR2LJCQKOXSUX3INOW2H7I3EH7RHJXLWAC4M563MVTXLKKLE4MMNYVPQZSEHMAIJ3QWI77FVJJ2DEQQ=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/IW5HON52AR2LJCQKOXSUX3INOW2H7I3EH7RHJXLWAC4M563MVTXLKKLE4MMNYVPQZSEHMAIJ3QWI77FVJJ2DEQQ=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/QX4K2DB3K4547YBZAXU7QD32VYHY4N76Y4IOHYBKPAG7ZP7PSN2RZTR6CULXHO22MZNQWEM5QODIBY4MLCL7GQQ="
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2011-08-01T09:18:22Z",
+        "updated_at": "2021-05-19T08:01:56Z",
+        "total_elevation_gain": 141.6,
+        "map": {
+            "id": "s696322",
+            "polyline": "_vvuFfgdgNn@@dAJ~@?VGJQDu@Lc@@g@Jm@Nk@Ly@VaCPkA?a@DQLM`@]RCx@Sv@@^C`@F^Jf@TjAv@b@^HLT\\|@dCtA~B`@fBPf@BPBf@SnBMXMJGR[bBCR@TIh@]lAQdAUv@Gd@DZb@b@j@v@f@~@jA~DVj@X\\rAbAR^~AlDLPTFPAVQZm@L]Pm@Vu@Va@XYHCTDd@?j@H^@d@H?JCFeA`Cw@|ASf@[jAYb@o@r@Yn@I^IR_@p@",
+            "resource_state": 3
+        },
+        "effort_count": 2637,
+        "athlete_count": 750,
+        "star_count": 5,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 554,
+            "pr_date": "2024-08-21",
+            "pr_visibility": "only_me",
+            "pr_activity_id": 12208646196,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 11
+        },
+        "xoms": {
+            "kom": "6:07",
+            "qom": "7:08",
+            "overall": "6:07",
+            "destination": {
+                "href": "strava://segments/696322/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 5613936,
+            "title": "P Lee",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/5613936/2705118/1/large.jpg",
+            "effort_description": "4 efforts in the last 90 days",
+            "effort_count": "4",
+            "effort_counts": {
+                "overall": "4 efforts",
+                "female": "2 efforts"
+            },
+            "destination": "strava://segments/696322/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 815373,
+        "resource_state": 3,
+        "name": "Dirty Dozen Hill 8 - Sycamore (official end)",
+        "activity_type": "Ride",
+        "distance": 756.3,
+        "average_grade": 11.9,
+        "maximum_grade": 23.5,
+        "elevation_high": 362.6,
+        "elevation_low": 272.4,
+        "start_latlng": [
+            40.43034221045673,
+            -80.00079461373389
+        ],
+        "end_latlng": [
+            40.43030709028244,
+            -80.00649481080472
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/XBSOL3N3IFBDJF4W7H7YKLM7OHT6H2UNGQIHARGLXCC3FLTC6G4CKBWNFPN3GG7DPEARPM77Q2SFVAS64AERTGA=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/XBSOL3N3IFBDJF4W7H7YKLM7OHT6H2UNGQIHARGLXCC3FLTC6G4CKBWNFPN3GG7DPEARPM77Q2SFVAS64AERTGA=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/Q4A7MNQ6UNB2LY6K2VQM474IJSDI7IWVQ7CFIELRYBBYQDP3HOXJ2WTCK7KTYL5PAZU3BHWEK5CNPVUMWB3VQZA="
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2011-11-04T15:53:22Z",
+        "updated_at": "2021-05-20T08:02:06Z",
+        "total_elevation_gain": 90.2,
+        "map": {
+            "id": "s815373",
+            "polyline": "spwuF~chgNTMHFDNA^GJC^[l@Kh@E^]~@GXKZANLb@ZRHHVv@X~BAj@Hb@DJPBPA`@KF?PJb@Nd@ZJJj@Jj@PDLEVKJ]D_A@a@DWHQLo@zAc@bBGp@CHSXEB",
+            "resource_state": 3
+        },
+        "effort_count": 12580,
+        "athlete_count": 2463,
+        "star_count": 251,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 311,
+            "pr_date": "2023-10-19",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 10069295323,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 5
+        },
+        "xoms": {
+            "kom": "2:43",
+            "qom": "3:37",
+            "overall": "2:43",
+            "destination": {
+                "href": "strava://segments/815373/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 6526075,
+            "title": "Burak Tekes",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/6526075/2053057/13/large.jpg",
+            "effort_description": "11 efforts in the last 90 days",
+            "effort_count": "11",
+            "effort_counts": {
+                "overall": "11 efforts",
+                "female": "2 efforts"
+            },
+            "destination": "strava://segments/815373/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 2678725,
+        "resource_state": 3,
+        "name": "Barry Holt Elanor - Dirty Dozen #12",
+        "activity_type": "Ride",
+        "distance": 689.2,
+        "average_grade": 15.1,
+        "maximum_grade": 26.6,
+        "elevation_high": 297.6,
+        "elevation_low": 193.2,
+        "start_latlng": [
+            40.42379083111882,
+            -79.96889577247202
+        ],
+        "end_latlng": [
+            40.42020211927593,
+            -79.97237493284047
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/STWBS67F4RRROW7T4HJOORDRHSKBFFO7YBQB2P6NUZT4NJ4NGC2BC2ZP3HKN3HF7MIAEEPBIYJWZ6ALNWTJUULHL",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/STWBS67F4RRROW7T4HJOORDRHSKBFFO7YBQB2P6NUZT4NJ4NGC2BC2ZP3HKN3HF7MIAEEPBIYJWZ6ALNWTJUULHL",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/VRAXEET5SQKJOPABCMX7U6TKMUHY5J42S5MVHLEPXU7GAB65EZYJJNMFS33HBKQE3Y3VKGJAJHFZWT75DUF4WQZ4"
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2012-11-03T15:38:37Z",
+        "updated_at": "2021-05-20T08:02:21Z",
+        "total_elevation_gain": 104.4,
+        "map": {
+            "id": "s2678725",
+            "polyline": "ugvuFr|agNFx@?^Db@Gb@BNHL?PBBl@NL@NABB@An@X^V^NBCXVPDTNP@RNLp@Ep@Mp@DjC?|ABLBDN?JG~@SjAIJ?XKb@CXI\\?TIn@BLF@C",
+            "resource_state": 3
+        },
+        "effort_count": 6420,
+        "athlete_count": 1547,
+        "star_count": 168,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 348,
+            "pr_date": "2024-05-03",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 11322606934,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 3
+        },
+        "xoms": {
+            "kom": "2:48",
+            "qom": "3:47",
+            "overall": "2:48",
+            "destination": {
+                "href": "strava://segments/2678725/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 6321316,
+            "title": "George Chen",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/6321316/4446594/1/large.jpg",
+            "effort_description": "4 efforts in the last 90 days",
+            "effort_count": "4",
+            "effort_counts": {
+                "overall": "4 efforts",
+                "female": null
+            },
+            "destination": "strava://segments/2678725/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 656361,
+        "resource_state": 3,
+        "name": "Southern",
+        "activity_type": "Ride",
+        "distance": 1808.46,
+        "average_grade": 5.2,
+        "maximum_grade": 9,
+        "elevation_high": 354.2,
+        "elevation_low": 259.4,
+        "start_latlng": [
+            40.414436,
+            -80.009874
+        ],
+        "end_latlng": [
+            40.427857,
+            -80.008805
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/V2ROZDVPFYDRKFWJ2BP2MBJXFVDK525VNKMFD6ETEBHZNOQFN4SMGOHWH5AE2DULV3NYAE7DCFDE3PLTR6XBHE45",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/V2ROZDVPFYDRKFWJ2BP2MBJXFVDK525VNKMFD6ETEBHZNOQFN4SMGOHWH5AE2DULV3NYAE7DCFDE3PLTR6XBHE45",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/7NFGX45MK35ZBAQIBDWHI3FUT73EXC6LY6MO2T7EAZDHBSMGMRQMR5S7YB5UQGJ6SDCUMT7SMH3KIOAQTZZJ465V"
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2011-05-23T01:40:58Z",
+        "updated_at": "2021-05-20T08:02:04Z",
+        "total_elevation_gain": 95.35,
+        "map": {
+            "id": "s656361",
+            "polyline": "emtuFv|igNsBzDYp@e@N]KYRKj@@t@S~EAVQn@]PeARqA\\k@Tc@XkBd@o@EeCs@}P}DmAWcBc@i@g@qA{AgFmE{@aAsBgCa@YoC_As@KaBc@cAOwA?mAU",
+            "resource_state": 3
+        },
+        "effort_count": 10697,
+        "athlete_count": 1413,
+        "star_count": 31,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 444,
+            "pr_date": "2024-10-05",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 12582482334,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 2
+        },
+        "xoms": {
+            "kom": "4:05",
+            "qom": "5:28",
+            "overall": "4:05",
+            "destination": {
+                "href": "strava://segments/656361/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 24978314,
+            "title": "B Tang",
+            "profile": "https://lh3.googleusercontent.com/a/ACg8ocJnt40qri3MP0FXt0u1fdKS4d6OHuGpH5QcF8XSLwAgecTFQA=s96-c",
+            "effort_description": "11 efforts in the last 90 days",
+            "effort_count": "11",
+            "effort_counts": {
+                "overall": "11 efforts",
+                "female": "1 effort"
+            },
+            "destination": "strava://segments/656361/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 686600,
+        "resource_state": 3,
+        "name": "Greenleaf St, Mt Washington",
+        "activity_type": "Ride",
+        "distance": 1143.18,
+        "average_grade": 10.2,
+        "maximum_grade": 24.1,
+        "elevation_high": 351.2,
+        "elevation_low": 229,
+        "start_latlng": [
+            40.44324,
+            -80.02812
+        ],
+        "end_latlng": [
+            40.43891,
+            -80.02634
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/ACM6AIRXCUIWVPM33QDUXHW7FKAQFJW4IPGHYVW3JFKX32EY5OMXVRACPLKV2S4TEZERAF7R2I6MSX22LP6DNPPD",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/ACM6AIRXCUIWVPM33QDUXHW7FKAQFJW4IPGHYVW3JFKX32EY5OMXVRACPLKV2S4TEZERAF7R2I6MSX22LP6DNPPD",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/BLS7ZODFGI3RX5J6QVGTRS4CG4WXWKOURGXYRWJ45JBAVCFRFOAOIFJDW45JJ3F3MS52SK37JSI3ZUZ33WPNPKEN"
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2011-07-20T04:51:25Z",
+        "updated_at": "2021-05-20T08:02:05Z",
+        "total_elevation_gain": 116.698,
+        "map": {
+            "id": "s686600",
+            "polyline": "gazuFvnmgNN@JDFLHHj@jAHHPLh@NR@@NPRBPN`@FFDLDDLRZRZ\\PJBFbAl@BFTHLH^f@l@LPPF?RLVXZDDJ`@Jb@VJ?RPFHJFPTHAFFRH`ANb@FJEHDf@HJCJEVGHODe@?OUuAIUScAW_AIk@Sw@[{AEk@Qg@EE[oAFcAFYCQF]Fy@@o@Hu@Ai@GW",
+            "resource_state": 3
+        },
+        "effort_count": 2189,
+        "athlete_count": 571,
+        "star_count": 59,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 396,
+            "pr_date": "2025-05-13",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 14468432387,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 2
+        },
+        "xoms": {
+            "kom": "3:45",
+            "qom": "5:08",
+            "overall": "3:45",
+            "destination": {
+                "href": "strava://segments/686600/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 14265,
+            "title": "David Klüg",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/14265/3358060/5/large.jpg",
+            "effort_description": "5 efforts in the last 90 days",
+            "effort_count": "5",
+            "effort_counts": {
+                "overall": "5 efforts",
+                "female": "1 effort"
+            },
+            "destination": "strava://segments/686600/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 8813588,
+        "resource_state": 3,
+        "name": "Mooney",
+        "activity_type": "Ride",
+        "distance": 620.7,
+        "average_grade": 15,
+        "maximum_grade": 23.9,
+        "elevation_high": 206.6,
+        "elevation_low": 113.6,
+        "start_latlng": [
+            40.379097,
+            -79.92372
+        ],
+        "end_latlng": [
+            40.379526,
+            -79.917717
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/MZIX5OBJTPC6NMGKAAC4HPUQZQO6XDE5A6YAMAQYVFOXPBXYMWE4AZYOZTT3V6YTJN35ONOPODZA6BZ5B234KCQO",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/MZIX5OBJTPC6NMGKAAC4HPUQZQO6XDE5A6YAMAQYVFOXPBXYMWE4AZYOZTT3V6YTJN35ONOPODZA6BZ5B234KCQO",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/KHQCBOKQL7TE62EBVW4N4WMD2UIQ5IOZ72BDBPM56OL6ERVW5EWSET6YSKH77C4WC3NSOWETKSMVIRFL2DZVB3UE"
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "Pennsylvania",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2015-01-22T23:09:37Z",
+        "updated_at": "2021-05-15T02:16:01Z",
+        "total_elevation_gain": 92.2,
+        "map": {
+            "id": "s8813588",
+            "polyline": "ipmuFfbyfNGCCGCW`@cAH[HiBZcCT_AbA}BZeAJm@@m@E_@Uu@gBoCeAgBo@}@a@qA",
+            "resource_state": 3
+        },
+        "effort_count": 216,
+        "athlete_count": 105,
+        "star_count": 9,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 288,
+            "pr_date": "2023-04-25",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 8957642702,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 1
+        },
+        "xoms": {
+            "kom": null,
+            "qom": "3:46",
+            "overall": "2:51",
+            "destination": {
+                "href": "strava://segments/8813588/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 10701355,
+            "title": "Sean Wehr",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/10701355/8645132/1/large.jpg",
+            "effort_description": "2 efforts in the last 90 days",
+            "effort_count": "2",
+            "effort_counts": {
+                "overall": "2 efforts",
+                "female": "1 effort"
+            },
+            "destination": "strava://segments/8813588/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 709140,
+        "resource_state": 3,
+        "name": "The Run to Fifth (via Panther Hollow) (updated)",
+        "activity_type": "Ride",
+        "distance": 2291.62,
+        "average_grade": 2.1,
+        "maximum_grade": 31.9,
+        "elevation_high": 274,
+        "elevation_low": 223.3,
+        "start_latlng": [
+            40.4276852,
+            -79.94905765
+        ],
+        "end_latlng": [
+            40.44671955,
+            -79.94706183333334
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/4B6MPOWP27MCQX5QUXFW5JLWQTS6ZM6CPYJKX4GBJETYCEUTANUORCBZGG2IGCZMD3CCH3PJV3AL3JOQY24BWQDV",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/4B6MPOWP27MCQX5QUXFW5JLWQTS6ZM6CPYJKX4GBJETYCEUTANUORCBZGG2IGCZMD3CCH3PJV3AL3JOQY24BWQDV",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/OENORUP4KCKORTIVK4SU4Y4S3RAKXXBP7H5PJQ5BIUDQZOMGS7TKOA3ZR23ELWCRUVZUYE73ZMXFQMB36HMVENOD"
+        },
+        "climb_category": 0,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2011-08-10T12:35:04Z",
+        "updated_at": "2021-05-20T08:02:05Z",
+        "total_elevation_gain": 54.29,
+        "map": {
+            "id": "s709140",
+            "polyline": "_`wuFr`~fNiEt@o@Ts@f@eA|@kA^e@V[`@_@PWX_@Pq@Hg@@g@Ae@Qe@_@i@Sk@Gm@@wAK{@KqA]k@IwAEk@Bk@CgC[m@A_BNoBAiBIo@@uE`@o@RaCjAg@Rg@Nq@_@c@c@a@e@y@uA]a@_@YmB}@}A_A}EyEqA}@aDkBYUQWe@Ys@Io@?sBb@uAb@]DmAb@",
+            "resource_state": 3
+        },
+        "effort_count": 59347,
+        "athlete_count": 5637,
+        "star_count": 13,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 299,
+            "pr_date": "2023-07-18",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 9477979906,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 90
+        },
+        "xoms": {
+            "kom": "3:54",
+            "qom": "4:43",
+            "overall": "3:54",
+            "destination": {
+                "href": "strava://segments/709140/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 142054980,
+            "title": "Jordan Wilson",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/142054980/36686873/4/large.jpg",
+            "effort_description": "28 efforts in the last 90 days",
+            "effort_count": "28",
+            "effort_counts": {
+                "overall": "28 efforts",
+                "female": "25 efforts"
+            },
+            "destination": "strava://segments/709140/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 20855939,
+        "resource_state": 3,
+        "name": "Nobles Ln.",
+        "activity_type": "Ride",
+        "distance": 1287.4,
+        "average_grade": 5.5,
+        "maximum_grade": 8,
+        "elevation_high": 413,
+        "elevation_low": 342,
+        "start_latlng": [
+            40.396293,
+            -79.997127
+        ],
+        "end_latlng": [
+            40.403615,
+            -79.990575
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/DCNQ2265JTJOO3HG5MUYL23VI3NDJW5QMRSU27ABKFHORQ2Y3TEMTSMHPE46SOVNAPSEAZ2BZ4ZZ7TZEQONPFBY=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/DCNQ2265JTJOO3HG5MUYL23VI3NDJW5QMRSU27ABKFHORQ2Y3TEMTSMHPE46SOVNAPSEAZ2BZ4ZZ7TZEQONPFBY=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/TQ6PHZVAY5LZGTZJ6P45LU4ZXEX5KLY7BC3WCEPYZ7HZ5MDOAFCJLG27MBM3QXZJZIZ5DEDC5IT2L5V6G4GVF6Q="
+        },
+        "climb_category": 0,
+        "city": null,
+        "state": null,
+        "country": null,
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2019-06-12T13:30:38Z",
+        "updated_at": "2021-05-18T08:05:39Z",
+        "total_elevation_gain": 71,
+        "map": {
+            "id": "s20855939",
+            "polyline": "y{puF`mggNkAf@eAh@e@Nc@Jc@Bu@Ee@?cB\\iDUa@?yAPqDhA_@CYQUWm@kCMe@Ie@QqBKi@Sa@s@s@Wc@Og@Ki@UoCw@oMWw@iCgF",
+            "resource_state": 3
+        },
+        "effort_count": 1490,
+        "athlete_count": 234,
+        "star_count": 7,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 344,
+            "pr_date": "2023-08-18",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 9674468030,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 2
+        },
+        "xoms": {
+            "kom": null,
+            "qom": "4:44",
+            "overall": null,
+            "destination": {
+                "href": "strava://segments/20855939/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 14846123,
+            "title": "Edward Phillips",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/14846123/4192764/3/large.jpg",
+            "effort_description": "15 efforts in the last 90 days",
+            "effort_count": "15",
+            "effort_counts": {
+                "overall": "15 efforts",
+                "female": "5 efforts"
+            },
+            "destination": "strava://segments/20855939/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 5406416,
+        "resource_state": 3,
+        "name": "Greenfield - Haldane",
+        "activity_type": "Ride",
+        "distance": 786.8,
+        "average_grade": 7.2,
+        "maximum_grade": 11.9,
+        "elevation_high": 284,
+        "elevation_low": 227.6,
+        "start_latlng": [
+            40.424978,
+            -79.952131
+        ],
+        "end_latlng": [
+            40.425394,
+            -79.943295
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/HCHVFSYGQC25EDUKHKFE326F6YSLQSHBY63GDBK3CKE6WFIFR2BPFZ6ZCGDMNEYLLZCL6E7AKUJCLNJ4FZN74RY=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/HCHVFSYGQC25EDUKHKFE326F6YSLQSHBY63GDBK3CKE6WFIFR2BPFZ6ZCGDMNEYLLZCL6E7AKUJCLNJ4FZN74RY=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/CF4EACRUJ2H4542B2FSWXIFLSTRZL5QRUHA22XVKIRYC67VA22DPPJIYUXDGXECSRFBET25EZBCXXBD76UZQLTQ="
+        },
+        "climb_category": 0,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2013-09-06T19:52:27Z",
+        "updated_at": "2021-05-20T08:02:42Z",
+        "total_elevation_gain": 58.4,
+        "map": {
+            "id": "s5406416",
+            "polyline": "aovuFzs~fN@[EUMKM[oA}Cc@aECg@PoCF_@Hm@ZkBTsBLeBH_C?uAAo@EWMg@IQOuA?mALoB@q@IcA",
+            "resource_state": 3
+        },
+        "effort_count": 21106,
+        "athlete_count": 2170,
+        "star_count": 34,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 179,
+            "pr_date": "2022-08-27",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 7708910614,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 7
+        },
+        "xoms": {
+            "kom": "1:03",
+            "qom": "1:59",
+            "overall": "1:03",
+            "destination": {
+                "href": "strava://segments/5406416/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 38968634,
+            "title": "Ben Freed",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/38968634/16684746/2/large.jpg",
+            "effort_description": "18 efforts in the last 90 days",
+            "effort_count": "18",
+            "effort_counts": {
+                "overall": "18 efforts",
+                "female": "6 efforts"
+            },
+            "destination": "strava://segments/5406416/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 10590095,
+        "resource_state": 3,
+        "name": "William Street ",
+        "activity_type": "Ride",
+        "distance": 819.4,
+        "average_grade": 9.6,
+        "maximum_grade": 19.6,
+        "elevation_high": 376.2,
+        "elevation_low": 297.8,
+        "start_latlng": [
+            40.42818,
+            -79.997038
+        ],
+        "end_latlng": [
+            40.427144,
+            -80.00527
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/L6ALH425DHJKGPVS6YBUVESWMY7PV7NNBSIJJUSYAIOVKUHZVRTZU5NQEZWGP7OIZNWWH4EIWRNW6P5KUGOHDQI=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/L6ALH425DHJKGPVS6YBUVESWMY7PV7NNBSIJJUSYAIOVKUHZVRTZU5NQEZWGP7OIZNWWH4EIWRNW6P5KUGOHDQI=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/CFRSVRUTPD33HOY6LIBUYR43JDWJSGPBVA7U57YJFEFMWE5VMRZ3GSLZDXJDE3P6I5KEO3TMQOOCCOBXKQDDQLI="
+        },
+        "climb_category": 0,
+        "city": "Pittsburgh",
+        "state": "Pennsylvania",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2015-09-30T17:56:04Z",
+        "updated_at": "2021-05-19T08:03:26Z",
+        "total_elevation_gain": 78.4,
+        "map": {
+            "id": "s10590095",
+            "polyline": "acwuFnlggNEBSVEHCLAJBf@H^Ap@EJMt@IlA@NHVLTXZJf@@VCZU`@K\\k@n@?LGNMLQZc@bBI`ABNJVv@hAFlAF\\`@`A\\\\R\\Tr@LZd@~AR`@Vp@Ll@z@`C",
+            "resource_state": 3
+        },
+        "effort_count": 1234,
+        "athlete_count": 316,
+        "star_count": 14,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 291,
+            "pr_date": "2023-04-13",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 8885657859,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 2
+        },
+        "xoms": {
+            "kom": "2:36",
+            "qom": "3:42",
+            "overall": "2:36",
+            "destination": {
+                "href": "strava://segments/10590095/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 14265,
+            "title": "David Klüg",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/14265/3358060/5/large.jpg",
+            "effort_description": "23 efforts in the last 90 days",
+            "effort_count": "23",
+            "effort_counts": {
+                "overall": "23 efforts",
+                "female": "1 effort"
+            },
+            "destination": "strava://segments/10590095/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 887503,
+        "resource_state": 3,
+        "name": "Swinburne Street",
+        "activity_type": "Ride",
+        "distance": 653.7,
+        "average_grade": 4.7,
+        "maximum_grade": 23.1,
+        "elevation_high": 289.4,
+        "elevation_low": 259,
+        "start_latlng": [
+            40.427283653989434,
+            -79.95091499760747
+        ],
+        "end_latlng": [
+            40.43168247677386,
+            -79.95273035019636
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/2SIFLYM7LAMKTJDYLXES4C77GW4X5EOFK22FXHCMHPFBBISDWPDAHNN7W2B6A3TMBJLZZUXPU6XEKUVDG3ULUVA=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/2SIFLYM7LAMKTJDYLXES4C77GW4X5EOFK22FXHCMHPFBBISDWPDAHNN7W2B6A3TMBJLZZUXPU6XEKUVDG3ULUVA=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/RWLGN6RN5LZ4HTXAWJMUTEF4ZPCRRQ4DHDEP5P5U5Z2V7O73WWT7RDHPV77VPE2TVTDMUCA6WWP4LU3UCTULDQI="
+        },
+        "climb_category": 0,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": true,
+        "created_at": "2012-01-01T20:36:26Z",
+        "updated_at": "2021-05-20T08:02:07Z",
+        "total_elevation_gain": 30,
+        "map": {
+            "id": "s887503",
+            "polyline": "o}vuFfl~fNc@LCFD??Gi@o@MIu@q@]QYKY@s@Rm@DiA\\u@^eAz@m@Zm@\\IHo@hAQNQBSEYSc@_@QIYDEDGDEPOtAIvB",
+            "resource_state": 3
+        },
+        "effort_count": 14653,
+        "athlete_count": 1552,
+        "star_count": 45,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 81,
+            "pr_date": "2024-05-28",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 11521029464,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 26
+        },
+        "xoms": {
+            "kom": "54s",
+            "qom": "1:19",
+            "overall": "54s",
+            "destination": {
+                "href": "strava://segments/887503/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 186406,
+            "title": "Mark Perry",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/186406/1074744/2/large.jpg",
+            "effort_description": "39 efforts in the last 90 days",
+            "effort_count": "39",
+            "effort_counts": {
+                "overall": "39 efforts",
+                "female": "8 efforts"
+            },
+            "destination": "strava://segments/887503/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 2392489,
+        "resource_state": 3,
+        "name": "West End to Crafton Climb",
+        "activity_type": "Ride",
+        "distance": 2613.21,
+        "average_grade": 4.5,
+        "maximum_grade": 21.8,
+        "elevation_high": 287.4,
+        "elevation_low": 166.2,
+        "start_latlng": [
+            40.44444912113249,
+            -80.02897549420595
+        ],
+        "end_latlng": [
+            40.444008903577924,
+            -80.0554355699569
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/GWQQSNYIAAHOKR5MTSHGODDGXYYY3NN3RRQMSV7N4UA4ITQYSBLGIMPC3R3EACY2UXDEKNHFKVQFEL364GAQMTQ=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/GWQQSNYIAAHOKR5MTSHGODDGXYYY3NN3RRQMSV7N4UA4ITQYSBLGIMPC3R3EACY2UXDEKNHFKVQFEL364GAQMTQ=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/MQG4OKWO2CHFH532A6LILFTQK5QSPUYGZGNLQMNVDUL2WXX6NV3FDR4BRPW5MUNJE3OMST7ZZXPLFLP47U37URQ="
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2012-09-16T15:27:04Z",
+        "updated_at": "2021-05-15T02:12:29Z",
+        "total_elevation_gain": 130.6,
+        "map": {
+            "id": "s2392489",
+            "polyline": "whzuFbtmgNXt@l@hAd@jANd@xAdE^x@b@pAd@|ARfAPx@n@fBf@bBv@|Cx@nCZpARn@Rf@D`@@|@C|DD`@Lb@BXKrA@j@Ct@Dh@ANHt@G^Ad@q@fAg@jAe@h@w@~Ae@f@u@jAITy@bAMf@YTORGTCx@@ZLh@L|@Rf@d@j@NL`@VV\\t@p@l@bArBbC`@p@HRHh@BvACRQx@cAnBs@jAK\\c@pB_AjH]jBS|@WZKd@?RQ|@c@jAKPGd@cA~DOXOb@M~@K\\G`@Sz@OjA",
+            "resource_state": 3
+        },
+        "effort_count": 378,
+        "athlete_count": 178,
+        "star_count": 2,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": null,
+            "pr_date": null,
+            "pr_visibility": null,
+            "pr_activity_id": null,
+            "pr_activity_visibility": null,
+            "effort_count": 0
+        },
+        "xoms": {
+            "kom": "6:53",
+            "qom": "3:45",
+            "overall": "3:45",
+            "destination": {
+                "href": "strava://segments/2392489/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 80147073,
+            "title": "Ben Gower",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/80147073/19719602/4/large.jpg",
+            "effort_description": "1 effort in the last 90 days",
+            "effort_count": "1",
+            "effort_counts": {
+                "overall": "1 effort",
+                "female": null
+            },
+            "destination": "strava://segments/2392489/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 7702218,
+        "resource_state": 3,
+        "name": "Brentwood, Schuette, Willett Rd climb",
+        "activity_type": "Ride",
+        "distance": 3347.6,
+        "average_grade": 3.7,
+        "maximum_grade": 17.2,
+        "elevation_high": 385.9,
+        "elevation_low": 261.1,
+        "start_latlng": [
+            40.365977,
+            -79.949999
+        ],
+        "end_latlng": [
+            40.385548,
+            -79.971341
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/XZDDIAR5WUVUWKCV5NVNT2GRTEZWVEAUEV7SARZNF3CC67RTI5BVQ7QMMTKOH64GU5ACEMFMNCYBYSGMEITAQKLS",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/XZDDIAR5WUVUWKCV5NVNT2GRTEZWVEAUEV7SARZNF3CC67RTI5BVQ7QMMTKOH64GU5ACEMFMNCYBYSGMEITAQKLS",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/RBRWC5LPGIRCR5Q3G75FRYQ4SYRHG5DITPI5WAW5C4QYF7RCZZDHXMOBD5XFTOJMWUQEOR5JIJ7NTD4UU6RXWBCW"
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2014-07-21T21:20:26Z",
+        "updated_at": "2021-05-15T02:15:22Z",
+        "total_elevation_gain": 138.2,
+        "map": {
+            "id": "s7702218",
+            "polyline": "i~juFnf~fNOdAQbA_BrHaAzD]hA[GIVL\\CHg@x@q@t@mCfCaBhA]\\m@bAo@`BW`AIn@Dl@HBFb@Bz@DP?d@Kv@GPMRUL]FiA@a@GUEYOiAkAIEUEW@i@R[Fc@@SCa@SWUo@{@QMOEUAQDkCbAODU@wEk@w@GOIRSIQBHDACDMHAJcGpFoEzD_@`@_@j@i@`Aa@lAY~@y@xFc@jBc@~Aa@rAcEjKiBxGeB|GSp@Yh@MRc@b@e@\\s@`@i@RiAVyBXuD^g@N}@h@WR_CjC",
+            "resource_state": 3
+        },
+        "effort_count": 301,
+        "athlete_count": 84,
+        "star_count": 3,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 693,
+            "pr_date": "2022-09-11",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 7792440134,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 1
+        },
+        "xoms": {
+            "kom": "7:40",
+            "qom": "10:13",
+            "overall": "7:40",
+            "destination": {
+                "href": "strava://segments/7702218/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 8969861,
+            "title": "Rusty Duff",
+            "profile": "https://graph.facebook.com/10204525319353248/picture?height=256&width=256",
+            "effort_description": "5 efforts in the last 90 days",
+            "effort_count": "5",
+            "effort_counts": {
+                "overall": "5 efforts",
+                "female": null
+            },
+            "destination": "strava://segments/7702218/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 2138299,
+        "resource_state": 3,
+        "name": "Prospect Rd Climb",
+        "activity_type": "Ride",
+        "distance": 1743.11,
+        "average_grade": 5.3,
+        "maximum_grade": 12.2,
+        "elevation_high": 391.9,
+        "elevation_low": 299.8,
+        "start_latlng": [
+            40.35209319625906,
+            -79.96460695700209
+        ],
+        "end_latlng": [
+            40.35936285609915,
+            -79.98034779409679
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/4WOCV3EKVUT6PRJR6HPGNUJV4NXCFUQKC362XPO3ELL7J7UHZJFIGX2HHNSQPUMG56RNQPHQ6JE44ZHLPKO6RMA=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/4WOCV3EKVUT6PRJR6HPGNUJV4NXCFUQKC362XPO3ELL7J7UHZJFIGX2HHNSQPUMG56RNQPHQ6JE44ZHLPKO6RMA=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/N7L5XLTHTFTEB3YZ2TLFCZTAJLVDESORWXHVJLLEO665JNIVAS2UFTQKEWHGMZBHMEM4IYCG43VYDB4MWVQVSXQ="
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2012-08-15T20:35:49Z",
+        "updated_at": "2021-05-15T02:12:22Z",
+        "total_elevation_gain": 94.7873,
+        "map": {
+            "id": "s2138299",
+            "polyline": "qghuFxaagNU`@QJIJSp@w@|@kAz@cBxAoBjBc@f@WTyDzBi@`@o@b@}@z@_BlBkA`Bs@fAu@x@kAvAMTKXi@~AWnAIh@MhBEVM`DQr@]r@Wr@Op@O`DEf@?|@JxAl@dEnAlG@f@Cr@CTm@|A[^_@p@ELUXg@|@",
+            "resource_state": 3
+        },
+        "effort_count": 188,
+        "athlete_count": 39,
+        "star_count": 2,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": null,
+            "pr_date": null,
+            "pr_visibility": null,
+            "pr_activity_id": null,
+            "pr_activity_visibility": null,
+            "effort_count": 0
+        },
+        "xoms": {
+            "kom": "4:23",
+            "qom": "6:57",
+            "overall": "4:23",
+            "destination": {
+                "href": "strava://segments/2138299/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 8382841,
+            "title": "David Denis",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/8382841/4688766/4/large.jpg",
+            "effort_description": "2 efforts in the last 90 days",
+            "effort_count": "2",
+            "effort_counts": {
+                "overall": "2 efforts",
+                "female": null
+            },
+            "destination": "strava://segments/2138299/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 4961664,
+        "resource_state": 3,
+        "name": "Josephine St/ Arlington Ave Climb",
+        "activity_type": "Ride",
+        "distance": 1777.2,
+        "average_grade": 6.7,
+        "maximum_grade": 19.9,
+        "elevation_high": 358.7,
+        "elevation_low": 240.2,
+        "start_latlng": [
+            40.423798,
+            -79.96876
+        ],
+        "end_latlng": [
+            40.417497,
+            -79.972786
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/ECGRF6553OBKQBUGJ7CL2TFN35JEAOXDW3Y2FYLPERQN3WJ4WJFEDAIXMMMDMJBHDQNKHNKBDW4UMOLQGKWBXIZJ",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/ECGRF6553OBKQBUGJ7CL2TFN35JEAOXDW3Y2FYLPERQN3WJ4WJFEDAIXMMMDMJBHDQNKHNKBDW4UMOLQGKWBXIZJ",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/XPNTTED32DFBOMC2EPDL4K7QFA2RHWOOVXNWRVE2T36CABKFJ4Y3W7HFNUY6UDENY7AWRA366TSIBJSOME2LBOOM"
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": true,
+        "created_at": "2013-08-02T14:42:25Z",
+        "updated_at": "2021-05-19T08:02:29Z",
+        "total_elevation_gain": 125.3,
+        "map": {
+            "id": "s4961664",
+            "polyline": "ugvuFv{agNFGRq@jAkCJKf@]HOBM?e@Dg@DMdAwCx@qBLCr@wAj@_ABKjAcBPa@NQL@HET@vEdAbCn@^N^Xx@dA^fALr@J|ACt@B\\J^DHTLH@JATKFKJ{@LkDHQFEP?HDJNBJDl@ALNzAHxAC`AMfA?ZWtBOhC_@bFEfA?fAFfB\\pG",
+            "resource_state": 3
+        },
+        "effort_count": 6601,
+        "athlete_count": 1661,
+        "star_count": 40,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 422,
+            "pr_date": "2023-09-13",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 9844599090,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 10
+        },
+        "xoms": {
+            "kom": "4:29",
+            "qom": "5:48",
+            "overall": "4:29",
+            "destination": {
+                "href": "strava://segments/4961664/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 240924,
+            "title": "Lars Cleath",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/240924/43084/12/large.jpg",
+            "effort_description": "7 efforts in the last 90 days",
+            "effort_count": "7",
+            "effort_counts": {
+                "overall": "7 efforts",
+                "female": "2 efforts"
+            },
+            "destination": "strava://segments/4961664/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 14674301,
+        "resource_state": 3,
+        "name": "PA 60 Outbound",
+        "activity_type": "Ride",
+        "distance": 2580.9,
+        "average_grade": 4.4,
+        "maximum_grade": 10.8,
+        "elevation_high": 343.9,
+        "elevation_low": 231.1,
+        "start_latlng": [
+            40.440528,
+            -80.035636
+        ],
+        "end_latlng": [
+            40.437285,
+            -80.058541
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/LSRI7IX5FASUYT5DCBU33HTLPZMB3QV7VPUFBBTEJML46UV4NDKTZSYE5FOUTPH6QZSKFEMHO5ECSJ2JPKIGL5A=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/LSRI7IX5FASUYT5DCBU33HTLPZMB3QV7VPUFBBTEJML46UV4NDKTZSYE5FOUTPH6QZSKFEMHO5ECSJ2JPKIGL5A=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/VJUGGHFKG47L3NBXVJHSMSM64575GEC6KJAEQSKF6F2Z35ASVDVZL4PKPFG4LHJIQKSKZEVUTGYZKAGJKL3SEHQ="
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "Pennsylvania",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2017-04-22T14:55:48Z",
+        "updated_at": "2021-05-15T02:19:14Z",
+        "total_elevation_gain": 112.8,
+        "map": {
+            "id": "s14674301",
+            "polyline": "gpyuFv}ngNDBVCvA_A\\QRGr@EbBBr@TPJ\\Hl@Xd@Nl@J~@Hd@Nf@Gf@?`BBXFz@DPFLLH\\Aj@Q`BAv@Mp@YtBQp@ILe@fBUl@o@z@c@\\MLOVQp@UzCOxA]dBa@|C_@hBUr@]jBc@zCMbBAlADlEV|DNxA?z@E~AK`ABf@H|@bAnC^vAHz@FbAAbBMbCG\\Ur@Wl@Sn@Iv@?TTxCNxDDXDl@@z@R`FDX?^BT\\`Ad@zB",
+            "resource_state": 3
+        },
+        "effort_count": 9151,
+        "athlete_count": 569,
+        "star_count": 2,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 561,
+            "pr_date": "2023-09-03",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 9775357970,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 6
+        },
+        "xoms": {
+            "kom": "5:45",
+            "qom": "6:15",
+            "overall": "5:45",
+            "destination": {
+                "href": "strava://segments/14674301/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 14846123,
+            "title": "Edward Phillips",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/14846123/4192764/3/large.jpg",
+            "effort_description": "22 efforts in the last 90 days",
+            "effort_count": "22",
+            "effort_counts": {
+                "overall": "22 efforts",
+                "female": "2 efforts"
+            },
+            "destination": "strava://segments/14674301/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 25652064,
+        "resource_state": 3,
+        "name": "Glass Run + Cathell",
+        "activity_type": "Ride",
+        "distance": 2795,
+        "average_grade": 4.8,
+        "maximum_grade": 10.8,
+        "elevation_high": 362.1,
+        "elevation_low": 228.6,
+        "start_latlng": [
+            40.389641,
+            -79.935078
+        ],
+        "end_latlng": [
+            40.385149,
+            -79.949682
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/4XVQ2PZQUY4MFWORAILVWALM6VDTSIGEDBEIMFU6M7USVIBXXR7Z6DZ44DQETFDSOOWM2AIVZIKCE52GQW4WAYCU",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/4XVQ2PZQUY4MFWORAILVWALM6VDTSIGEDBEIMFU6M7USVIBXXR7Z6DZ44DQETFDSOOWM2AIVZIKCE52GQW4WAYCU",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/ZQW2CRELZAOXFNJRAGYV5DM6PP3VJ3QIXN3B6FANXVHM43TICOZQN5SVAF7PAEB5QCBXG4LUZSDUUX23KLHJA223"
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "Pennsylvania",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2020-09-09T16:24:19Z",
+        "updated_at": "2021-05-19T08:05:32Z",
+        "total_elevation_gain": 133.5,
+        "map": {
+            "id": "s25652064",
+            "polyline": "grouFfi{fNJrCB~Ea@|SJfCEvA@^Bn@Jv@@v@?DIL[`@k@~@a@|@Kj@@l@BVFTBf@BbBEv@K`AEt@A\\Jh@DvAJh@B^@p@SfCy@pEI`Aw@vCAj@VbDFVNV^@@OAY[aB?u@JWb@i@v@sANc@XaARYZYPa@HqALw@Hu@@_@?mDL{@b@kBFu@RiALgARw@LSJGN?LJf@fAb@zBl@fBZr@FJh@|Av@zCf@xBPpAN`BrAfFJLVLLBLAz@SnAo@n@M",
+            "resource_state": 3
+        },
+        "effort_count": 524,
+        "athlete_count": 83,
+        "star_count": 2,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 569,
+            "pr_date": "2024-12-10",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 13087456201,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 2
+        },
+        "xoms": {
+            "kom": "7:28",
+            "qom": "9:33",
+            "overall": "7:28",
+            "destination": {
+                "href": "strava://segments/25652064/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 27934388,
+            "title": "Billy Kanarek",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/27934388/13764114/1/large.jpg",
+            "effort_description": "4 efforts in the last 90 days",
+            "effort_count": "4",
+            "effort_counts": {
+                "overall": "4 efforts",
+                "female": null
+            },
+            "destination": "strava://segments/25652064/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 837458,
+        "resource_state": 3,
+        "name": "greentree to parkway center",
+        "activity_type": "Ride",
+        "distance": 1371.19,
+        "average_grade": 9.2,
+        "maximum_grade": 13.7,
+        "elevation_high": 349.8,
+        "elevation_low": 224,
+        "start_latlng": [
+            40.434826193377376,
+            -80.035006608814
+        ],
+        "end_latlng": [
+            40.42525850236416,
+            -80.04221018403769
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/ZVNBB7GDQZCWOI2KV5WJHFKBA5T4HCKBRLXSTC4L544B7MBZ56AMR4MJK3XRGNJAIVS5GL2GY5IYHSEAIN2CQLA=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/ZVNBB7GDQZCWOI2KV5WJHFKBA5T4HCKBRLXSTC4L544B7MBZ56AMR4MJK3XRGNJAIVS5GL2GY5IYHSEAIN2CQLA=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/VTDOFRESUXWQNIEGK5K7FM3NV5JJAQU2L5ZJX7ZTFQ7UKDTG25PXCL4WZDFOQF2Q5ZVDPME4YLBCI64XJSVEVGQ="
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2011-11-25T14:38:53Z",
+        "updated_at": "2021-05-20T08:02:07Z",
+        "total_elevation_gain": 125.8,
+        "map": {
+            "id": "s837458",
+            "polyline": "slxuFxyngNFjBAVEHIr@Ad@HVDXEL?r@Nd@Zj@Zr@HH^NPNb@@RDBFAD@J`APn@n@JPJ@VNJTHJXD^?z@f@j@Tb@EP@x@`@\\@z@Rb@RZBRLb@HFF\\LNJ~@L|@Fn@b@v@x@JV^h@V`AXb@x@~@x@r@HBjAJzAYH@v@K~@SRAZ@\\Jr@`@zAjB^\\",
+            "resource_state": 3
+        },
+        "effort_count": 1873,
+        "athlete_count": 299,
+        "star_count": 5,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": null,
+            "pr_date": null,
+            "pr_visibility": null,
+            "pr_activity_id": null,
+            "pr_activity_visibility": null,
+            "effort_count": 0
+        },
+        "xoms": {
+            "kom": "4:44",
+            "qom": "7:07",
+            "overall": "4:44",
+            "destination": {
+                "href": "strava://segments/837458/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 3114344,
+            "title": "Nik Reinert",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/3114344/11867795/5/large.jpg",
+            "effort_description": "17 efforts in the last 90 days",
+            "effort_count": "17",
+            "effort_counts": {
+                "overall": "17 efforts",
+                "female": "17 efforts"
+            },
+            "destination": "strava://segments/837458/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 2749245,
+        "resource_state": 3,
+        "name": "Walbridge Herschel Climb",
+        "activity_type": "Ride",
+        "distance": 1048.27,
+        "average_grade": 11,
+        "maximum_grade": 31.1,
+        "elevation_high": 124.2,
+        "elevation_low": 9.4,
+        "start_latlng": [
+            40.44040745124221,
+            -80.03559686243534
+        ],
+        "end_latlng": [
+            40.44094305485487,
+            -80.0437605008483
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/AQ62D3Y334EAA6BJ6L3QTZWBTOMVHI5D6VNOMMNVCVGK3SR7YTYLXH5CYYIG2LHW4VCT4QOFAPV5VZ2LEWZ4ZZQ=",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/AQ62D3Y334EAA6BJ6L3QTZWBTOMVHI5D6VNOMMNVCVGK3SR7YTYLXH5CYYIG2LHW4VCT4QOFAPV5VZ2LEWZ4ZZQ=",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/TOTV3UXTVCUOJTRBJWFAM4SG7EKRJ2LVHXCCUKJ7RI6O64C7PCZT7VIIGVRQJX3A2YWVWGAIPS5ZXEDWVPDJJSA="
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2012-11-17T17:43:46Z",
+        "updated_at": "2021-05-15T02:12:40Z",
+        "total_elevation_gain": 114.8,
+        "map": {
+            "id": "s2749245",
+            "polyline": "ooyuFn}ngNBb@CJBt@DPD`@Xd@^dAh@l@N@VARETO^ANG@FLDr@DZH\\BT?XL`@Bd@NFH?F[nAAf@MfAGVKnA_@~AK\\CVGNEr@_@vAo@jESx@s@`As@h@SXq@t@c@h@{A~As@p@[^",
+            "resource_state": 3
+        },
+        "effort_count": 233,
+        "athlete_count": 96,
+        "star_count": 11,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": null,
+            "pr_date": null,
+            "pr_visibility": null,
+            "pr_activity_id": null,
+            "pr_activity_visibility": null,
+            "effort_count": 0
+        },
+        "xoms": {
+            "kom": "4:04",
+            "qom": "5:15",
+            "overall": "4:04",
+            "destination": {
+                "href": "strava://segments/2749245/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 73118811,
+            "title": "Danielle Voye",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/73118811/17792881/1/large.jpg",
+            "effort_description": "1 effort in the last 90 days",
+            "effort_count": "1",
+            "effort_counts": {
+                "overall": "1 effort",
+                "female": "1 effort"
+            },
+            "destination": "strava://segments/2749245/local_legend?categories%5B%5D=overall"
+        }
+    },
+    {
+        "id": 7394647,
+        "resource_state": 3,
+        "name": "PJ McCardle Full Climb SS-Mt Washington",
+        "activity_type": "Ride",
+        "distance": 2281.4,
+        "average_grade": 4.6,
+        "maximum_grade": 10.8,
+        "elevation_high": 313,
+        "elevation_low": 208,
+        "start_latlng": [
+            40.427219,
+            -79.989244
+        ],
+        "end_latlng": [
+            40.435551,
+            -80.01259
+        ],
+        "elevation_profile": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/56LLXMNTQ56S7WRSLEV4GLKNXWGBN42ZYT6D2UW7OQACUAEWNLWSUKL4IULYARSJGMGB7ECDH2BLAOYI5WYVD4ID",
+        "elevation_profiles": {
+            "light_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/56LLXMNTQ56S7WRSLEV4GLKNXWGBN42ZYT6D2UW7OQACUAEWNLWSUKL4IULYARSJGMGB7ECDH2BLAOYI5WYVD4ID",
+            "dark_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/charts/37IVIIA465WKXIC3CNS53Y42ROR2LKHPZ4AY2J2E3GLK5FSEHS5CMZMAICNVZMUUHI2AECAX5ZWIEOQICBTAYP5I"
+        },
+        "climb_category": 1,
+        "city": "Pittsburgh",
+        "state": "PA",
+        "country": "United States",
+        "private": false,
+        "hazardous": false,
+        "starred": false,
+        "created_at": "2014-06-09T17:01:58Z",
+        "updated_at": "2021-05-17T08:05:09Z",
+        "total_elevation_gain": 105,
+        "map": {
+            "id": "s7394647",
+            "polyline": "a}vuFx{egN?dCCfBaBlGMn@KlA?XRnCElAM`Ak@xCa@jA]|AWbBsBxGYlABb@Nf@f@j@@XSh@mAfEKt@a@dAWf@s@~BQjAMj@[p@_C~Gg@x@Q^UXg@nAc@rA?NKP@LFXQv@KNAJ}@tB{@rCW^GRk@lAAVK\\Ml@KhAQb@q@z@IRQh@S`@Oj@Qb@e@r@{@bBq@~@a@n@eBrB]t@[rA",
+            "resource_state": 3
+        },
+        "effort_count": 1528,
+        "athlete_count": 416,
+        "star_count": 4,
+        "athlete_segment_stats": {
+            "pr_elapsed_time": 723,
+            "pr_date": "2021-10-03",
+            "pr_visibility": "everyone",
+            "pr_activity_id": 6057731275,
+            "pr_activity_visibility": "everyone",
+            "effort_count": 1
+        },
+        "xoms": {
+            "kom": "6:21",
+            "qom": "7:59",
+            "overall": "6:21",
+            "destination": {
+                "href": "strava://segments/7394647/leaderboard",
+                "type": "overall",
+                "name": "All-Time"
+            }
+        },
+        "local_legend": {
+            "athlete_id": 9503498,
+            "title": "Cam Spooner",
+            "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/9503498/2882130/7/large.jpg",
+            "effort_description": "6 efforts in the last 90 days",
+            "effort_count": "6",
+            "effort_counts": {
+                "overall": "6 efforts",
+                "female": "1 effort"
+            },
+            "destination": "strava://segments/7394647/local_legend?categories%5B%5D=overall"
+        }
+    }
 ]

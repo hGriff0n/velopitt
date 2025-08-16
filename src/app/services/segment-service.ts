@@ -42,14 +42,6 @@ export class SegmentService {
         ];
     }
 
-    midpoint2(segment: Segment): Vector2D {
-        const dir = this.directionVector(segment);
-        return [
-            segment.start_latlng[0] + dir[0] / 2,
-            segment.start_latlng[1] + dir[1] / 2
-        ];
-    }
-
     vectorToBearing(vector: [number, number]): number {
         const [dx, dy] = vector;
         let angle = Math.atan2(dx, dy) * (180 / Math.PI); // Note: dx, dy order swapped

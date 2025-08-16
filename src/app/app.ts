@@ -5,6 +5,11 @@ import * as polyline from '@mapbox/polyline';
 import { ConfigService } from './services/config-service';
 // import { StravaService } from './services/strava-service';
 import { SegmentService, Segment } from './services/segment-service';
+import { StravaService } from './services/strava-service';
+
+// Oddly, these have to be in all caps
+const kUnselectedColor = '#B64129';
+const kSelectedColor = '#EE4B2B';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +22,11 @@ export class App {
 
   private map: Map | undefined;
   private segment: SegmentService;
-  private loadedSegments: Segment[] = [];
+  private strava: StravaService;
 
   constructor(private config: ConfigService) {
     this.segment = inject(SegmentService);
+    this.strava = inject(StravaService);
   }
 
   onLoad(event: MapEvent) {
@@ -58,7 +64,13 @@ export class App {
       source: "segments",
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': '#EE4B2B', 'line-width': [
+        'line-color': [
+          'case',
+          ['boolean', ['feature-state', 'selected'], false],
+          kSelectedColor,
+          kUnselectedColor
+        ],
+        'line-width': [
           'interpolate',
           ['exponential', 2],
           ['zoom'],
@@ -80,6 +92,7 @@ export class App {
       target: { layerId: "segments-layer" },
       handler: (e) => {
         map.getCanvas().style.cursor = 'pointer';
+        this.highlightSegment(e.feature?.id as number, true);
       }
     });
 
@@ -87,9 +100,17 @@ export class App {
       type: 'mouseleave',
       target: { layerId: "segments-layer" },
       handler: (e) => {
+        this.highlightSegment(e.feature?.id as number, false);
         map.getCanvas().style.cursor = 'default';
       }
     });
+  }
+
+  private highlightSegment(segmentId: number, isSelected: boolean) {
+    this.map?.setFeatureState({
+      source: "segments",
+      id: segmentId
+    }, { selected: isSelected });
   }
 
   private handleSegmentClickEvent() {
@@ -98,9 +119,8 @@ export class App {
         return;
       }
 
-      // TODO: me - this isn't quite "correct" as it doesn't account for the bounding box (see 18th)
-      // midpoint also doesn't work
-      const segment = this.segment.getSegmentByDomId(e.feature?.id as number) as Segment;
+      const featureId = e.feature?.id as number;
+      const segment = this.segment.getSegmentByDomId(featureId) as Segment;
       this.map.flyTo({
         center: segment?.start_latlng as [number, number],
         bearing: this.segment.vectorToBearing(
@@ -110,6 +130,9 @@ export class App {
         zoom: 16.5,
         speed: 1
       });
+
+      // TODO: me - There needs to be a way to unset the segment
+      this.highlightSegment(featureId, true);
 
       new Popup()
         .setLngLat(e.lngLat)
