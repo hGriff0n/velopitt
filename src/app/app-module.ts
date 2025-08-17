@@ -1,6 +1,9 @@
-import { NgModule, provideBrowserGlobalErrorListeners, inject  } from '@angular/core';
+import { NgModule, provideBrowserGlobalErrorListeners, inject } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { provideMapboxGL } from 'ngx-mapbox-gl';
 import { Base64 } from 'js-base64';
 
@@ -28,10 +31,13 @@ import {
     MapComponent,
     ControlComponent,
     FullscreenControlDirective,
+    MatListModule,
+    MatSidenavModule,
+    MatIconModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideMapboxGL({accessToken: Base64.decode(environment.MAPBOX_API_KEY)}),
+    provideMapboxGL({ accessToken: Base64.decode(environment.MAPBOX_API_KEY) }),
   ],
   bootstrap: [App]
 })

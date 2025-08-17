@@ -1,19 +1,15 @@
+<mat-drawer-container class="example-container" autosize [hasBackdrop]="true">
+  <div class="map" style="height:100vh; width:100%;">
+    <mgl-map [style]="'mapbox://styles/hgriff0n/cmds2q1t100u101s2063wbeh6'" [zoom]="15" [center]="[-79.997, 40.44]"
+      [interactive]="true" [maxZoom]=31 [bearing]="90" [pitch]="70" (mapLoad)="onLoad($event)">
+    </mgl-map>
+  </div>
 
-<div class="map" style="height:100vh; width:100%;">
-  <mgl-map
-    [style]="'mapbox://styles/hgriff0n/cmds2q1t100u101s2063wbeh6'"
-    [zoom]="15"
-    [center]="[-79.997, 40.44]"
-    [interactive]="true"
-    [maxZoom]=31
-    [bearing]="90"
-    [pitch]="70"
-    (mapLoad)="onLoad($event)"
-  >
-  <!-- maxBounds -->
-    <!-- <mgl-layer *ngFor="let segment of starredSegments | async"></mgl-layer> -->
-    <!-- < -->
-  </mgl-map>
-</div>
-
+  <!-- Putting this before the map makes it render underneath -->
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+  </mat-drawer>
+  <button class="float" (click)="drawer.toggle()" style="top: 1%; left: 1%"
+    matMiniFab><mat-icon>menu</mat-icon></button>
+</mat-drawer-container>
 <router-outlet />

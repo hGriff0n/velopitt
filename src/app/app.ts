@@ -20,6 +20,7 @@ const kMarkerColor = '#F59E42';
 })
 export class App {
   protected readonly title = signal('velopitt');
+  isExpanded = false;
 
   private map: Map | undefined;
   private segment: SegmentService;
