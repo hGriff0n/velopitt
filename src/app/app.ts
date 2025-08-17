@@ -1,5 +1,5 @@
 import { Component, signal, inject } from '@angular/core';
-import { InteractionEvent, Map, MapEvent, Popup } from 'mapbox-gl';
+import { InteractionEvent, Map, MapEvent, Popup, Marker } from 'mapbox-gl';
 import * as polyline from '@mapbox/polyline';
 
 import { ConfigService } from './services/config-service';
@@ -8,8 +8,9 @@ import { SegmentService, Segment } from './services/segment-service';
 import { StravaService } from './services/strava-service';
 
 // Oddly, these have to be in all caps
-const kUnselectedColor = '#B64129';
-const kSelectedColor = '#EE4B2B';
+const kUnselectedColor = '#C05D49';
+const kSelectedColor = '#EB3915';
+const kMarkerColor = '#F59E42';
 
 @Component({
   selector: 'app-root',
@@ -64,6 +65,7 @@ export class App {
       source: "segments",
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
+        'line-emissive-strength': 1,
         'line-color': [
           'case',
           ['boolean', ['feature-state', 'selected'], false],
@@ -104,6 +106,10 @@ export class App {
         map.getCanvas().style.cursor = 'default';
       }
     });
+
+    this.segment.getAllSegments().map(segment => {
+      new Marker({color: kMarkerColor}).setLngLat(segment.start_latlng).addTo(map);
+    });
   }
 
   private highlightSegment(segmentId: number, isSelected: boolean) {
@@ -121,6 +127,9 @@ export class App {
 
       const featureId = e.feature?.id as number;
       const segment = this.segment.getSegmentByDomId(featureId) as Segment;
+
+      // TODO: me - This might benefit from bounding box
+      // Though the mapbox bounding box isn't fully correct
       this.map.flyTo({
         center: segment?.start_latlng as [number, number],
         bearing: this.segment.vectorToBearing(
@@ -132,8 +141,10 @@ export class App {
       });
 
       // TODO: me - There needs to be a way to unset the segment
+      // There doesn't seem to actually be an event for that
       this.highlightSegment(featureId, true);
 
+      // TODO: me - Can I attach some event to this so that when it goes away the event fires?
       new Popup()
         .setLngLat(e.lngLat)
         .setHTML(`<p><b>${segment?.name}</b></p>`)

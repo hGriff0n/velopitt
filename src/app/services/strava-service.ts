@@ -10,9 +10,7 @@ export class StravaService {
     private apiURL = "https://www.strava.com/api/v3/";
     private config = inject(ConfigService).stravaClient;
 
-    constructor(private http: HttpClient) { }
-
-    ngOnInit() {
+    constructor(private http: HttpClient) {
         // This is currently the only way I have to refresh segment data
         // Importantly, this gets the data in the right format for me to
         // copy-paste it to segment.json
