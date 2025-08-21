@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
 import { provideMapboxGL } from 'ngx-mapbox-gl';
 import { Base64 } from 'js-base64';
 
@@ -29,6 +30,7 @@ import {
     AppRoutingModule,
     HttpClientModule, // NEW: import HttpClientModule!
     MapComponent,
+    MatCardModule,
     ControlComponent,
     FullscreenControlDirective,
     MatListModule,

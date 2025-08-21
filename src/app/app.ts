@@ -1,11 +1,9 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, ChangeDetectorRef } from '@angular/core';
 import { InteractionEvent, Map, MapEvent, Popup, Marker } from 'mapbox-gl';
 import * as polyline from '@mapbox/polyline';
 
 import { ConfigService } from './services/config-service';
-// import { StravaService } from './services/strava-service';
 import { SegmentService, Segment } from './services/segment-service';
-import { StravaService } from './services/strava-service';
 
 // Oddly, these have to be in all caps
 const kUnselectedColor = '#C05D49';
@@ -21,14 +19,16 @@ const kMarkerColor = '#F59E42';
 export class App {
   protected readonly title = signal('velopitt');
   isExpanded = false;
+  isShow = false;
 
   private map: Map | undefined;
   private segment: SegmentService;
-  private strava: StravaService;
+  private detector: ChangeDetectorRef;
+  private focusedSegment = new Set<number>();
 
   constructor(private config: ConfigService) {
     this.segment = inject(SegmentService);
-    this.strava = inject(StravaService);
+    this.detector = inject(ChangeDetectorRef);
   }
 
   onLoad(event: MapEvent) {
@@ -103,13 +103,19 @@ export class App {
       type: 'mouseleave',
       target: { layerId: "segments-layer" },
       handler: (e) => {
-        this.highlightSegment(e.feature?.id as number, false);
+        if (!this.focusedSegment.has(e.feature?.id as number)) {
+          this.highlightSegment(e.feature?.id as number, false);
+        }
         map.getCanvas().style.cursor = 'default';
       }
     });
 
+    // The "broken" marker seems to be some interaction with moving the mouse, there are times where nothing is showing
+    // Might even be something about go beyond a certain zoom level
     this.segment.getAllSegments().map(segment => {
-      new Marker({color: kMarkerColor}).setLngLat(segment.start_latlng).addTo(map);
+      // var popup = new Popup().setText(segment.name).addTo(map);
+      // new Marker({color: kMarkerColor}).setLngLat(segment.start_latlng).addTo(map).setPopup(popup);
+      new Marker({ color: kMarkerColor }).setLngLat(segment.start_latlng).addTo(map);
     });
   }
 
@@ -120,6 +126,11 @@ export class App {
     }, { selected: isSelected });
   }
 
+  private changeSegmentDisplay() {
+    this.isShow = !this.isShow;
+    this.detector.detectChanges();
+  }
+
   private handleSegmentClickEvent() {
     return (e: InteractionEvent) => {
       if (this.map == null) {
@@ -128,6 +139,7 @@ export class App {
 
       const featureId = e.feature?.id as number;
       const segment = this.segment.getSegmentByDomId(featureId) as Segment;
+      this.changeSegmentDisplay();
 
       // TODO: me - This might benefit from bounding box
       // Though the mapbox bounding box isn't fully correct
@@ -141,15 +153,21 @@ export class App {
         speed: 1
       });
 
-      // TODO: me - There needs to be a way to unset the segment
-      // There doesn't seem to actually be an event for that
+      this.focusedSegment.add(featureId);
       this.highlightSegment(featureId, true);
+      this.detector.detectChanges();
 
-      // TODO: me - Can I attach some event to this so that when it goes away the event fires?
-      new Popup()
+      var popup = new Popup()
         .setLngLat(e.lngLat)
         .setHTML(`<p><b>${segment?.name}</b></p>`)
         .addTo(this.map);
+
+      popup.on('close', () => {
+        console.log("Popup closed for segment=" + segment?.name);
+        this.changeSegmentDisplay();
+        this.focusedSegment.delete(featureId);
+        this.highlightSegment(featureId, false);
+      });
     };
   }
 }

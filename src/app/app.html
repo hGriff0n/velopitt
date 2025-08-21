@@ -11,5 +11,14 @@
   </mat-drawer>
   <button class="float" (click)="drawer.toggle()" style="top: 1%; left: 1%"
     matMiniFab><mat-icon>menu</mat-icon></button>
+
+  <pre id="segment_display" style="top:0%;left:0%;position:absolute;">
+    @if (isShow) {
+      <div id="segment_info" class="segment_popup"><p>Segment Info</p></div>
+      <div id="elevation_profile" class="segment_popup"><p>Elevation Profile</p></div>
+      <div id="pacing_calculator" class="segment_popup"><p>Pacing Calculator</p></div>
+      <div id="related_segments" class="segment_popup"><p>Related Segments</p></div>
+    }
+  </pre>
 </mat-drawer-container>
 <router-outlet />
