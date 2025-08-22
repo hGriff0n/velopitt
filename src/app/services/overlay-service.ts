@@ -54,7 +54,8 @@ export class OverlayService {
             layout: {},
             paint: {
                 'line-color': '#627BC1',
-                'line-width': 2
+                'line-width': 2,
+                'line-opacity': 1,
             }
         });
 

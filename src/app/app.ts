@@ -85,6 +85,7 @@ export class App {
           0, ["*", 12, ["^", 2, -6]],
           24, ["*", 12, ["^", 2, 8]]
         ],
+        'line-opacity': 1,
       }
     });
 
@@ -134,6 +135,16 @@ export class App {
   private changeSegmentDisplay() {
     this.isShow = !this.isShow;
     this.detector.detectChanges();
+  }
+
+  toggleRegionLayer() {
+    this.map?.setPaintProperty("regions", "fill-opacity", 0.5 - (this.map?.getPaintProperty("regions", "fill-opacity") as number));
+    this.map?.setPaintProperty("region-borders", "line-opacity", 1 - (this.map?.getPaintProperty("region-borders", "line-opacity") as number));
+  }
+
+  // TODO: me - This needs to also remove the markers
+  toggleSegmentLayer() {
+    this.map?.setPaintProperty("segments-layer", "line-opacity", 1 - (this.map?.getPaintProperty("segments-layer", "line-opacity") as number));
   }
 
   private handleSegmentClickEvent() {

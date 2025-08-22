@@ -47,6 +47,11 @@ mgl-map {
 
 .example-sidenav {
   padding: 20px;
+  background-color: darkslategray;
+}
+
+.example-sidenav button:hover {
+  background-color: yellow;
 }
 
 /* https://css-tricks.com/snippets/css/complete-guide-grid/ */
