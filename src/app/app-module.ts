@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import { provideMapboxGL } from 'ngx-mapbox-gl';
 import { Base64 } from 'js-base64';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { ConfigService } from './services/config-service';
 import { AppRoutingModule } from './app-routing-module';
@@ -35,7 +36,8 @@ import {
     FullscreenControlDirective,
     MatListModule,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
