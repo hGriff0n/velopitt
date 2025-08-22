@@ -27,6 +27,7 @@ export class App {
   private overlays: OverlayService;
   private detector: ChangeDetectorRef;
   private focusedSegment = new Set<number>();
+  selectedSegment = 0;
 
   constructor(private config: ConfigService) {
     this.segment = inject(SegmentService);
@@ -153,8 +154,8 @@ export class App {
         return;
       }
 
-      const featureId = e.feature?.id as number;
-      const segment = this.segment.getSegmentByDomId(featureId) as Segment;
+      this.selectedSegment = e.feature?.id as number;
+      const segment = this.segment.getSegmentByDomId(this.selectedSegment) as Segment;
       this.changeSegmentDisplay();
 
       // TODO: me - This might benefit from bounding box
@@ -169,8 +170,8 @@ export class App {
         speed: 1
       });
 
-      this.focusedSegment.add(featureId);
-      this.highlightSegment(featureId, true);
+      this.focusedSegment.add(this.selectedSegment);
+      this.highlightSegment(this.selectedSegment, true);
       this.detector.detectChanges();
 
       var popup = new Popup()
@@ -181,8 +182,8 @@ export class App {
       popup.on('close', () => {
         console.log("Popup closed for segment=" + segment?.name);
         this.changeSegmentDisplay();
-        this.focusedSegment.delete(featureId);
-        this.highlightSegment(featureId, false);
+        this.focusedSegment.delete(this.selectedSegment);
+        this.highlightSegment(this.selectedSegment, false);
       });
     };
   }

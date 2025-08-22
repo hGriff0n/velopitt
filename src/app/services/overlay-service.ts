@@ -9,7 +9,6 @@ export class OverlayService {
     private hoveredRegions = new Set<number>();
 
     constructor() {
-        console.log(jsonData);
         this.layer = Array.from((jsonData as any).default).map(segment => {
             const s = <GeoJson>segment;
             s.features.forEach(feature => {
@@ -24,7 +23,6 @@ export class OverlayService {
     }
 
     registerWithMap(map: Map) {
-        console.log(this.layer[0]);
         map.addSource('regions', {
             type: 'geojson',
             generateId: true,

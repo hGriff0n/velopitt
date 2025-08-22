@@ -20,6 +20,7 @@ import {
   ControlComponent,
   FullscreenControlDirective,
 } from 'ngx-mapbox-gl';
+import { SegmentOverlayComponent } from './components/segment-overlay.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {
     MatListModule,
     MatSidenavModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    SegmentOverlayComponent
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
