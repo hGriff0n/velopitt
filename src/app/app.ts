@@ -4,6 +4,7 @@ import * as polyline from '@mapbox/polyline';
 
 import { ConfigService } from './services/config-service';
 import { SegmentService, Segment } from './services/segment-service';
+import { OverlayService } from './services/overlay-service';
 
 // Oddly, these have to be in all caps
 const kUnselectedColor = '#C05D49';
@@ -23,11 +24,13 @@ export class App {
 
   private map: Map | undefined;
   private segment: SegmentService;
+  private overlays: OverlayService;
   private detector: ChangeDetectorRef;
   private focusedSegment = new Set<number>();
 
   constructor(private config: ConfigService) {
     this.segment = inject(SegmentService);
+    this.overlays = inject(OverlayService);
     this.detector = inject(ChangeDetectorRef);
   }
 
@@ -36,6 +39,7 @@ export class App {
     this.map.resize();
     this.map.getCanvas().style.cursor = 'default';
 
+    this.overlays.registerWithMap(this.map);
     this.addAllSegments();
   }
 
@@ -47,7 +51,8 @@ export class App {
     }
 
     this.map.addSource("segments", {
-      type: 'geojson', generateId: true,
+      type: 'geojson',
+      generateId: true,
       data: {
         type: 'FeatureCollection',
         features: this.segment.getAllSegments().map(segment => {
