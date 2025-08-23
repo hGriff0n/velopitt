@@ -1,6 +1,19 @@
 <pre id="segment_display" style="top:0%;left:0%;position:absolute;">
-    <div id="segment_info" class="segment_popup"><p>Segment Info: {{ segment()?.name }}</p></div>
-    <div id="elevation_profile" class="segment_popup"><p>Elevation Profile</p></div>
-    <div id="pacing_calculator" class="segment_popup"><p>Pacing Calculator</p></div>
-    <div id="related_segments" class="segment_popup"><p>Related Segments</p></div>
+    <div id="segment_info" class="segment_popup">
+        <b>{{ segment()?.name }}</b><br/>
+        <b>Distance:</b> {{ distance() | number: '1.0-2' }} km<br/>
+        <b>Elevation:</b> {{ elevation() | number: '1.0-0' }} m<br/>
+        <b>Profile:</b> (Avg: {{ avggrade() }}% | Max: {{ maxgrade() }}%)<br/>
+    </div>
+    <div id="elevation_profile" class="segment_popup">
+        <b>Elevation Profile</b> Need to integrate chart.js and turf.js
+    </div>
+    <div id="pacing_calculator" class="segment_popup">
+        <b>Pacing Calculator</b>
+        Needs to be handwritten
+    </div>
+    <div id="related_segments" class="segment_popup">
+        <b>Related Segments</b>
+        Needs to be handwritten
+    </div>
 </pre>
