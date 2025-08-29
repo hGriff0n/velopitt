@@ -13,21 +13,20 @@
 }
 
 #pacing_calculator {
-  grid-column: 4;
-  grid-row: 3;
-  width: 91%;
-  height: 300px;
-}
-
-#related_segments {
   grid-column: 2;
   grid-row: 3;
   width: 28%;
   height: 300px;
 }
 
+#related_segments {
+  grid-column: 4;
+  grid-row: 3;
+  width: 91%;
+  height: 300px;
+}
+
 .segment_popup {
-  display: table;
   position: absolute;
   margin: 0px auto;
   word-wrap: anywhere;
@@ -36,11 +35,16 @@
   border: none;
   border-radius: 3px;
   font-size: 12px;
-  text-align: center;
+  text-align: left;
   color: #222;
-  background: #fff;
+  background: none;
   /* This makes the pointer */
   pointer-events: visibleFill;
+
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* https://css-tricks.com/snippets/css/complete-guide-grid/ */
@@ -56,4 +60,25 @@
 
   /* This stops mouse clicks from being blocked by the segment overlay when it appears */
   pointer-events: none;
+  text-align: left;
+}
+
+mat-card {
+  background: whitesmoke;
+}
+
+mat-card-header {
+  padding-bottom: 10px;
+  justify-content: center;
+}
+
+mat-card-content {
+  display: grid;
+  gap: 15px
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: initial;
 }

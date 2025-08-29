@@ -148,6 +148,8 @@ export class App {
     this.map?.setPaintProperty("segments-layer", "line-opacity", 1 - (this.map?.getPaintProperty("segments-layer", "line-opacity") as number));
   }
 
+  // TODO: me - This should be moved into the segment-overlay
+  // The popup should become the title centered in the screen
   private handleSegmentClickEvent() {
     return (e: InteractionEvent) => {
       if (this.map == null) {
