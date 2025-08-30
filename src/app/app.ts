@@ -154,9 +154,9 @@ export class App {
   }
 
   toggleBikeNetwork() {
-    this.bikemapShowing = !this.bikeMapShowing;
+    this.bikemapShowing = !this.bikemapShowing;
     for (let layerId of ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trail", "bike-network-sidewalk"]) {
-      this.map?.setLayoutProperty(layerId, "visibility", this.bikeMapShowing ? "visible" : "none");
+      this.map?.setLayoutProperty(layerId, "visibility", this.bikemapShowing ? "visible" : "none");
     }
   }
 
