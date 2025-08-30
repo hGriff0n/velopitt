@@ -12,8 +12,8 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
   <!-- <mat-drawer #drawer class="example-sidenav" mode="over"> -->
     <mat-action-list>
-      <button mat-list-item (click)="toggleRegionLayer()">Toggle region layer</button>
-      <button mat-list-item (click)="toggleSegmentLayer()">Toggle segment layer</button>
+      <button mat-list-item [class.active-button]="!regionShowing" (click)="toggleRegionLayer()">Toggle region layer</button>
+      <button mat-list-item [class.active-button]="!segmentShowing" (click)="toggleSegmentLayer()">Toggle segment layer</button>
       <mat-divider></mat-divider>
       <button routerLink="/" mat-list-item>Group Rides + Events</button>
       <button routerLink="/" mat-list-item>Community Resources</button>
