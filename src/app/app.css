@@ -53,3 +53,7 @@ mgl-map {
 .example-sidenav button:hover {
   background-color: yellow;
 }
+
+.active-button {
+  box-shadow: inset 1px 1px 11px yellow
+}
