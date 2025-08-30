@@ -19,8 +19,9 @@ const kMarkerColor = '#F59E42';
 })
 export class App {
   protected readonly title = signal('velopitt');
-  isExpanded = false;
   isShow = false;
+  regionShowing = false;
+  segmentShowing = false;
 
   private map: Map | undefined;
   private segment: SegmentService;
@@ -119,6 +120,7 @@ export class App {
 
     // The "broken" marker seems to be some interaction with moving the mouse, there are times where nothing is showing
     // Might even be something about go beyond a certain zoom level
+    // TODO: me - Markers should also have the same mouse behavior
     this.segment.getAllSegments().map(segment => {
       // var popup = new Popup().setText(segment.name).addTo(map);
       // new Marker({color: kMarkerColor}).setLngLat(segment.start_latlng).addTo(map).setPopup(popup);
@@ -139,12 +141,14 @@ export class App {
   }
 
   toggleRegionLayer() {
+    this.regionShowing = !this.regionShowing;
     this.map?.setPaintProperty("regions", "fill-opacity", 0.5 - (this.map?.getPaintProperty("regions", "fill-opacity") as number));
     this.map?.setPaintProperty("region-borders", "line-opacity", 1 - (this.map?.getPaintProperty("region-borders", "line-opacity") as number));
   }
 
   // TODO: me - This needs to also remove the markers
   toggleSegmentLayer() {
+    this.segmentShowing = !this.segmentShowing;
     this.map?.setPaintProperty("segments-layer", "line-opacity", 1 - (this.map?.getPaintProperty("segments-layer", "line-opacity") as number));
   }
 
