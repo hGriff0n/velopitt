@@ -22,6 +22,7 @@ export class App {
   isShow = false;
   regionShowing = false;
   segmentShowing = false;
+  bikemapShowing = true;
 
   private map: Map | undefined;
   private segment: SegmentService;
@@ -150,6 +151,13 @@ export class App {
   toggleSegmentLayer() {
     this.segmentShowing = !this.segmentShowing;
     this.map?.setPaintProperty("segments-layer", "line-opacity", 1 - (this.map?.getPaintProperty("segments-layer", "line-opacity") as number));
+  }
+
+  toggleBikeNetwork() {
+    this.bikemapShowing = !this.bikeMapShowing;
+    for (let layerId of ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trail", "bike-network-sidewalk"]) {
+      this.map?.setLayoutProperty(layerId, "visibility", this.bikeMapShowing ? "visible" : "none");
+    }
   }
 
   // TODO: me - This should be moved into the segment-overlay
