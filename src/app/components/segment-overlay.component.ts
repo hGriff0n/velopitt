@@ -1,7 +1,10 @@
-import { Component, computed, inject, input, Input, OnChanges, SimpleChanges } from "@angular/core";
+import { Component, computed, inject, input, Input, OnChanges, SimpleChanges, ViewChild } from "@angular/core";
 import { Segment, SegmentService } from "../services/segment-service";
 import { DecimalPipe } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
+import { ChartConfiguration, ChartEvent, ChartType, Color } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+import * as polyline from '@mapbox/polyline';
 
 // TODO: me - Should probably move all of the segment-related display logic here
 @Component({
@@ -10,7 +13,8 @@ import { MatCardModule } from "@angular/material/card";
     styleUrls: ['./segment-overlay.css'],
     imports: [
         DecimalPipe,
-        MatCardModule
+        MatCardModule,
+        BaseChartDirective
     ]
 })
 export class SegmentOverlayComponent {
@@ -23,55 +27,53 @@ export class SegmentOverlayComponent {
     avggrade = computed(() => this.segment()?.average_grade as number);
     private segmentData: SegmentService = inject(SegmentService);
 
-    // This also doesn't have the "mousever" elevation/etc. view
-    // chart.js (https://github.com/valor-software/ng2-charts)
-    // const myLineChart = new Chart(document.getElementById('chart-canvas'), {
-    //         type: 'line',
-    //         data: {
-    //             labels: [],
-    //             datasets: []
-    //         },
-    //         options: {
-    //             plugins: {
-    //                 legend: {
-    //                     display: false
-    //                 },
-    //                 title: {
-    //                     display: true,
-    //                     align: 'start',
-    //                     text: 'Elevation (m)'
-    //                 }
-    //             },
-    //             maintainAspectRatio: false,
-    //             responsive: true,
-    //             scales: {
-    //                 x: {
-    //                     grid: {
-    //                         display: false
-    //                     }
-    //                 },
-    //                 y: {
-    //                     min: 0,
-    //                     grid: {
-    //                         display: false
-    //                     }
-    //                 }
-    //             },
-    //             elements: {
-    //                 point: {
-    //                     radius: 0
-    //                 }
-    //             },
-    //             layout: {
-    //                 padding: {
-    //                     top: 6,
-    //                     right: 20,
-    //                     bottom: -10,
-    //                     left: 20
-    //                 }
-    //             }
-    //         }
-    //     });
+    public lineChartData: ChartConfiguration['data'] = {
+        datasets: [
+            {
+                data: [65, 59, 80, 81, 56, 55, 40],
+                label: 'Elevation',
+                fill: true,
+                segment: {
+                    backgroundColor: ctx => this.chooseBackgroundColor(ctx, 'background'),
+                    borderColor: ctx => this.chooseBackgroundColor(ctx, 'border'),
+                }
+            },
+        ],
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    };
+    public lineChartType: ChartType = 'line';
+    public lineChartOptions: ChartConfiguration['options'] = {
+        responsive: true,
+        elements: {
+            line: {
+                tension: 0.9
+            }
+        },
+        scales: {
+
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
+        //     crosshair: {
+        //         line: {
+        //             color: '#F66',  // crosshair line color
+        //             width: 1        // crosshair line width
+        //         },
+        //     }
+        }
+    };
+
+    @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+    onChartHover(event: any) {
+        // console.log(event);
+    }
+    chooseBackgroundColor(ctx: any, value: any): Color{
+        // ctx.p0DataIndex + ctx.p1DataIndex
+        console.log(ctx);
+        return "#E5E5E5";
+    }
 
     // turf.js
     private segmentElevation() {

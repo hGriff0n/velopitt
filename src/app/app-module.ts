@@ -21,6 +21,7 @@ import {
   FullscreenControlDirective,
 } from 'ngx-mapbox-gl';
 import { SegmentOverlayComponent } from './components/segment-overlay.component';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { SegmentOverlayComponent } from './components/segment-overlay.component'
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideMapboxGL({ accessToken: Base64.decode(environment.MAPBOX_API_KEY) }),
+    provideCharts(withDefaultRegisterables()),
   ],
   bootstrap: [App]
 })

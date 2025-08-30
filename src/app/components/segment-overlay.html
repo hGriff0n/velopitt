@@ -20,7 +20,11 @@
                 <mat-card-title>Elevation Profile</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <p>Need to integrate chart.js and turf.js</p>
+                    <canvas baseChart
+                    [data]="lineChartData"
+                    [type]="lineChartType"
+                    [options]="lineChartOptions"
+                    (chartHover)="onChartHover($event)"></canvas>
             </mat-card-content>
         </mat-card>
     </div>
