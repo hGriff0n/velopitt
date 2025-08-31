@@ -1,18 +1,49 @@
 import { Injectable } from '@angular/core';
+import { InteractionEvent, Map, MapEvent, Popup, Marker } from 'mapbox-gl';
 
 import * as jsonData from './assets/segment.json';
+import * as turf from '@turf/turf';
+import * as polyline from '@mapbox/polyline';
 
 @Injectable({ providedIn: 'root' })
 export class SegmentService {
     private segmentList: Segment[] = [];
+    static MAX_SEGMENTS = 10;
 
     constructor() {
         this.segmentList = Array.from((jsonData as any).default).map(segment => {
             const s = <Segment>segment;
             s.start_latlng.reverse();
             s.end_latlng.reverse();
+
+            s.map.geojson = polyline.toGeoJSON(s.map.polyline as string);
+            s.map.segment_distance = s.distance / SegmentService.MAX_SEGMENTS;
             return s;
         });
+    }
+
+    // This has to be in a separate function because the map is not guaranteed to be available
+    // when the service is initially loaded
+    updateSegmentMapData(id: number, map: Map): void {
+        var segment = this.segmentList.find(s => s.id === id);
+        if (segment == null) {
+            throw new Error(`Segment with id ${id} not found`);
+        }
+
+        const chunks = turf.lineChunk(segment.map.geojson, segment.map.segment_distance, { units: 'meters' }).features;
+        segment.map.elevation_data = [
+            ...chunks.map((feature) => {
+                return map.queryTerrainElevation([
+                    feature.geometry.coordinates[0][0],
+                    feature.geometry.coordinates[0][1]
+                ]);
+            }),
+            // do not forget the last coordinate
+            map.queryTerrainElevation(
+                [chunks[chunks.length - 1].geometry.coordinates[1][0],
+                chunks[chunks.length - 1].geometry.coordinates[1][1]]
+            )
+        ] as number[];
     }
 
     getAllSegments(): Segment[] {
@@ -97,6 +128,9 @@ export type Segment = {
     map: {
         id: string;
         polyline: string;
+        geojson: GeoJSON.LineString;
+        elevation_data: number[];
+        segment_distance: number;
     };
     xoms: KomInformation;
     pacing_notes: string;

@@ -20,7 +20,7 @@ import {
   ControlComponent,
   FullscreenControlDirective,
 } from 'ngx-mapbox-gl';
-import { SegmentOverlayComponent } from './components/segment-overlay.component';
+import { SegmentOverlayComponent } from './components/segment/segment-overlay.component';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 

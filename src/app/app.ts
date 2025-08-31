@@ -25,7 +25,7 @@ export class App {
   bikemapShowing = true;
 
   private map: Map | undefined;
-  private segment: SegmentService;
+  public segment: SegmentService;
   private overlays: OverlayService;
   private detector: ChangeDetectorRef;
   private focusedSegment = new Set<number>();
@@ -59,10 +59,11 @@ export class App {
       data: {
         type: 'FeatureCollection',
         features: this.segment.getAllSegments().map(segment => {
+          this.segment.updateSegmentMapData(segment.id, this.map as Map);
           return {
             type: 'Feature',
             properties: {},
-            geometry: polyline.toGeoJSON(segment.map.polyline)
+            geometry: segment.map.geojson
           };
         })
       }

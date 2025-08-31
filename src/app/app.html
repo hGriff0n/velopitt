@@ -22,9 +22,8 @@
     </mat-action-list>
   </mat-drawer>
 
-  <!-- TODO: me - Visibility toggle currently relies on change detection which isn't triggered across the component -->
   @if (isShow) {
-  <segment-overlay [visible]="isShow" [segment_id]="selectedSegment"></segment-overlay>
+    <segment-overlay [segment]="segment.getSegmentByDomId(selectedSegment)!"></segment-overlay>
   }
 </mat-drawer-container>
 <router-outlet />
