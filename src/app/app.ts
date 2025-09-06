@@ -26,6 +26,7 @@ export class App {
 
   private map: Map | undefined;
   public segment: SegmentService;
+  private segmentMarkers: Marker[] = [];
   private overlays: OverlayService;
   private detector: ChangeDetectorRef;
   private focusedSegment = new Set<number>();
@@ -42,7 +43,8 @@ export class App {
     this.map.resize();
     this.map.getCanvas().style.cursor = 'default';
 
-    this.overlays.registerWithMap(this.map);
+    // The ordering of the layers seems to stop hover events from going to the next layer
+    this.overlays.registerWithMap(this.map, this.regionShowing);
     this.addAllSegments();
   }
 
@@ -89,7 +91,7 @@ export class App {
           0, ["*", 12, ["^", 2, -6]],
           24, ["*", 12, ["^", 2, 8]]
         ],
-        'line-opacity': 1,
+        'line-opacity': 0,
       }
     });
 
@@ -97,7 +99,7 @@ export class App {
     map.addInteraction(`segment-clicks`, {
       type: 'click',
       target: { layerId: "segments-layer" },
-      handler: this.handleSegmentClickEvent(),
+      handler: this.getSegmentEventHandler(),
     });
 
     map.addInteraction(`segments-hover`, {
@@ -123,11 +125,18 @@ export class App {
     // The "broken" marker seems to be some interaction with moving the mouse, there are times where nothing is showing
     // Might even be something about go beyond a certain zoom level
     // TODO: me - Markers should also have the same mouse behavior
-    this.segment.getAllSegments().map(segment => {
+    // This seems to be because the markers aren't part of the layer but there isn't a way to add them directly
+    // the preferred approach seems to be using a "symbol layer"
+    // Despite the event handler, clicking also doesn't seem to work
+    this.segmentMarkers = this.segment.getAllSegments().map(segment => {
       // var popup = new Popup().setText(segment.name).addTo(map);
-      // new Marker({color: kMarkerColor}).setLngLat(segment.start_latlng).addTo(map).setPopup(popup);
-      new Marker({ color: kMarkerColor }).setLngLat(segment.start_latlng).addTo(map);
+      // new Marker({color: kMarkerColor}).setLngLat(segment.start_latlng).setPopup(popup);
+      return new Marker({ color: kMarkerColor }).setLngLat(segment.start_latlng).on('click', () => {
+        const segmentIndex = this.segment.getAllSegments().findIndex(segment => segment.id === segment.id);
+        this.handleSegmentClickEvent(segmentIndex, segment.start_latlng);
+      });
     });
+    this.toggleSegmentLayer();
   }
 
   private highlightSegment(segmentId: number, isSelected: boolean) {
@@ -144,62 +153,88 @@ export class App {
 
   toggleRegionLayer() {
     this.regionShowing = !this.regionShowing;
-    this.map?.setPaintProperty("regions", "fill-opacity", 0.5 - (this.map?.getPaintProperty("regions", "fill-opacity") as number));
-    this.map?.setPaintProperty("region-borders", "line-opacity", 1 - (this.map?.getPaintProperty("region-borders", "line-opacity") as number));
+    this.overlays.setRegionVisibility(this.map!, this.regionShowing);
   }
 
-  // TODO: me - This needs to also remove the markers
   toggleSegmentLayer() {
     this.segmentShowing = !this.segmentShowing;
+
+    // Hide the markers
+    // I'd use `toggleClass('hidden')` but that doesn't seem to work
+    if (this.segmentShowing) {
+      this.segmentMarkers.forEach(marker => marker.addTo(this.map!));
+    } else {
+      this.segmentMarkers.forEach(marker => marker.remove());
+    }
+
     this.map?.setPaintProperty("segments-layer", "line-opacity", 1 - (this.map?.getPaintProperty("segments-layer", "line-opacity") as number));
   }
 
   toggleBikeNetwork() {
+    console.log(this.map?.getStyle().layers);
     this.bikemapShowing = !this.bikemapShowing;
-    for (let layerId of ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trail", "bike-network-sidewalk"]) {
+    for (let layerId of ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trails", "bike-network-sidewalks"]) {
       this.map?.setLayoutProperty(layerId, "visibility", this.bikemapShowing ? "visible" : "none");
     }
   }
 
   // TODO: me - This should be moved into the segment-overlay
   // The popup should become the title centered in the screen
-  private handleSegmentClickEvent() {
+  private getSegmentEventHandler() {
     return (e: InteractionEvent) => {
       if (this.map == null) {
         return;
       }
-
-      this.selectedSegment = e.feature?.id as number;
-      const segment = this.segment.getSegmentByDomId(this.selectedSegment) as Segment;
-      this.changeSegmentDisplay();
-
-      // TODO: me - This might benefit from bounding box
-      // Though the mapbox bounding box isn't fully correct
-      this.map.flyTo({
-        center: segment?.start_latlng as [number, number],
-        bearing: this.segment.vectorToBearing(
-          this.segment.directionVector(segment)),
-        // NOTE: I think this gets truncated to 15
-        // Either way, it may be a good idea to add a small zoom out when unclicking?
-        zoom: 16.5,
-        speed: 1
-      });
-
-      this.focusedSegment.add(this.selectedSegment);
-      this.highlightSegment(this.selectedSegment, true);
-      this.detector.detectChanges();
-
-      var popup = new Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(`<p><b>${segment?.name}</b></p>`)
-        .addTo(this.map);
-
-      popup.on('close', () => {
-        console.log("Popup closed for segment=" + segment?.name);
-        this.changeSegmentDisplay();
-        this.focusedSegment.delete(this.selectedSegment);
-        this.highlightSegment(this.selectedSegment, false);
-      });
-    };
+      return this.handleSegmentClickEvent(e.feature?.id as number, e.lngLat);
+    }
   }
+
+  private handleSegmentClickEvent(segmentId: number, lnglat: any) {
+    const segment = this.segment.getSegmentByDomId(segmentId) as Segment;
+    this.selectedSegment = segmentId;
+    this.changeSegmentDisplay();
+
+    // TODO: me - This might benefit from bounding box
+    // Though the mapbox bounding box isn't fully correct
+    this.map!.flyTo({
+      center: segment?.start_latlng as [number, number],
+      bearing: this.segment.vectorToBearing(
+        this.segment.directionVector(segment)),
+      // NOTE: I think this gets truncated to 15
+      // Either way, it may be a good idea to add a small zoom out when unclicking?
+      zoom: 16.5,
+      speed: 1
+    });
+
+    // TODO: me - Fix this hack to actually center the segment on the screen
+    // The current algorithm just takes the vector from the start to the end but that doesn't
+    // fully account for how the segment actually curves. This is also a bit because I ended up
+    // placing the "large" segment boxes on the left side of the screen.
+    const map = this.map!;
+    async function waitForMapToStopMoving() {
+      while (map.isMoving()) {
+        // Wait until the map stops moving and then adjust the camera a little to the side
+        await new Promise(resolve => setTimeout(resolve, 1));
+      }
+    }
+    waitForMapToStopMoving().then(() => {
+      map.panBy([-100, 0]); // Pan right by 100 pixels
+    });
+
+    this.focusedSegment.add(this.selectedSegment);
+    this.highlightSegment(this.selectedSegment, true);
+    this.detector.detectChanges();
+
+    var popup = new Popup()
+      .setLngLat(lnglat)
+      .setHTML(`<p><b>${segment?.name}</b></p>`)
+      .addTo(this.map!);
+
+    popup.on('close', () => {
+      console.log("Popup closed for segment=" + segment?.name);
+      this.changeSegmentDisplay();
+      this.focusedSegment.delete(this.selectedSegment);
+      this.highlightSegment(this.selectedSegment, false);
+    });
+  };
 }

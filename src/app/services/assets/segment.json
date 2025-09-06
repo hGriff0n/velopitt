@@ -128,50 +128,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
+        "pacing_notes": "The only place where you can really recover is during the slight stutter-step that is Holt St. This is still ~12+% but it's a respite to the two walls that bookend the climb.",
         "summary": "Barry, Holt, Eleanor is generally considered one of the worst Dirty Dozen hills, though whether that's because of the false flat midway up or the cummulative stress of the days climbing is uncertain.",
-        "related_segments": []
-    },
-    {
-        "id": 686600,
-        "name": "Greenleaf St, Mt Washington",
-        "activity_type": "Ride",
-        "distance": 1143.18,
-        "average_grade": 10.2,
-        "maximum_grade": 24.1,
-        "elevation_high": 351.2,
-        "elevation_low": 229,
-        "start_latlng": [
-            40.44324,
-            -80.02812
-        ],
-        "end_latlng": [
-            40.43891,
-            -80.02634
-        ],
-        "climb_category": 1,
-        "city": "Pittsburgh",
-        "state": "PA",
-        "country": "United States",
-        "created_at": "2011-07-20T04:51:25Z",
-        "updated_at": "2021-05-20T08:02:05Z",
-        "total_elevation_gain": 116.698,
-        "map": {
-            "id": "s686600",
-            "polyline": "gazuFvnmgNN@JDFLHHj@jAHHPLh@NR@@NPRBPN`@FFDLDDLRZRZ\\PJBFbAl@BFTHLH^f@l@LPPF?RLVXZDDJ`@Jb@VJ?RPFHJFPTHAFFRH`ANb@FJEHDf@HJCJEVGHODe@?OUuAIUScAW_AIk@Sw@[{AEk@Qg@EE[oAFcAFYCQF]Fy@@o@Hu@Ai@GW"
-        },
-        "xoms": {
-            "kom": "3:45",
-            "qom": "5:08",
-            "overall": "3:45",
-            "destination": {
-                "href": "strava://segments/686600/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
         "related_segments": []
     },
     {
@@ -212,92 +170,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 20855939,
-        "name": "Nobles Ln.",
-        "activity_type": "Ride",
-        "distance": 1287.4,
-        "average_grade": 5.5,
-        "maximum_grade": 8,
-        "elevation_high": 413,
-        "elevation_low": 342,
-        "start_latlng": [
-            40.396293,
-            -79.997127
-        ],
-        "end_latlng": [
-            40.403615,
-            -79.990575
-        ],
-        "climb_category": 0,
-        "city": null,
-        "state": null,
-        "country": null,
-        "created_at": "2019-06-12T13:30:38Z",
-        "updated_at": "2021-05-18T08:05:39Z",
-        "total_elevation_gain": 71,
-        "map": {
-            "id": "s20855939",
-            "polyline": "y{puF`mggNkAf@eAh@e@Nc@Jc@Bu@Ee@?cB\\iDUa@?yAPqDhA_@CYQUWm@kCMe@Ie@QqBKi@Sa@s@s@Wc@Og@Ki@UoCw@oMWw@iCgF"
-        },
-        "xoms": {
-            "kom": null,
-            "qom": "4:44",
-            "overall": null,
-            "destination": {
-                "href": "strava://segments/20855939/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 10590095,
-        "name": "William Street ",
-        "activity_type": "Ride",
-        "distance": 819.4,
-        "average_grade": 9.6,
-        "maximum_grade": 19.6,
-        "elevation_high": 376.2,
-        "elevation_low": 297.8,
-        "start_latlng": [
-            40.42818,
-            -79.997038
-        ],
-        "end_latlng": [
-            40.427144,
-            -80.00527
-        ],
-        "climb_category": 0,
-        "city": "Pittsburgh",
-        "state": "Pennsylvania",
-        "country": "United States",
-        "created_at": "2015-09-30T17:56:04Z",
-        "updated_at": "2021-05-19T08:03:26Z",
-        "total_elevation_gain": 78.4,
-        "map": {
-            "id": "s10590095",
-            "polyline": "acwuFnlggNEBSVEHCLAJBf@H^Ap@EJMt@IlA@NHVLTXZJf@@VCZU`@K\\k@n@?LGNMLQZc@bBI`ABNJVv@hAFlAF\\`@`A\\\\R\\Tr@LZd@~AR`@Vp@Ll@z@`C"
-        },
-        "xoms": {
-            "kom": "2:36",
-            "qom": "3:42",
-            "overall": "2:36",
-            "destination": {
-                "href": "strava://segments/10590095/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "This is a climb in 4/5 parts: The first step sections are just as you enter into the park where it tilts up to about 8-9% from the tracks to the field. The climb then levels off midway through the park and all the way through the hamlet at the other end. Right after the parking lot and Joncaire, the road gradually tilts up for a long drag to the railroad tracks, but almost immediately afterward, the road curves left into 3 blocks of 12+% spitting you out directly onto 5th.",
+        "summary": "This is one of the most trafficked bike routes in the city, getting you from Oakland to the Eliza Furnace",
         "related_segments": []
     },
     {
@@ -338,55 +212,13 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 4961664,
-        "name": "Josephine St/ Arlington Ave Climb",
-        "activity_type": "Ride",
-        "distance": 1777.2,
-        "average_grade": 6.7,
-        "maximum_grade": 19.9,
-        "elevation_high": 358.7,
-        "elevation_low": 240.2,
-        "start_latlng": [
-            40.423798,
-            -79.96876
-        ],
-        "end_latlng": [
-            40.417497,
-            -79.972786
-        ],
-        "climb_category": 1,
-        "city": "Pittsburgh",
-        "state": "PA",
-        "country": "United States",
-        "created_at": "2013-08-02T14:42:25Z",
-        "updated_at": "2021-05-19T08:02:29Z",
-        "total_elevation_gain": 125.3,
-        "map": {
-            "id": "s4961664",
-            "polyline": "ugvuFv{agNFGRq@jAkCJKf@]HOBM?e@Dg@DMdAwCx@qBLCr@wAj@_ABKjAcBPa@NQL@HET@vEdAbCn@^N^Xx@dA^fALr@J|ACt@B\\J^DHTLH@JATKFKJ{@LkDHQFEP?HDJNBJDl@ALNzAHxAC`AMfA?ZWtBOhC_@bFEfA?fAFfB\\pG"
-        },
-        "xoms": {
-            "kom": "4:29",
-            "qom": "5:48",
-            "overall": "4:29",
-            "destination": {
-                "href": "strava://segments/4961664/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "Unless you're coming down from Greenfield, the climb starts with a dangerous 9% punch round a slight, blind bend (the bike lane starts just after it's needed). Instead of continuing up the hill, you make a left onto a bridge across the turnpike. The climb then becomes one of the few \"draftable\" climbs in the region, but make sure to save something for the end. When you make the final curve into the neighborhood at the top, you need to punch through a short steep block, as the first road is one way.",
+        "summary": "A very gradual climb once you make it to the bridge. A very fun descent if taken the otherway",
         "related_segments": []
     },
     {
         "id": 14674301,
-        "name": "PA 60 Outbound",
+        "name": "Noblestown Outbound",
         "activity_type": "Ride",
         "distance": 2580.9,
         "average_grade": 4.4,
@@ -422,8 +254,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "Climbing out of the west end, you have a block of 10%. Despite the concrete wall in front of you, this is the steepest part of the climb. You turn left to a very consistent 5-6% as the road winds its way around the hill. The road pinches up a bit (and the shoulders shrink) as you get back into some housing, before falling back down to a false flat. You are then presented with a choice of heading left, straight, or right - each option is basically the same length and gradient and all are very consistent.",
+        "summary": "A very easy climb that is extremely difficult to get to with the current cycling infrastructure. Fairly wide shoulders along most of the route",
         "related_segments": []
     },
     {
@@ -464,92 +296,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 837458,
-        "name": "greentree to parkway center",
-        "activity_type": "Ride",
-        "distance": 1371.19,
-        "average_grade": 9.2,
-        "maximum_grade": 13.7,
-        "elevation_high": 349.8,
-        "elevation_low": 224,
-        "start_latlng": [
-            40.434826193377376,
-            -80.035006608814
-        ],
-        "end_latlng": [
-            40.42525850236416,
-            -80.04221018403769
-        ],
-        "climb_category": 1,
-        "city": "Pittsburgh",
-        "state": "PA",
-        "country": "United States",
-        "created_at": "2011-11-25T14:38:53Z",
-        "updated_at": "2021-05-20T08:02:07Z",
-        "total_elevation_gain": 125.8,
-        "map": {
-            "id": "s837458",
-            "polyline": "slxuFxyngNFjBAVEHIr@Ad@HVDXEL?r@Nd@Zj@Zr@HH^NPNb@@RDBFAD@J`APn@n@JPJ@VNJTHJXD^?z@f@j@Tb@EP@x@`@\\@z@Rb@RZBRLb@HFF\\LNJ~@L|@Fn@b@v@x@JV^h@V`AXb@x@~@x@r@HBjAJzAYH@v@K~@SRAZ@\\Jr@`@zAjB^\\"
-        },
-        "xoms": {
-            "kom": "4:44",
-            "qom": "7:07",
-            "overall": "4:44",
-            "destination": {
-                "href": "strava://segments/837458/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 13698609,
-        "name": "Dirty Dozen Hill 1 - 57th & Christopher (DD hill since 2016)",
-        "activity_type": "Ride",
-        "distance": 601.6,
-        "average_grade": 13.1,
-        "maximum_grade": 25,
-        "elevation_high": 310.7,
-        "elevation_low": 232,
-        "start_latlng": [
-            40.48511,
-            -79.946208
-        ],
-        "end_latlng": [
-            40.483028,
-            -79.940298
-        ],
-        "climb_category": 0,
-        "city": "Pittsburgh",
-        "state": "Pennsylvania",
-        "country": "United States",
-        "created_at": "2016-11-23T19:45:34Z",
-        "updated_at": "2022-10-20T22:26:42Z",
-        "total_elevation_gain": 78.7,
-        "map": {
-            "id": "s13698609",
-            "polyline": "}fbvFxn}fN~AkBb@Yh@k@|AoBb@o@@UCi@BQn@}BXy@BENEPcAGsD@o@AwBHm@Cq@@u@"
-        },
-        "xoms": {
-            "kom": "1:59",
-            "qom": "2:48",
-            "overall": "1:59",
-            "destination": {
-                "href": "strava://segments/13698609/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "This climb is very flat except for a short punch right as you turn left onto Cathell. Cathell is pretty difficult, but the lack of cars is worth the trade off. There is a small easing in the gradient as you make your way around the switchback but it kicks back up as you make your way through the neighborhood at the top.",
+        "summary": "Glass Run is honestly toeing the line on what is \"safe\" to bike on, especially if you continue past Cathell. The only saving grace of this section is that it is very flat.",
         "related_segments": []
     },
     {
@@ -590,8 +338,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "Suffolk starts with a wall as you wind your way up the hillside before you turn right to a short plateau. Immediately afterwards, is the steepest section of the climb, a one block wall that is Hazelton. Making it up this block is the crucial point of the climb, as the rest is an easy 12% up Belgian block to the top.",
+        "summary": "Generally regarded as one of the toughest climbs in the Dirty Dozen, especially as it's right after the other contender - Logan.",
         "related_segments": []
     },
     {
@@ -632,50 +380,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 5955218,
-        "name": "Kent-Kendall-Celadine",
-        "activity_type": "Ride",
-        "distance": 488.2,
-        "average_grade": 14.3,
-        "maximum_grade": 25.2,
-        "elevation_high": 314,
-        "elevation_low": 244,
-        "start_latlng": [
-            40.481518,
-            -79.949424
-        ],
-        "end_latlng": [
-            40.481698,
-            -79.945213
-        ],
-        "climb_category": 0,
-        "city": "Pittsburgh",
-        "state": "PA",
-        "country": "United States",
-        "created_at": "2013-11-06T02:22:17Z",
-        "updated_at": "2021-05-17T08:04:48Z",
-        "total_elevation_gain": 71.4,
-        "map": {
-            "id": "s5955218",
-            "polyline": "mpavF|b~fNuAcDNa@dG{II[a@q@wDyE"
-        },
-        "xoms": {
-            "kom": "2:06",
-            "qom": "3:03",
-            "overall": "2:06",
-            "destination": {
-                "href": "strava://segments/5955218/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "This climb starts with a long stretch of 5% before it shallows out as you enter the zoo. Immediately afterwards it starts to kick up again as it curves into a very sharp switchback. Whether you can let it all out here depends on whether you are turning left at the top, as that route has an extra 2-3 blocks of 10-12%.",
+        "summary": "A good training climb, with a solid bike lane",
         "related_segments": []
     },
     {
@@ -716,176 +422,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 14465271,
-        "name": "Middle road to Klein",
-        "activity_type": "Ride",
-        "distance": 5252.5,
-        "average_grade": 3.2,
-        "maximum_grade": 39.5,
-        "elevation_high": 402.7,
-        "elevation_low": 230.8,
-        "start_latlng": [
-            40.51211,
-            -79.947148
-        ],
-        "end_latlng": [
-            40.55219,
-            -79.934605
-        ],
-        "climb_category": 2,
-        "city": "Pittsburgh",
-        "state": "Pennsylvania",
-        "country": "United States",
-        "created_at": "2017-03-29T19:19:44Z",
-        "updated_at": "2021-05-20T08:04:10Z",
-        "total_elevation_gain": 198,
-        "map": {
-            "id": "s14465271",
-            "polyline": "uogvFtt}fNSHi@DM@SEG@OEYBw@Sa@Ea@McAo@aAe@k@g@QSW_@i@g@g@Y_@Gg@Ug@_@YWYo@kAaBi@uA?OEIQO_@I_@@UAwAW_@?SISEKDa@BiAKKGSEY?iAUsAk@k@GQQKUC]Kc@K{B@}BG[QU][]Ui@Si@]e@e@OWSSSMSIa@HUFaA`@QLKXGZIjAIZKbA_AnB]LUDi@Mu@_@ICW?o@V[f@O^]b@ULW@YI]QOc@g@e@M?KMISY_@IUUY_@o@}@eAg@y@WSk@i@gB_A]U]O_@EsA@aAJMASBaBH]COAiAa@}@MM?UMk@Ki@COE}@Ao@EQ@k@Ga@MgAo@KOg@_@eAg@OAs@e@sAc@e@YYGk@WKIi@Wq@UOKe@EKEi@q@[UOG[_@k@i@KSq@o@IOMKOEU]WUMSo@o@a@q@[_@AK]q@[w@U]K[k@cAWQU]_@c@OEMMq@[I@]GgACK?MD[@{AGYDMAMBQCMHWBUCKDSIW@KCU?i@U_@Mo@g@SIu@Mu@]SEMFK@KHUDqAj@WFQ?WDi@Rg@FED_A@[EK@e@AMGO@a@EqAAW@UDUJm@l@ITa@Xc@d@a@\\wBtBKN_@Zi@NK@UJe@Fs@NYDw@RM?i@KOAM@MCS?MEw@A_BWc@W]WSGGGq@]qAi@m@[sAg@KIa@@QBc@R[Da@VYJ"
-        },
-        "xoms": {
-            "kom": "9:48",
-            "qom": "12:10",
-            "overall": "9:48",
-            "destination": {
-                "href": "strava://segments/14465271/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 13717460,
-        "name": "High / Seavey climb",
-        "activity_type": "Ride",
-        "distance": 561.9,
-        "average_grade": 12.1,
-        "maximum_grade": 22.5,
-        "elevation_high": 294.8,
-        "elevation_low": 226.6,
-        "start_latlng": [
-            40.497789,
-            -79.944072
-        ],
-        "end_latlng": [
-            40.497001,
-            -79.9497
-        ],
-        "climb_category": 0,
-        "city": "Pittsburgh",
-        "state": "Pennsylvania",
-        "country": "United States",
-        "created_at": "2016-11-27T15:24:50Z",
-        "updated_at": "2021-05-20T08:04:03Z",
-        "total_elevation_gain": 68.2,
-        "map": {
-            "id": "s13717460",
-            "polyline": "cvdvFna}fNAjDHdGA^FbBRvBBb@AT@HELED_ALEDAHx@`Az@rAf@VL`@\\pB"
-        },
-        "xoms": {
-            "kom": "1:40",
-            "qom": "2:29",
-            "overall": "1:40",
-            "destination": {
-                "href": "strava://segments/13717460/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 1339847,
-        "name": "Nobblestown Rd north",
-        "activity_type": "Ride",
-        "distance": 908.58,
-        "average_grade": 5.1,
-        "maximum_grade": 9.9,
-        "elevation_high": 343,
-        "elevation_low": 296.8,
-        "start_latlng": [
-            40.42788287624717,
-            -80.0536878593266
-        ],
-        "end_latlng": [
-            40.435044122859836,
-            -80.05039938725531
-        ],
-        "climb_category": 0,
-        "city": "Pittsburgh",
-        "state": "PA",
-        "country": "United States",
-        "created_at": "2012-05-06T20:25:57Z",
-        "updated_at": "2021-05-15T02:12:01Z",
-        "total_elevation_gain": 46.2,
-        "map": {
-            "id": "s1339847",
-            "polyline": "gawuFpnrgNs@a@k@OqMGmAK[Ia@SWSqC{Cq@}@e@{@mCqEc@a@_@WWKs@S[AY?u@He@Jg@R"
-        },
-        "xoms": {
-            "kom": "2:02",
-            "qom": "2:37",
-            "overall": "2:02",
-            "destination": {
-                "href": "strava://segments/1339847/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 19241552,
-        "name": "Johnston Repeats",
-        "activity_type": "Ride",
-        "distance": 1652.9,
-        "average_grade": 5.7,
-        "maximum_grade": 13.6,
-        "elevation_high": 339.8,
-        "elevation_low": 246.4,
-        "start_latlng": [
-            40.406132,
-            -79.942738
-        ],
-        "end_latlng": [
-            40.408166,
-            -79.926181
-        ],
-        "climb_category": 1,
-        "city": "Pittsburgh",
-        "state": "Pennsylvania",
-        "country": "United States",
-        "created_at": "2018-11-01T23:50:08Z",
-        "updated_at": "2021-05-18T08:05:25Z",
-        "total_elevation_gain": 93.4,
-        "map": {
-            "id": "s19241552",
-            "polyline": "iyruFby|fNy@kEYwBa@mB?Yr@cCt@yBR{@n@kBjA}Dp@oBl@sBXkAHk@@u@Em@Iq@Ki@a@cAy@kAgAmAYe@k@mAMm@Gm@CwANuFHuA@_AAc@MyBMm@Ky@U_Aa@cCCa@I_@KW_@i@c@w@aAqAWUaAu@g@WOJG^"
-        },
-        "xoms": {
-            "kom": "3:38",
-            "qom": "4:28",
-            "overall": "3:38",
-            "destination": {
-                "href": "strava://segments/19241552/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "Stanton is an extremely regular climb. There is a slight bit of 10-12% rounding the bend after the light, but then the climb straightens out to an extremely consistent 7% for the entire straight. The straight ends with a curve to the left, right as the climb mellows out - it's simply a matter of powering through to the fire station.",
+        "summary": "This is a very good hill for repeats and learning to climb. Going down the otherside is also one of the most technical descents in the area.",
         "related_segments": []
     },
     {
@@ -926,133 +464,7 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 39666024,
-        "name": "Forest Ave to Munhall",
-        "activity_type": "Ride",
-        "distance": 2592.1,
-        "average_grade": 3.6,
-        "maximum_grade": 25.3,
-        "elevation_high": 324.8,
-        "elevation_low": 231.8,
-        "start_latlng": [
-            40.400929,
-            -79.917562
-        ],
-        "end_latlng": [
-            40.393502,
-            -79.900282
-        ],
-        "climb_category": 1,
-        "city": "West Homestead",
-        "state": "Pennsylvania",
-        "country": "USA",
-        "created_at": "2025-07-19T17:53:07Z",
-        "updated_at": "2025-07-19T17:53:07Z",
-        "total_elevation_gain": 93,
-        "map": {
-            "id": "s39666024",
-            "polyline": "wxquFx{wfN`NuXrB}DVu@Fc@C_AQsBO}Bm@sH?_AJm@Xm@JOXOPGbB[d@Uv@gAtAgC^u@L_@Nq@Fa@@s@UkDAaAFu@Ps@P[^c@vBuABCJYp@g@j@YFO@[EIWCSSI?W[QIQ?SB]LoEdCWF]DY@UC_@Ia@YEY}@oBQKIMEQ?SHOv@_AvCeDrAcBVSNIvASPETKx@Q`@AH@`DvAj@PTLNN^J"
-        },
-        "xoms": {
-            "kom": "7:21",
-            "qom": null,
-            "overall": "7:21",
-            "destination": {
-                "href": "strava://segments/39666024/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 9179478,
-        "name": "Honoring the dead",
-        "activity_type": "Ride",
-        "distance": 857.7,
-        "average_grade": 8.6,
-        "maximum_grade": 19.6,
-        "elevation_high": 374.8,
-        "elevation_low": 300.8,
-        "start_latlng": [
-            40.411727,
-            -79.864338
-        ],
-        "end_latlng": [
-            40.41262,
-            -79.859852
-        ],
-        "climb_category": 0,
-        "city": "Braddock Hills",
-        "state": "Pennsylvania",
-        "country": "United States",
-        "created_at": "2015-04-04T01:03:38Z",
-        "updated_at": "2021-05-17T08:05:36Z",
-        "total_elevation_gain": 74,
-        "map": {
-            "id": "s9179478",
-            "polyline": "g|suFbomfNUQc@Mw@HeARo@?MCGK?GZUp@{@LQR{@h@uDb@mBF[AOIMy@b@}@v@O@EE?GLSPq@p@qB@GEWCCS?UJaCRQAEIAGBOp@mBdBiB"
-        },
-        "xoms": {
-            "kom": "2:39",
-            "qom": "3:46",
-            "overall": "2:39",
-            "destination": {
-                "href": "strava://segments/9179478/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 2979623,
-        "name": "Polish Hill/Dobson Climb",
-        "activity_type": "Ride",
-        "distance": 652.977,
-        "average_grade": 7.4,
-        "maximum_grade": 11.6,
-        "elevation_high": 218.8,
-        "elevation_low": 170.8,
-        "start_latlng": [
-            40.45646717771888,
-            -79.97406086884439
-        ],
-        "end_latlng": [
-            40.4570098221302,
-            -79.96722006238997
-        ],
-        "climb_category": 0,
-        "city": "Strip District, Pittsburgh, PA, USA",
-        "state": "PA",
-        "country": "United States",
-        "created_at": "2012-12-15T21:50:07Z",
-        "updated_at": "2021-05-20T08:02:23Z",
-        "total_elevation_gain": 48,
-        "map": {
-            "id": "s2979623",
-            "polyline": "{s|uF||bgNJc@HO`CwCHS@GEO{@aBOa@g@iBWsA[eDQ_HIiBMeA@_@I[]u@Qw@"
-        },
-        "xoms": {
-            "kom": "1:15",
-            "qom": "1:56",
-            "overall": "1:15",
-            "destination": {
-                "href": "strava://segments/2979623/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
+        "pacing_notes": "Avoid pushing on flowers, the real hill starts as it turns into Killbourne. It gradually drags up to 12% before reaching a small plateau as you turn left onto Tesla. Be careful in your body positioning here as the wall is steep enough your rear will lose traction.",
         "summary": "",
         "related_segments": []
     },
@@ -1094,8 +506,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "This is a rare draftable climb for nearly the entire length. There are a couple of ups and downs during the first half which ends as you cross a small descent over the highway. You then turn left to stay on East St where the second half begins, a very consistent 6-7% that ends at a 5/6-way intersection. This particular segment adds an additional sting in the tail by continuing on to the highest road in Pittsburgh - Montana St. Unfortunately, this introduces two walls right at the end",
+        "summary": "A bit difficult to get to, but there's a reason they put the highway right nextdoor.",
         "related_segments": []
     },
     {
@@ -1136,8 +548,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "Has some 9% sections at the end, but is very easy overall",
+        "summary": "An easy route through the cemetary",
         "related_segments": []
     },
     {
@@ -1178,50 +590,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 29043107,
-        "name": "Troy Hill Step 1",
-        "activity_type": "Ride",
-        "distance": 2394.5,
-        "average_grade": 3.7,
-        "maximum_grade": 10.8,
-        "elevation_high": 318.9,
-        "elevation_low": 229.4,
-        "start_latlng": [
-            40.456415,
-            -79.991867
-        ],
-        "end_latlng": [
-            40.471128,
-            -79.982538
-        ],
-        "climb_category": 1,
-        "city": "Pittsburgh",
-        "state": "Pennsylvania",
-        "country": "United States",
-        "created_at": "2021-07-05T19:45:07Z",
-        "updated_at": "2021-07-05T19:45:09Z",
-        "total_elevation_gain": 94.2,
-        "map": {
-            "id": "s29043107",
-            "polyline": "qs|uFdlfgNq@oA[u@_@mAIe@]_BCIIKO]]kAYmASiBASGa@m@gAo@w@a@c@W_@e@e@_@m@a@e@wCaF{BiC[a@[[ICI@}AfAQ@GAsAwBmBmC_@a@mCkBsAu@}AiAe@Q[Im@GaAYaA?gB[O@YLs@f@w@t@k@X_Ar@[d@ARJj@Xn@d@t@Rp@Hh@CNIFSHk@JmAI{A@YCMI]w@K]Yq@MOWm@W]Um@YaA[cCMYGCU@g@L]N[FYLqARe@PYPSDk@R"
-        },
-        "xoms": {
-            "kom": "5:19",
-            "qom": "6:45",
-            "overall": "5:19",
-            "destination": {
-                "href": "strava://segments/29043107/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "There are no notes - there is only pain.",
+        "summary": "Logan starts at ~20% and doesn't stop getting steeper.",
         "related_segments": []
     },
     {
@@ -1262,92 +632,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 1920595,
-        "name": "Center-Guyasuta Climb (From 5th to Buckingham and no Stop Signs)",
-        "activity_type": "Ride",
-        "distance": 1064.35,
-        "average_grade": 10.8,
-        "maximum_grade": 28.9,
-        "elevation_high": 353.2,
-        "elevation_low": 238.4,
-        "start_latlng": [
-            40.4937131703277,
-            -79.9036439974605
-        ],
-        "end_latlng": [
-            40.50062530677812,
-            -79.8996205163001
-        ],
-        "climb_category": 1,
-        "city": "Pittsburgh",
-        "state": "PA",
-        "country": "United States",
-        "created_at": "2012-07-31T16:23:52Z",
-        "updated_at": "2021-05-18T08:02:48Z",
-        "total_elevation_gain": 120.863,
-        "map": {
-            "id": "s1920595",
-            "polyline": "u|cvFxdufNq@CICYUYE_@Ua@a@a@SKKEESAa@BSQGCc@AQCO@[GK@IDYZWNWb@y@TYVk@NM?a@EYDS?c@?c@EM@w@TO?SGQDM@_@Ca@@[Di@TO@OMQE[UCU?q@Cw@WaAKy@?SICKM_@y@Ku@Og@q@y@O]Oy@Cu@Ik@AsAEY"
-        },
-        "xoms": {
-            "kom": "3:34",
-            "qom": "4:22",
-            "overall": "3:34",
-            "destination": {
-                "href": "strava://segments/1920595/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
-        "related_segments": []
-    },
-    {
-        "id": 13682178,
-        "name": "Dirty Dozen Hill #2 Ravine-Midway",
-        "activity_type": "Ride",
-        "distance": 965.4,
-        "average_grade": 12.8,
-        "maximum_grade": 27,
-        "elevation_high": 371,
-        "elevation_low": 247.8,
-        "start_latlng": [
-            40.496802,
-            -79.93562
-        ],
-        "end_latlng": [
-            40.501642,
-            -79.931139
-        ],
-        "climb_category": 1,
-        "city": "Pittsburgh",
-        "state": "Pennsylvania",
-        "country": "United States",
-        "created_at": "2016-11-20T18:30:18Z",
-        "updated_at": "2021-05-20T08:04:03Z",
-        "total_elevation_gain": 123.2,
-        "map": {
-            "id": "s13682178",
-            "polyline": "_pdvFrl{fNOOSCWFUAu@Bk@DyARM?e@O_@S]Cu@Sc@@qBE_@@QC{@Ai@FWESI_@Cq@Cq@ISSAE?MDWv@k@r@UDK@OCKkAk@UUQa@Ki@KeB?iAIgBAiCBwA"
-        },
-        "xoms": {
-            "kom": "3:55",
-            "qom": "4:37",
-            "overall": "3:55",
-            "destination": {
-                "href": "strava://segments/13682178/leaderboard",
-                "type": "overall",
-                "name": "All-Time"
-            }
-        },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "Most of this climb is a false flat on generally quite roads. The drag starts to get noticeable just as you're approaching the intersection of Mairdale and the park - taking the right into the park is the more popular option. The initial connector to the park loop itself is fairly steep, but it levels off into another false flat on the loop proper. The road kicks up to a sustained 5-7% around a left hairpin and holds there to the top.",
+        "summary": "This is one of the most trafficked cycling segments in the city. Be sure to say high to the people who continue to park in the bikelane despite amble space just feet away.",
         "related_segments": []
     },
     {
@@ -1388,8 +674,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "Starting from 5th, it's a fairly fast false flat along Mellon Park up to the left turn. It then kicks up to a consistent 5% until Williams where you'll often hit a traffic light. It then kicks up even further to ~7% until it peaks just before Forbes.",
+        "summary": "One of the OG bike lanes in the city, this actually continues for almost the entire length of Beechwood",
         "related_segments": []
     },
     {
@@ -1430,8 +716,8 @@
                 "name": "All-Time"
             }
         },
-        "pacing_notes": "",
-        "summary": "",
+        "pacing_notes": "The steepest bit is at the beginning until Crawford, but there is generally plenty of space due to the nearby arena. After Crawford, the climb mellows out to a very manageable 5% as you go straight into the Hill District. The climb levels off and even descends a little as you slalom past Kirkpatrick, before starting back up just before Herron St. The rest of the climb is a very steady and hard 7%",
+        "summary": "The hill district is criminally underused",
         "related_segments": []
     }
 ]

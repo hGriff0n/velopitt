@@ -22,7 +22,7 @@ export class OverlayService {
         return this.layer;
     }
 
-    registerWithMap(map: Map) {
+    registerWithMap(map: Map, isVisible: boolean) {
         map.addSource('regions', {
             type: 'geojson',
             generateId: true,
@@ -42,7 +42,7 @@ export class OverlayService {
                     '#3A3939',
                     '#888'
                 ],
-                'fill-opacity': 0.5
+                'fill-opacity': 0
             }
         });
         map.addLayer({
@@ -53,7 +53,7 @@ export class OverlayService {
             paint: {
                 'line-color': '#627BC1',
                 'line-width': 2,
-                'line-opacity': 1,
+                'line-opacity': 0,
             }
         });
 
@@ -79,6 +79,15 @@ export class OverlayService {
                 }
             }
         });
+
+        if (isVisible) {
+            this.setRegionVisibility(map, true);
+        }
+    }
+
+    public setRegionVisibility(map: Map, isVisible: boolean) {
+        map.setPaintProperty('regions', 'fill-opacity', isVisible ? 0.2 : 0);
+        map.setPaintProperty('region-borders', 'line-opacity', isVisible ? 1 : 0);
     }
 }
 
