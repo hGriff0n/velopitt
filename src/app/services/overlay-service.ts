@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { Map } from 'mapbox-gl';
 
 import * as jsonData from './assets/mapgeo.json';
+import * as bikePlus from './assets/bikeplus.json';
 
 @Injectable({ providedIn: 'root' })
 export class OverlayService {
     private layer: GeoJson[] = [];
+    private bikePlusLayer: GeoJson[] = [];
+    private bikePlusVisible = false;
     private hoveredRegions = new Set<number>();
 
     constructor() {
@@ -16,6 +19,9 @@ export class OverlayService {
             });
             return s;
         });
+        this.bikePlusLayer = Array.from((bikePlus as any).default).map(segment => {
+            return <GeoJson>segment;
+        });
     }
 
     getRegionLayer(): GeoJson[] {
@@ -23,6 +29,22 @@ export class OverlayService {
     }
 
     registerWithMap(map: Map, isVisible: boolean) {
+        map.addSource('bikeplus', {
+            type: 'geojson',
+            generateId: true,
+            data: this.bikePlusLayer[0]
+        });
+        map.addLayer({
+            id: 'bikeplus',
+            type: 'line',
+            source: 'bikeplus',
+            paint: {
+                'line-color': '#FF009D',
+                'line-width': 5,
+                'line-opacity': 0
+            }
+        });
+
         map.addSource('regions', {
             type: 'geojson',
             generateId: true,
@@ -88,6 +110,11 @@ export class OverlayService {
     public setRegionVisibility(map: Map, isVisible: boolean) {
         map.setPaintProperty('regions', 'fill-opacity', isVisible ? 0.2 : 0);
         map.setPaintProperty('region-borders', 'line-opacity', isVisible ? 1 : 0);
+    }
+
+    public toggleBikePlus(map: Map) {
+        this.bikePlusVisible = !this.bikePlusVisible;
+        map.setPaintProperty('bikeplus', 'line-opacity', this.bikePlusVisible ? 0.9 : 0);
     }
 }
 

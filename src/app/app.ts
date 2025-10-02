@@ -23,6 +23,7 @@ export class App {
   regionShowing = false;
   segmentShowing = false;
   bikemapShowing = true;
+  bikemapPlusShowing = false;
 
   private map: Map | undefined;
   public segment: SegmentService;
@@ -176,6 +177,11 @@ export class App {
     for (let layerId of ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trails", "bike-network-sidewalks"]) {
       this.map?.setLayoutProperty(layerId, "visibility", this.bikemapShowing ? "visible" : "none");
     }
+  }
+
+  toggleBikePlus() {
+    this.bikemapPlusShowing = !this.bikemapPlusShowing;
+    this.overlays.toggleBikePlus(this.map!);
   }
 
   // TODO: me - This should be moved into the segment-overlay
