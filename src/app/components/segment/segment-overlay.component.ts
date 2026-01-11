@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import { Component, ChangeDetectionStrategy, input, effect, ViewChild } from "@angular/core";
 import { Segment, SegmentService } from "../../services/segment-service";
 import { DecimalPipe } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
@@ -15,33 +15,10 @@ import { BaseChartDirective } from 'ng2-charts';
         MatCardModule,
         BaseChartDirective,
     ],
-    inputs: ["segment"]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SegmentOverlayComponent {
-    private segment_!: Segment;
-
-    set segment(segment: Segment) {
-        this.segment_ = segment;
-        this.lineChartData = {
-            datasets: [
-                {
-                    data: this.segment.map.elevation_data,
-                    label: 'Elevation',
-                    fill: true,
-                    segment: {
-                        backgroundColor: (ctx: any) => this.chooseBackgroundColor(ctx, 'background'),
-                        borderColor: (ctx: any) => this.chooseBackgroundColor(ctx, 'border'),
-                    }
-                }
-            ],
-            labels: Array.from(Array(SegmentService.MAX_SEGMENTS).keys())
-        };
-        this.chart?.update();
-    }
-
-    get segment() {
-        return this.segment_;
-    }
+    segment = input.required<Segment>();
 
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
     public lineChartData: ChartConfiguration['data'] = {
@@ -77,12 +54,34 @@ export class SegmentOverlayComponent {
         }
     };
 
+    constructor() {
+        effect(() => {
+            const seg = this.segment();
+            this.lineChartData = {
+                datasets: [
+                    {
+                        data: seg.map.elevation_data,
+                        label: 'Elevation',
+                        fill: true,
+                        segment: {
+                            backgroundColor: (ctx: any) => this.chooseBackgroundColor(ctx, 'background'),
+                            borderColor: (ctx: any) => this.chooseBackgroundColor(ctx, 'border'),
+                        }
+                    }
+                ],
+                labels: Array.from(Array(SegmentService.MAX_SEGMENTS).keys())
+            };
+            this.chart?.update();
+        });
+    }
+
     onChartHover(event: any) {
         // console.log(event);
     }
     chooseBackgroundColor(ctx: any, value: any): Color {
-        const deltaHeight = this.segment.map.elevation_data[ctx.p1DataIndex]! - this.segment.map.elevation_data[ctx.p0DataIndex]!;
-        const deltaLength = this.segment.map.segment_distance!;
+        const seg = this.segment();
+        const deltaHeight = seg.map.elevation_data[ctx.p1DataIndex]! - seg.map.elevation_data[ctx.p0DataIndex]!;
+        const deltaLength = seg.map.segment_distance!;
         const gradient = deltaHeight / deltaLength * 100;
 
         if (gradient < 0) {

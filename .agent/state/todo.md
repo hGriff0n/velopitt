@@ -35,8 +35,8 @@ This document tracks the discrete steps required to modernize the Velopitt appli
 *Goal: Convert to Standalone Components, Signals, and improve Modularity.*
 
 ### SegmentOverlayComponent
-- [ ] **Refactor**: Convert `SegmentOverlayComponent` to `standalone: true`.
-- [ ] **Refactor**: Replace `@Input` with `input()`. Use `OnPush` change detection.
+- [x] **Refactor**: Convert `SegmentOverlayComponent` to `standalone: true`.
+- [x] **Refactor**: Replace `@Input` with `input()`. Use `OnPush` change detection.
 
 ### Map Component Extraction
 - [ ] **Plan**: Identify map-specific logic in `App` (layer management, event handling).
