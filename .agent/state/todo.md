@@ -57,5 +57,7 @@ This document tracks the discrete steps required to modernize the Velopitt appli
 - [x] **Test**: Ensure extracted components work correctly and `App` integration is seamless.
 
 ## Phase 4: UI Modernization (Post-Architecture)
-- [ ] **Plan**: Define new visual language and color palette.
-- [ ] **Experiment**: Create color scheme options.
+- [x] **Research**: Research modern and regional (Pittsburgh) color themes.
+- [x] **Palette**: Create `theme.css` with CSS variables.
+- [x] **Implement**: Apply global styles and update Angular Material config.
+- [x] **Refine**: Update component styles for separate `Header` and `Sidebar`.

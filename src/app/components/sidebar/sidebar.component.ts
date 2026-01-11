@@ -5,8 +5,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-sidebar',
-    template: `
+  selector: 'app-sidebar',
+  template: `
     <mat-action-list>
       <button mat-list-item [class.active-button]="regionShowing()" (click)="toggleRegion.emit()">Toggle region layer</button>
       <button mat-list-item [class.active-button]="segmentShowing()" (click)="toggleSegment.emit()">Toggle segment layer</button>
@@ -20,23 +20,38 @@ import { RouterLink } from '@angular/router';
       <button routerLink="/" mat-list-item>Racing</button>
     </mat-action-list>
   `,
-    styles: [`
+  styles: [`
+    :host {
+      display: block;
+      height: 100%;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border-right: var(--glass-border);
+      color: var(--sys-on-surface);
+    }
     .active-button {
-      background-color: #e0e0e0; /* Example active style */
+      background-color: var(--sys-primary) !important;
+      color: var(--sys-on-primary) !important;
+    }
+    button {
+      color: var(--sys-on-surface);
+    }
+    mat-divider {
+      border-top-color: var(--glass-border);
     }
   `],
-    standalone: true,
-    imports: [MatListModule, MatButtonModule, MatDividerModule, RouterLink],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  standalone: true,
+  imports: [MatListModule, MatButtonModule, MatDividerModule, RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent {
-    regionShowing = input(false);
-    segmentShowing = input(false);
-    bikemapShowing = input(true);
-    bikemapPlusShowing = input(false);
+  regionShowing = input(false);
+  segmentShowing = input(false);
+  bikemapShowing = input(true);
+  bikemapPlusShowing = input(false);
 
-    toggleRegion = output<void>();
-    toggleSegment = output<void>();
-    toggleBikeMap = output<void>();
-    toggleBikePlus = output<void>();
+  toggleRegion = output<void>();
+  toggleSegment = output<void>();
+  toggleBikeMap = output<void>();
+  toggleBikePlus = output<void>();
 }
