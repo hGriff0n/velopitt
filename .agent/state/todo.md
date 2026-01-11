@@ -24,12 +24,12 @@ This document tracks the discrete steps required to modernize the Velopitt appli
 - [x] **Refactor**: Convert internal state to Signals (if applicable).
 
 ### SegmentService
-- [ ] **Test**: Create `src/app/services/segment-service.spec.ts`. Test data loading and processing. **Validate against current runtime behavior (e.g., ensure segment decoding produces expected coordinates).**
-- [ ] **Refactor**: Update `SegmentService` to `providedIn: 'root'` and use `inject()`.
+- [x] **Test**: Create `src/app/services/segment-service.spec.ts`. Test data loading and processing. **Validate against current runtime behavior (e.g., ensure segment decoding produces expected coordinates).**
+- [x] **Refactor**: Update `SegmentService` to `providedIn: 'root'` and use `inject()`.
 
 ### StravaService
-- [ ] **Test**: Create `src/app/services/strava-service.spec.ts`.
-- [ ] **Refactor**: Update `StravaService` to `providedIn: 'root'`.
+- [x] **Test**: Create `src/app/services/strava-service.spec.ts`.
+- [x] **Refactor**: Update `StravaService` to `providedIn: 'root'`.
 
 ## Phase 3: Component Modernization
 *Goal: Convert to Standalone Components, Signals, and improve Modularity.*

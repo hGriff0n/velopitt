@@ -8,21 +8,8 @@ import { ConfigService } from './config-service';
 @Injectable({ providedIn: 'root' })
 export class StravaService {
     private http = inject(HttpClient);
-
-    private apiURL = "https://www.strava.com/api/v3/";
+    private apiURL = "https://www.strava.com/api/v3";
     private config = inject(ConfigService).stravaClient;
-
-    constructor() {
-        // This is currently the only way I have to refresh segment data
-        // Importantly, this gets the data in the right format for me to
-        // copy-paste it to segment.json
-        const segmentsToRefresh: number[] = [];
-        segmentsToRefresh.map(segment => {
-            this.getSegment(segment).subscribe((data: any) => {
-                console.log(JSON.stringify(data));
-            });
-        })
-    }
 
     getSegment(id: number): Observable<object> {
         const url = `${this.apiURL}/segments/${id}`;
