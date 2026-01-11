@@ -15,8 +15,8 @@ This document tracks the discrete steps required to modernize the Velopitt appli
 *Goal: Remove dependency on NgModule for services and adopt Signals where appropriate.*
 
 ### ConfigService
-- [ ] **Test**: Create `src/app/services/config-service.spec.ts`. Verify it can be injected and mocked. **Validate against current runtime behavior (e.g., ensure keys are correctly decoded).**
-- [ ] **Refactor**: Update `ConfigService` to be `providedIn: 'root'`.
+- [x] **Test**: Create `src/app/services/config-service.spec.ts`. Verify it can be injected and mocked. **Validate against current runtime behavior (e.g., ensure keys are correctly decoded).**
+- [x] **Refactor**: Update `ConfigService` to be `providedIn: 'root'`.
 
 ### OverlayService
 - [ ] **Test**: Create `src/app/services/overlay-service.spec.ts`. Test interaction with map layers (mock Mapbox). **Validate against current runtime behavior (e.g., verify layer registration logic matches existing app behavior).**
