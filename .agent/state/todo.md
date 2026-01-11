@@ -19,9 +19,9 @@ This document tracks the discrete steps required to modernize the Velopitt appli
 - [x] **Refactor**: Update `ConfigService` to be `providedIn: 'root'`.
 
 ### OverlayService
-- [ ] **Test**: Create `src/app/services/overlay-service.spec.ts`. Test interaction with map layers (mock Mapbox). **Validate against current runtime behavior (e.g., verify layer registration logic matches existing app behavior).**
-- [ ] **Refactor**: Update `OverlayService` to use `inject()` and `providedIn: 'root'`.
-- [ ] **Refactor**: Convert internal state to Signals (if applicable).
+- [x] **Test**: Create `src/app/services/overlay-service.spec.ts`. Test interaction with map layers (mock Mapbox). **Validate against current runtime behavior (e.g., verify layer registration logic matches existing app behavior).**
+- [x] **Refactor**: Update `OverlayService` to use `inject()` and `providedIn: 'root'`.
+- [x] **Refactor**: Convert internal state to Signals (if applicable).
 
 ### SegmentService
 - [ ] **Test**: Create `src/app/services/segment-service.spec.ts`. Test data loading and processing. **Validate against current runtime behavior (e.g., ensure segment decoding produces expected coordinates).**

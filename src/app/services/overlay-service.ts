@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Map } from 'mapbox-gl';
 
 import * as jsonData from './assets/mapgeo.json';
@@ -8,7 +8,7 @@ import * as bikePlus from './assets/bikeplus.json';
 export class OverlayService {
     private layer: GeoJson[] = [];
     private bikePlusLayer: GeoJson[] = [];
-    private bikePlusVisible = false;
+    private readonly bikePlusVisible = signal(false);
     private hoveredRegions = new Set<number>();
 
     constructor() {
@@ -113,8 +113,8 @@ export class OverlayService {
     }
 
     public toggleBikePlus(map: Map) {
-        this.bikePlusVisible = !this.bikePlusVisible;
-        map.setPaintProperty('bikeplus', 'line-opacity', this.bikePlusVisible ? 0.9 : 0);
+        this.bikePlusVisible.update(v => !v);
+        map.setPaintProperty('bikeplus', 'line-opacity', this.bikePlusVisible() ? 0.9 : 0);
     }
 }
 
