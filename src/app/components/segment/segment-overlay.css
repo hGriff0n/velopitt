@@ -1,49 +1,17 @@
 .segment-overlay-container {
-  display: grid;
-  grid-template-columns: 20px 1fr 20px 1fr 20px;
-  grid-template-rows: 100px auto auto 1fr 100px;
-  gap: 20px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 350px;
   pointer-events: none;
-  z-index: 10;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.3s ease-in-out;
-}
-
-.segment-overlay-container.visible {
-  visibility: visible;
-  opacity: 1;
+  z-index: 1000;
+  /* Ensure high priority in map space */
+  padding: 10px;
 }
 
 .segment-popup {
   pointer-events: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-#segment-info {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-#elevation-profile {
-  grid-column: 4;
-  grid-row: 2;
-}
-
-#pacing-calculator {
-  grid-column: 2;
-  grid-row: 3;
-}
-
-#related-segments {
-  grid-column: 4;
-  grid-row: 3;
+  width: 100%;
 }
 
 mat-card.glass-card {

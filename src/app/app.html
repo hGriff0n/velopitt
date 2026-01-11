@@ -16,6 +16,7 @@
       (toggleBikePlus)="toggleBikePlus()"></app-sidebar>
   </mat-drawer>
 
-  <segment-overlay [segment]="isShow() ? segment.getSegmentByDomId(selectedSegment()) : undefined"></segment-overlay>
+  <segment-overlay [segment]="segment.getSegmentByDomId(selectedSegment())"
+    [style.display]="isShow() ? 'block' : 'none'"></segment-overlay>
 </mat-drawer-container>
 <router-outlet />

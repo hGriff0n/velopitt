@@ -4,9 +4,9 @@ import { ConfigService } from '../../services/config-service';
 import { SegmentService, Segment } from '../../services/segment-service';
 import { OverlayService } from '../../services/overlay-service';
 
-const kUnselectedColor = '#C05D49';
-const kSelectedColor = '#EB3915';
-const kMarkerColor = '#F59E42';
+const kUnselectedColor = '#1E1E1E'; // --color-steel-gray
+const kSelectedColor = '#69F0AE';   // --color-signal-green
+const kMarkerColor = '#FFD54F';     // --color-electric-gold
 
 @Component({
     selector: 'app-map',
@@ -45,6 +45,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     private mapInstance: Map | undefined;
     private segmentMarkers: Marker[] = [];
     private focusedSegment = new Set<number>();
+    private overlayMarker: Marker | undefined;
 
     constructor() {
         // Effect to handle layer visibility changes
@@ -216,54 +217,54 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         this.segmentSelected.emit(segmentId);
 
         const segment = this.segmentService.getSegmentByDomId(segmentId) as Segment;
-        // Fly to logic - kept or moved? 
-        // If we move everything to MapComponent, then it should handle the flyTo.
-        // App just handles the overlay showing.
+        if (!segment) return;
 
         this.mapInstance!.flyTo({
-            center: segment?.start_latlng as [number, number],
+            center: segment.start_latlng as [number, number],
             bearing: this.segmentService.vectorToBearing(
                 this.segmentService.directionVector(segment)),
-            zoom: 16.5,
-            speed: 1
-        });
-
-        // Pan adjustment
-        const map = this.mapInstance!;
-        async function waitForMapToStopMoving() {
-            while (map.isMoving()) {
-                await new Promise(resolve => setTimeout(resolve, 1));
-            }
-        }
-        waitForMapToStopMoving().then(() => {
-            map.panBy([-100, 0]);
+            zoom: 16,
+            speed: 0.8
         });
 
         this.focusedSegment.add(segmentId);
         this.highlightSegment(segmentId, true);
 
-        const popup = new Popup()
-            .setLngLat(lnglat)
-            .setHTML(`<p><b>${segment?.name}</b></p>`)
+        // Location-Locked Overlay Implementation
+        if (this.overlayMarker) {
+            this.overlayMarker.remove();
+        }
+
+        // Get the overlay element from the DOM
+        const overlayElement = document.querySelector('segment-overlay') as HTMLElement;
+        if (overlayElement) {
+            this.overlayMarker = new Marker({
+                element: overlayElement,
+                anchor: 'left',
+                offset: [40, 0] // Offset to side of marker
+            })
+                .setLngLat(segment.start_latlng)
+                .addTo(this.mapInstance!);
+        }
+
+        // We can still use a small popup for the name or just let overlay handle it
+        const popup = new Popup({ closeButton: true, closeOnClick: false })
+            .setLngLat(segment.start_latlng)
+            .setHTML(`<p style="color: black; margin: 0; font-weight: bold;">${segment.name}</p>`)
             .addTo(this.mapInstance!);
 
         popup.on('close', () => {
-            // We need to signal cancellation of selection? 
-            // App has changeSegmentDisplay() which toggles isShow.
-            // If popup closes, we probably want to deselect.
-            // We can emit a specific event or just let user manually close overlay?
-            // App logic: this.changeSegmentDisplay(); this.focusedSegment.delete...
             this.focusedSegment.delete(segmentId);
             this.highlightSegment(segmentId, false);
-            // We might want to emit a "deselected" event but for now let's stick to simple
-            // Or verify what App expects. App just toggles isShow.
-            // The Popup close in App closes the overlay.
-            // So we should emit 'segmentDeselected' or similar? 
-            // Or just re-emit segmentSelected with null? 
-            // Or rely on App to handle it.
-            // App's popup logic was inside App. 
-            // Now it's here. We need to tell App to close the overlay.
-            this.segmentSelected.emit(-1); // -1 or null to indicate deselect
+            this.segmentSelected.emit(-1);
+            if (this.overlayMarker) {
+                this.overlayMarker.remove();
+                this.overlayMarker = undefined;
+
+                // Reparent overlay to body so Angular doesn't lose track of it?
+                // Actually Angular still owns it, but Mapbox moved it in the DOM.
+                // When isShow becomes false, it might hide via isShow() signal in app.html
+            }
         });
     }
 }
