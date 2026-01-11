@@ -12,7 +12,7 @@ export class SegmentService {
 
     constructor() {
         this.segmentList = Array.from((jsonData as any).default).map(segment => {
-            const s = <Segment>segment;
+            const s = segment as Segment;
             s.start_latlng.reverse();
             s.end_latlng.reverse();
 
@@ -25,7 +25,7 @@ export class SegmentService {
     // This has to be in a separate function because the map is not guaranteed to be available
     // when the service is initially loaded
     updateSegmentMapData(id: number, map: Map): void {
-        var segment = this.segmentList.find(s => s.id === id);
+        const segment = this.segmentList.find(s => s.id === id);
         if (segment == null) {
             throw new Error(`Segment with id ${id} not found`);
         }
@@ -83,7 +83,7 @@ export class SegmentService {
 
 type Vector2D = [number, number];
 
-type KomInformation = {
+interface KomInformation {
     kom: string;
     qom: string;
     overall: string;
@@ -92,22 +92,22 @@ type KomInformation = {
         type: string;
         name: string;
     };
-};
+}
 
-type SegmentRef = {
+interface SegmentRef {
     id: number;
     name: string;
     desc: string;
-};
+}
 
-type CameraLocation = {
+interface CameraLocation {
     location: Vector2D;
     bearing: number;
     zoom: number;
     height: number;
-};
+}
 
-export type Segment = {
+export interface Segment {
     id: number;
     name: string;
     activity_type: string;
@@ -137,4 +137,4 @@ export type Segment = {
     summary: string;
     related_segments: SegmentRef[];
     camera: CameraLocation | undefined;
-};
+}

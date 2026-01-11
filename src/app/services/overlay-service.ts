@@ -13,14 +13,14 @@ export class OverlayService {
 
     constructor() {
         this.layer = Array.from((jsonData as any).default).map(segment => {
-            const s = <GeoJson>segment;
+            const s = segment as GeoJson;
             s.features.forEach(feature => {
                 feature.geometry.coordinates.forEach(coord => coord.reverse());
             });
             return s;
         });
         this.bikePlusLayer = Array.from((bikePlus as any).default).map(segment => {
-            return <GeoJson>segment;
+            return segment as GeoJson;
         });
     }
 
@@ -83,7 +83,7 @@ export class OverlayService {
             type: 'mouseenter',
             target: { layerId: 'regions' },
             handler: (e) => {
-                var regionid = e.feature?.id as number;
+                const regionid = e.feature?.id as number;
                 if (!this.hoveredRegions.has(regionid)) {
                     this.hoveredRegions.add(regionid);
                     map.setFeatureState({ source: 'regions', id: regionid }, { hover: true });
@@ -94,7 +94,7 @@ export class OverlayService {
             type: 'mouseleave',
             target: { layerId: 'regions' },
             handler: (e) => {
-                var regionid = e.feature?.id as number;
+                const regionid = e.feature?.id as number;
                 if (this.hoveredRegions.has(regionid)) {
                     this.hoveredRegions.delete(regionid);
                     map.setFeatureState({ source: 'regions', id: regionid }, { hover: false });
@@ -118,12 +118,12 @@ export class OverlayService {
     }
 }
 
-export type GeoJson = {
+export interface GeoJson {
     type: "FeatureCollection";
     features: Feature[];
-};
+}
 
-type Feature = {
+interface Feature {
     type: "Feature";
     properties: {
         name?: string;
@@ -134,4 +134,4 @@ type Feature = {
         coordinates: number[][][];
     };
     id?: number;
-};
+}

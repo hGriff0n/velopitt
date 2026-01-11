@@ -14,10 +14,13 @@ const kMarkerColor = '#F59E42';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
+  // eslint-disable-next-line no-restricted-syntax
   standalone: false,
   styleUrl: './app.css'
 })
 export class App {
+  private config = inject(ConfigService);
+
   protected readonly title = signal('velopitt');
   isShow = false;
   regionShowing = false;
@@ -33,7 +36,7 @@ export class App {
   private focusedSegment = new Set<number>();
   selectedSegment = 0;
 
-  constructor(private config: ConfigService) {
+  constructor() {
     this.segment = inject(SegmentService);
     this.overlays = inject(OverlayService);
     this.detector = inject(ChangeDetectorRef);
@@ -174,7 +177,7 @@ export class App {
   toggleBikeNetwork() {
     console.log(this.map?.getStyle().layers);
     this.bikemapShowing = !this.bikemapShowing;
-    for (let layerId of ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trails", "bike-network-sidewalks"]) {
+    for (const layerId of ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trails", "bike-network-sidewalks"]) {
       this.map?.setLayoutProperty(layerId, "visibility", this.bikemapShowing ? "visible" : "none");
     }
   }
@@ -231,7 +234,7 @@ export class App {
     this.highlightSegment(this.selectedSegment, true);
     this.detector.detectChanges();
 
-    var popup = new Popup()
+    const popup = new Popup()
       .setLngLat(lnglat)
       .setHTML(`<p><b>${segment?.name}</b></p>`)
       .addTo(this.map!);
