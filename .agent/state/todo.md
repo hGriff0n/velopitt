@@ -9,7 +9,7 @@ This document tracks the discrete steps required to modernize the Velopitt appli
 
 ## Phase 1: Infrastructure & Testing Foundation
 - [x] **Configure Linting**: Update ESLint and Prettier to enforce strict Angular standards (verifying no `standalone: false` allowed in new components).
-- [ ] **Verify Test Runner**: Run `npm test` to ensure the current test suite (if any) runs or at least starts the Karma launcher without error.
+- [x] **Verify Test Runner**: Run `npm test` to ensure the current test suite (if any) runs or at least starts the Karma launcher without error.
 
 ## Phase 2: Core Services Refactoring (TDD)
 *Goal: Remove dependency on NgModule for services and adopt Signals where appropriate.*
