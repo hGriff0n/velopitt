@@ -18,7 +18,7 @@ import { BaseChartDirective } from 'ng2-charts';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SegmentOverlayComponent {
-    segment = input.required<Segment>();
+    segment = input<Segment | undefined>(undefined);
 
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
     public lineChartData: ChartConfiguration['data'] = {
@@ -71,6 +71,7 @@ export class SegmentOverlayComponent {
     constructor() {
         effect(() => {
             const seg = this.segment();
+            if (!seg) return;
             this.lineChartData = {
                 datasets: [
                     {
@@ -94,6 +95,8 @@ export class SegmentOverlayComponent {
     }
     chooseBackgroundColor(ctx: any, value: any): Color {
         const seg = this.segment();
+        if (!seg) return "black";
+
         const deltaHeight = seg.map.elevation_data[ctx.p1DataIndex]! - seg.map.elevation_data[ctx.p0DataIndex]!;
         const deltaLength = seg.map.segment_distance!;
         const gradient = deltaHeight / deltaLength * 100;

@@ -70,6 +70,24 @@ describe('SegmentOverlayComponent', () => {
         expect(component.lineChartData.datasets[0].data).toEqual([1, 2, 3]);
     });
 
+    it('should update the segment name in the template when input changes', () => {
+        const titleElement = fixture.nativeElement.querySelector('mat-card-title');
+        expect(titleElement.textContent).toContain(MOCK_SEGMENT.name);
+
+        const newSegment = { ...MOCK_SEGMENT, name: 'Updated Route' };
+        fixture.componentRef.setInput('segment', newSegment);
+        fixture.detectChanges();
+        expect(titleElement.textContent).toContain('Updated Route');
+    });
+
+    it('should update pacing notes when input changes', () => {
+        const pacingPara = fixture.nativeElement.querySelector('#pacing-calculator p');
+        const newSegment = { ...MOCK_SEGMENT, pacing_notes: 'Fast descent' };
+        fixture.componentRef.setInput('segment', newSegment);
+        fixture.detectChanges();
+        expect(pacingPara.textContent).toContain('Fast descent');
+    });
+
     it('should NOT use a <pre> tag as the root display element', () => {
         const preElement = fixture.nativeElement.querySelector('pre#segment_display');
         expect(preElement).toBeFalsy();
