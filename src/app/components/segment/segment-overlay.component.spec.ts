@@ -69,4 +69,19 @@ describe('SegmentOverlayComponent', () => {
         fixture.detectChanges();
         expect(component.lineChartData.datasets[0].data).toEqual([1, 2, 3]);
     });
+
+    it('should NOT use a <pre> tag as the root display element', () => {
+        const preElement = fixture.nativeElement.querySelector('pre#segment_display');
+        expect(preElement).toBeFalsy();
+    });
+
+    it('should have a root container with class .segment-overlay-container', () => {
+        const container = fixture.nativeElement.querySelector('.segment-overlay-container');
+        expect(container).toBeTruthy();
+    });
+
+    it('should contain four main segment popup sections', () => {
+        const popups = fixture.nativeElement.querySelectorAll('.segment-popup');
+        expect(popups.length).toBe(4);
+    });
 });
