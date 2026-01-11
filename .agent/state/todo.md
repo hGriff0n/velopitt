@@ -39,9 +39,10 @@ This document tracks the discrete steps required to modernize the Velopitt appli
 - [x] **Refactor**: Replace `@Input` with `input()`. Use `OnPush` change detection.
 
 ### Map Component Extraction
-- [ ] **Plan**: Identify map-specific logic in `App` (layer management, event handling).
-- [ ] **Refactor**: Create `src/app/components/map/map.component.ts` (Standalone). Move Mapbox initialization and layer logic here. 
-- [ ] **Test**: Ensure map interaction still works as expected.
+- [x] **Plan**: Identify map-specific logic in `App` (layer management, event handling).
+- [x] **Create**: Generate `MapComponent` (Standalone).
+- [x] **Refactor**: Move logic from `App` to `MapComponent`.
+- [x] **Integrate**: Update `App` to use `<app-map>`. interaction still works as expected.
 
 ### App Component & Bootstrapping
 - [ ] **Config**: Create `src/app/app.config.ts`. Define application providers (ClientHydration, Router, HttpClient, Mapbox).

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { provideMapboxGL } from 'ngx-mapbox-gl';
 import { Base64 } from 'js-base64';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -21,6 +21,7 @@ import {
   FullscreenControlDirective,
 } from 'ngx-mapbox-gl';
 import { SegmentOverlayComponent } from './components/segment/segment-overlay.component';
+import { AppMapComponent } from './components/map/map.component';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 
@@ -32,7 +33,8 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, // NEW: import HttpClientModule!
-    MapComponent,
+    // MapComponent, // Removing ngx-mapbox-gl MapComponent from imports as we use AppMapComponent
+    AppMapComponent,
     MatCardModule,
     ControlComponent,
     FullscreenControlDirective,

@@ -3,19 +3,24 @@
 </mat-toolbar>
 <mat-drawer-container class="example-container" autosize [hasBackdrop]="true">
   <div class="map" style="height:100%; width:100%;">
-    <mgl-map [style]="'mapbox://styles/hgriff0n/cmds2q1t100u101s2063wbeh6'" [zoom]="15" [center]="[-79.997, 40.44]"
-      [interactive]="true" [maxZoom]=31 [bearing]="90" [pitch]="70" (mapLoad)="onLoad($event)">
-    </mgl-map>
+    <app-map [regionShowing]="regionShowing" [segmentShowing]="segmentShowing" [bikemapShowing]="bikemapShowing"
+      [bikemapPlusShowing]="bikemapPlusShowing" (segmentSelected)="onSegmentSelected($event)"
+      (mapLoaded)="onMapLoaded($event)">
+    </app-map>
   </div>
 
   <!-- TODO: me - Figure out how to keep map interactivity with drawer open -->
   <mat-drawer #drawer class="example-sidenav" mode="side">
-  <!-- <mat-drawer #drawer class="example-sidenav" mode="over"> -->
+    <!-- <mat-drawer #drawer class="example-sidenav" mode="over"> -->
     <mat-action-list>
-      <button mat-list-item [class.active-button]="regionShowing" (click)="toggleRegionLayer()">Toggle region layer</button>
-      <button mat-list-item [class.active-button]="segmentShowing" (click)="toggleSegmentLayer()">Toggle segment layer</button>
-      <button mat-list-item [class.active-button]="bikemapShowing" (click)="toggleBikeNetwork()">Toggle Bike Map layer</button>
-      <button mat-list-item [class.active-button]="bikemapPlusShowing" (click)="toggleBikePlus()">Toggle Bike Plus layer</button>
+      <button mat-list-item [class.active-button]="regionShowing" (click)="toggleRegionLayer()">Toggle region
+        layer</button>
+      <button mat-list-item [class.active-button]="segmentShowing" (click)="toggleSegmentLayer()">Toggle segment
+        layer</button>
+      <button mat-list-item [class.active-button]="bikemapShowing" (click)="toggleBikeNetwork()">Toggle Bike Map
+        layer</button>
+      <button mat-list-item [class.active-button]="bikemapPlusShowing" (click)="toggleBikePlus()">Toggle Bike Plus
+        layer</button>
       <mat-divider></mat-divider>
       <button routerLink="/" mat-list-item>Group Rides + Events</button>
       <button routerLink="/" mat-list-item>Community Resources</button>
@@ -26,7 +31,7 @@
   </mat-drawer>
 
   @if (isShow) {
-    <segment-overlay [segment]="segment.getSegmentByDomId(selectedSegment)!"></segment-overlay>
+  <segment-overlay [segment]="segment.getSegmentByDomId(selectedSegment)!"></segment-overlay>
   }
 </mat-drawer-container>
 <router-outlet />
