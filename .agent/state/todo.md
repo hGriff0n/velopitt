@@ -45,15 +45,16 @@ This document tracks the discrete steps required to modernize the Velopitt appli
 - [x] **Integrate**: Update `App` to use `<app-map>`. interaction still works as expected.
 
 ### App Component & Bootstrapping
-- [ ] **Config**: Create `src/app/app.config.ts`. Define application providers (ClientHydration, Router, HttpClient, Mapbox).
-- [ ] **Refactor**: Convert `App` to `standalone: true`. Import `SegmentOverlayComponent` and Map Component directly.
-- [ ] **Refactor**: Convert `App` state to Signals (`isShow`, `regionShowing`, etc.).
-- [ ] **Bootstrap**: Update `src/main.ts` to use `bootstrapApplication(App, appConfig)`.
-- [ ] **Cleanup**: Delete `src/app/app-module.ts`.
+- [x] **Config**: Create `src/app/app.config.ts`. Define application providers (ClientHydration, Router, HttpClient, Mapbox).
+- [x] **Refactor**: Convert `App` to `standalone: true`. Import `SegmentOverlayComponent` and Map Component directly.
+- [x] **Refactor**: Convert `App` state to Signals (`isShow`, `regionShowing`, etc.).
+- [x] **Bootstrap**: Update `src/main.ts` to use `bootstrapApplication(App, appConfig)`.
+- [x] **Cleanup**: Delete `src/app/app-module.ts`.
 
 ### Further Component Extraction
-- [ ] **Explore**: Analyze `App` and other components for additional extraction opportunities (e.g., Sidebar, Toolbar, Controls).
-- [ ] **Refactor**: Extract identified components to improve modularity and separation of concerns.
+- [x] **Explore**: Analyze `App` and other components for additional extraction opportunities (e.g., Sidebar, Toolbar, Controls).
+- [x] **Extract**: Create new components and refactor `App` to use them.
+- [x] **Test**: Ensure extracted components work correctly and `App` integration is seamless.
 
 ## Phase 4: UI Modernization (Post-Architecture)
 - [ ] **Plan**: Define new visual language and color palette.

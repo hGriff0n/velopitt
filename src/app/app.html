@@ -1,6 +1,4 @@
-<mat-toolbar style="background-color: black;">
-  <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
-</mat-toolbar>
+<app-header (menuToggled)="drawer.toggle()"></app-header>
 <mat-drawer-container class="example-container" autosize [hasBackdrop]="true">
   <div class="map" style="height:100%; width:100%;">
     <app-map [regionShowing]="regionShowing" [segmentShowing]="segmentShowing" [bikemapShowing]="bikemapShowing"
@@ -12,22 +10,10 @@
   <!-- TODO: me - Figure out how to keep map interactivity with drawer open -->
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <!-- <mat-drawer #drawer class="example-sidenav" mode="over"> -->
-    <mat-action-list>
-      <button mat-list-item [class.active-button]="regionShowing" (click)="toggleRegionLayer()">Toggle region
-        layer</button>
-      <button mat-list-item [class.active-button]="segmentShowing" (click)="toggleSegmentLayer()">Toggle segment
-        layer</button>
-      <button mat-list-item [class.active-button]="bikemapShowing" (click)="toggleBikeNetwork()">Toggle Bike Map
-        layer</button>
-      <button mat-list-item [class.active-button]="bikemapPlusShowing" (click)="toggleBikePlus()">Toggle Bike Plus
-        layer</button>
-      <mat-divider></mat-divider>
-      <button routerLink="/" mat-list-item>Group Rides + Events</button>
-      <button routerLink="/" mat-list-item>Community Resources</button>
-      <button routerLink="/" mat-list-item>Route Builder</button>
-      <button routerLink="/" mat-list-item>Etiquette and Safety</button>
-      <button routerLink="/" mat-list-item>Racing</button>
-    </mat-action-list>
+    <app-sidebar [regionShowing]="regionShowing" [segmentShowing]="segmentShowing" [bikemapShowing]="bikemapShowing"
+      [bikemapPlusShowing]="bikemapPlusShowing" (toggleRegion)="toggleRegionLayer()"
+      (toggleSegment)="toggleSegmentLayer()" (toggleBikeMap)="toggleBikeNetwork()"
+      (toggleBikePlus)="toggleBikePlus()"></app-sidebar>
   </mat-drawer>
 
   @if (isShow) {
