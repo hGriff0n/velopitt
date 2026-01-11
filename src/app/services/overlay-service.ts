@@ -13,11 +13,7 @@ export class OverlayService {
 
     constructor() {
         this.layer = Array.from((jsonData as any).default).map(segment => {
-            const s = segment as GeoJson;
-            s.features.forEach(feature => {
-                feature.geometry.coordinates.forEach(coord => coord.reverse());
-            });
-            return s;
+            return segment as GeoJson;
         });
         this.bikePlusLayer = Array.from((bikePlus as any).default).map(segment => {
             return segment as GeoJson;

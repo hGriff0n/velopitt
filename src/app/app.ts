@@ -30,13 +30,13 @@ export class App {
   // Template likely uses segment.getSegmentByDomId(selectedSegment). Checked app.html: yes.
 
   protected readonly title = signal('velopitt');
-  isShow = false;
-  regionShowing = false;
-  segmentShowing = false;
-  bikemapShowing = true;
-  bikemapPlusShowing = false;
+  isShow = signal(false);
+  regionShowing = signal(false);
+  segmentShowing = signal(false);
+  bikemapShowing = signal(true);
+  bikemapPlusShowing = signal(false);
 
-  selectedSegment = 0;
+  selectedSegment = signal(0);
   private detector = inject(ChangeDetectorRef);
 
   constructor() {
@@ -51,32 +51,32 @@ export class App {
     if (segmentId === -1) {
       // Deselect
       this.changeSegmentDisplay(false);
-      this.selectedSegment = 0;
+      this.selectedSegment.set(0);
       return;
     }
-    this.selectedSegment = segmentId;
+    this.selectedSegment.set(segmentId);
     this.changeSegmentDisplay(true);
     this.detector.detectChanges();
   }
 
   private changeSegmentDisplay(show: boolean) {
-    this.isShow = show;
+    this.isShow.set(show);
     this.detector.detectChanges();
   }
 
   toggleRegionLayer() {
-    this.regionShowing = !this.regionShowing;
+    this.regionShowing.update(v => !v);
   }
 
   toggleSegmentLayer() {
-    this.segmentShowing = !this.segmentShowing;
+    this.segmentShowing.update(v => !v);
   }
 
   toggleBikeNetwork() {
-    this.bikemapShowing = !this.bikemapShowing;
+    this.bikemapShowing.update(v => !v);
   }
 
   toggleBikePlus() {
-    this.bikemapPlusShowing = !this.bikemapPlusShowing;
+    this.bikemapPlusShowing.update(v => !v);
   }
 }

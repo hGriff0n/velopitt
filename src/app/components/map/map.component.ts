@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, effect, input, output, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, effect, input, output, ViewChild, ElementRef, AfterViewInit, OnDestroy, signal } from '@angular/core';
 import { Map, MapEvent, NavigationControl, ScaleControl, GeolocateControl, Popup, Marker, LngLatLike } from 'mapbox-gl';
 import { ConfigService } from '../../services/config-service';
 import { SegmentService, Segment } from '../../services/segment-service';
@@ -41,75 +41,66 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     mapLoaded = output<Map>();
 
     @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
-    private map: Map | undefined;
+    private mapSignal = signal<Map | undefined>(undefined);
+    private mapInstance: Map | undefined;
     private segmentMarkers: Marker[] = [];
     private focusedSegment = new Set<number>();
 
     constructor() {
         // Effect to handle layer visibility changes
         effect(() => {
-            if (!this.map) return;
-            this.overlayService.setRegionVisibility(this.map, this.regionShowing());
+            const map = this.mapSignal();
+            if (!map) return;
+
+            this.overlayService.setRegionVisibility(map, this.regionShowing());
             this.toggleSegmentLayer(this.segmentShowing());
             this.toggleBikeNetwork(this.bikemapShowing());
-            // BikePlus logic might be handled differently in service, 
-            // checking the service it has a toggle but we need to set state based on input
-            // The service has toggleBikePlus but no explicit "set" method. 
-            // We might need to refactor service or just rely on the toggle if we track state
-            // For now, let's assume we can control opacity directly if we know the layer name
-            // checking overlay-service.ts: map.setPaintProperty('bikeplus', 'line-opacity', this.bikePlusVisible() ? 0.9 : 0);
-            this.map.setPaintProperty('bikeplus', 'line-opacity', this.bikemapPlusShowing() ? 0.9 : 0);
+            map.setPaintProperty('bikeplus', 'line-opacity', this.bikemapPlusShowing() ? 0.9 : 0);
         });
     }
 
     ngAfterViewInit() {
-        this.map = new Map({
+        this.mapInstance = new Map({
             container: this.mapContainer.nativeElement,
             style: 'mapbox://styles/hgriff0n/cmds2q1t100u101s2063wbeh6',
             center: [-79.997, 40.44],
             zoom: 15,
             bearing: 90,
             pitch: 70,
-            accessToken: this.config.mapbox.api_key // Assuming ConfigService exposes this or MapboxGL global takes it
-            // Note: app.ts didn't set accessToken on Map but used ngx-mapbox-gl which might handle it via provider. 
-            // We need to ensure token is set. ConfigService likely has it. 
-            // Checking App module: provide: MapboxGL, ...
-            // We might need to set (mapboxgl as any).accessToken = ...
+            accessToken: this.config.mapbox.api_key
         });
 
-        this.map.on('load', (e) => this.onLoad(e));
+        this.mapInstance.on('load', (e) => this.onLoad(e));
     }
 
     ngOnDestroy() {
-        this.map?.remove();
+        this.mapInstance?.remove();
     }
 
     private onLoad(event: MapEvent) {
-        this.map = event.target;
-        this.map.resize();
-        this.map.getCanvas().style.cursor = 'default';
+        this.mapInstance = event.target;
+        this.mapInstance.resize();
+        this.mapInstance.getCanvas().style.cursor = 'default';
 
         // Register layers
-        // Note: overlayService.registerWithMap adds 'regions' and 'bikeplus'
-        this.overlayService.registerWithMap(this.map, this.regionShowing());
+        this.overlayService.registerWithMap(this.mapInstance, this.regionShowing());
         this.addAllSegments();
 
-        // Initial state setup
-        // this.toggleBikeNetwork(this.bikemapShowing()); // Handled by effect? Effect runs initially.
-
-        this.mapLoaded.emit(this.map);
+        // Update mapSignal to trigger effect
+        this.mapSignal.set(this.mapInstance);
+        this.mapLoaded.emit(this.mapInstance);
     }
 
     private addAllSegments() {
-        if (!this.map) return;
+        if (!this.mapInstance) return;
 
-        this.map.addSource("segments", {
+        this.mapInstance.addSource("segments", {
             type: 'geojson',
             generateId: true,
             data: {
                 type: 'FeatureCollection',
                 features: this.segmentService.getAllSegments().map(segment => {
-                    this.segmentService.updateSegmentMapData(segment.id, this.map as Map);
+                    this.segmentService.updateSegmentMapData(segment.id, this.mapInstance as Map);
                     return {
                         type: 'Feature',
                         properties: {},
@@ -119,7 +110,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
             }
         });
 
-        this.map.addLayer({
+        this.mapInstance.addLayer({
             id: "segments-layer",
             type: 'line',
             source: "segments",
@@ -143,31 +134,31 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
             }
         });
 
-        this.map.addInteraction('segment-clicks', {
+        this.mapInstance.addInteraction('segment-clicks', {
             type: 'click',
             target: { layerId: "segments-layer" },
-            handler: (e) => this.handleSegmentClickEvent(e.feature?.id as number, e.lngLat)
+            handler: (e: any) => this.handleSegmentClickEvent(e.feature?.id as number, e.lngLat)
         });
 
-        this.map.addInteraction('segments-hover', {
+        this.mapInstance.addInteraction('segments-hover', {
             type: 'mouseenter',
             target: { layerId: "segments-layer" },
-            handler: (e) => {
-                if (!this.map) return;
-                this.map.getCanvas().style.cursor = 'pointer';
+            handler: (e: any) => {
+                if (!this.mapInstance) return;
+                this.mapInstance.getCanvas().style.cursor = 'pointer';
                 this.highlightSegment(e.feature?.id as number, true);
             }
         });
 
-        this.map.addInteraction('segments-leave', {
+        this.mapInstance.addInteraction('segments-leave', {
             type: 'mouseleave',
             target: { layerId: "segments-layer" },
-            handler: (e) => {
-                if (!this.map) return;
+            handler: (e: any) => {
+                if (!this.mapInstance) return;
                 if (!this.focusedSegment.has(e.feature?.id as number)) {
                     this.highlightSegment(e.feature?.id as number, false);
                 }
-                this.map.getCanvas().style.cursor = 'default';
+                this.mapInstance.getCanvas().style.cursor = 'default';
             }
         });
 
@@ -190,32 +181,32 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     }
 
     private toggleSegmentLayer(isVisible: boolean) {
-        if (!this.map) return;
+        if (!this.mapInstance) return;
 
         if (isVisible) {
-            this.segmentMarkers.forEach(marker => marker.addTo(this.map!));
+            this.segmentMarkers.forEach(marker => marker.addTo(this.mapInstance!));
         } else {
             this.segmentMarkers.forEach(marker => marker.remove());
         }
         // Assuming 'segments-layer' exists (added in addAllSegments)
-        if (this.map.getLayer("segments-layer")) {
-            this.map.setPaintProperty("segments-layer", "line-opacity", isVisible ? 1 : 0);
+        if (this.mapInstance.getLayer("segments-layer")) {
+            this.mapInstance.setPaintProperty("segments-layer", "line-opacity", isVisible ? 1 : 0);
         }
     }
 
     private toggleBikeNetwork(isVisible: boolean) {
-        if (!this.map) return;
+        if (!this.mapInstance) return;
         // We iterate layers and check if they exist or catch error
         // Assuming these layers exist in the style
         ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trails", "bike-network-sidewalks"].forEach(layerId => {
-            if (this.map!.getLayer(layerId)) {
-                this.map!.setLayoutProperty(layerId, "visibility", isVisible ? "visible" : "none");
+            if (this.mapInstance!.getLayer(layerId)) {
+                this.mapInstance!.setLayoutProperty(layerId, "visibility", isVisible ? "visible" : "none");
             }
         });
     }
 
     private highlightSegment(segmentId: number, isSelected: boolean) {
-        this.map?.setFeatureState({
+        this.mapInstance?.setFeatureState({
             source: "segments",
             id: segmentId
         }, { selected: isSelected });
@@ -229,7 +220,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         // If we move everything to MapComponent, then it should handle the flyTo.
         // App just handles the overlay showing.
 
-        this.map!.flyTo({
+        this.mapInstance!.flyTo({
             center: segment?.start_latlng as [number, number],
             bearing: this.segmentService.vectorToBearing(
                 this.segmentService.directionVector(segment)),
@@ -238,7 +229,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         });
 
         // Pan adjustment
-        const map = this.map!;
+        const map = this.mapInstance!;
         async function waitForMapToStopMoving() {
             while (map.isMoving()) {
                 await new Promise(resolve => setTimeout(resolve, 1));
@@ -254,7 +245,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         const popup = new Popup()
             .setLngLat(lnglat)
             .setHTML(`<p><b>${segment?.name}</b></p>`)
-            .addTo(this.map!);
+            .addTo(this.mapInstance!);
 
         popup.on('close', () => {
             // We need to signal cancellation of selection? 

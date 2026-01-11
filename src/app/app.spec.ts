@@ -18,9 +18,20 @@ describe('App', () => {
         App
       ],
       providers: [
-        { provide: ConfigService, useValue: {} },
-        { provide: SegmentService, useValue: { getAllSegments: () => [] } },
-        { provide: OverlayService, useValue: {} }
+        { provide: ConfigService, useValue: { mapbox: { api_key: 'test' } } },
+        {
+          provide: SegmentService,
+          useValue: {
+            getAllSegments: () => [],
+            getSegmentByDomId: (id: any) => ({
+              id,
+              name: 'Test',
+              map: { geojson: { type: 'LineString', coordinates: [] }, elevation_data: [] }
+            }),
+            updateSegmentMapData: () => { }
+          }
+        },
+        { provide: OverlayService, useValue: { registerWithMap: () => { }, setRegionVisibility: () => { } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
@@ -30,11 +41,58 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
+    expect(app.segment.getSegmentByDomId).toBeDefined();
   });
 
   it('should have the title signal set to "velopitt"', () => {
     const fixture = TestBed.createComponent(App);
     const app = fixture.componentInstance;
     expect(app['title']()).toEqual('velopitt');
+  });
+
+  it('should toggle regionShowing when toggleRegionLayer is called', () => {
+    const fixture = TestBed.createComponent(App);
+    const app = fixture.componentInstance;
+    expect(app.regionShowing()).withContext('initially false').toBeFalse();
+    app.toggleRegionLayer();
+    expect(app.regionShowing()).withContext('true after toggle').toBeTrue();
+    app.toggleRegionLayer();
+    expect(app.regionShowing()).withContext('false after second toggle').toBeFalse();
+  });
+
+  it('should toggle segmentShowing when toggleSegmentLayer is called', () => {
+    const fixture = TestBed.createComponent(App);
+    const app = fixture.componentInstance;
+    expect(app.segmentShowing()).toBeFalse();
+    app.toggleSegmentLayer();
+    expect(app.segmentShowing()).toBeTrue();
+  });
+
+  it('should toggle bikemapShowing when toggleBikeNetwork is called', () => {
+    const fixture = TestBed.createComponent(App);
+    const app = fixture.componentInstance;
+    expect(app.bikemapShowing()).toBeTrue();
+    app.toggleBikeNetwork();
+    expect(app.bikemapShowing()).toBeFalse();
+  });
+
+  it('should toggle bikemapPlusShowing when toggleBikePlus is called', () => {
+    const fixture = TestBed.createComponent(App);
+    const app = fixture.componentInstance;
+    expect(app.bikemapPlusShowing()).toBeFalse();
+    app.toggleBikePlus();
+    expect(app.bikemapPlusShowing()).toBeTrue();
+  });
+
+  it('should update selectedSegment and isShow when onSegmentSelected is called', () => {
+    const fixture = TestBed.createComponent(App);
+    const app = fixture.componentInstance;
+    app.onSegmentSelected(5);
+    expect(app.selectedSegment()).toBe(5);
+    expect(app.isShow()).toBeTrue();
+
+    app.onSegmentSelected(-1);
+    expect(app.selectedSegment()).toBe(0);
+    expect(app.isShow()).toBeFalse();
   });
 });

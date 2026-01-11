@@ -1,8 +1,8 @@
 <app-header (menuToggled)="drawer.toggle()"></app-header>
 <mat-drawer-container class="example-container" autosize [hasBackdrop]="true">
   <div class="map" style="height:100%; width:100%;">
-    <app-map [regionShowing]="regionShowing" [segmentShowing]="segmentShowing" [bikemapShowing]="bikemapShowing"
-      [bikemapPlusShowing]="bikemapPlusShowing" (segmentSelected)="onSegmentSelected($event)"
+    <app-map [regionShowing]="regionShowing()" [segmentShowing]="segmentShowing()" [bikemapShowing]="bikemapShowing()"
+      [bikemapPlusShowing]="bikemapPlusShowing()" (segmentSelected)="onSegmentSelected($event)"
       (mapLoaded)="onMapLoaded($event)">
     </app-map>
   </div>
@@ -10,14 +10,14 @@
   <!-- TODO: me - Figure out how to keep map interactivity with drawer open -->
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <!-- <mat-drawer #drawer class="example-sidenav" mode="over"> -->
-    <app-sidebar [regionShowing]="regionShowing" [segmentShowing]="segmentShowing" [bikemapShowing]="bikemapShowing"
-      [bikemapPlusShowing]="bikemapPlusShowing" (toggleRegion)="toggleRegionLayer()"
-      (toggleSegment)="toggleSegmentLayer()" (toggleBikeMap)="toggleBikeNetwork()"
+    <app-sidebar [regionShowing]="regionShowing()" [segmentShowing]="segmentShowing()"
+      [bikemapShowing]="bikemapShowing()" [bikemapPlusShowing]="bikemapPlusShowing()"
+      (toggleRegion)="toggleRegionLayer()" (toggleSegment)="toggleSegmentLayer()" (toggleBikeMap)="toggleBikeNetwork()"
       (toggleBikePlus)="toggleBikePlus()"></app-sidebar>
   </mat-drawer>
 
-  @if (isShow) {
-  <segment-overlay [segment]="segment.getSegmentByDomId(selectedSegment)!"></segment-overlay>
+  @if (isShow()) {
+  <segment-overlay [segment]="segment.getSegmentByDomId(selectedSegment())!"></segment-overlay>
   }
 </mat-drawer-container>
 <router-outlet />
