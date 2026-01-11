@@ -61,3 +61,4 @@ This document tracks the discrete steps required to modernize the Velopitt appli
 - [x] **Palette**: Create `theme.css` with CSS variables.
 - [x] **Implement**: Apply global styles and update Angular Material config.
 - [x] **Refine**: Update component styles for separate `Header` and `Sidebar`.
+- [x] **Themes**: Create `theme-river.css`, `theme-rust.css`, `theme-carbon.css`.
