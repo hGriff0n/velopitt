@@ -38,14 +38,26 @@
   grid-row: 3;
 }
 
-mat-card {
+mat-card.glass-card {
   height: 100%;
-  background: whitesmoke;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  color: var(--sys-on-surface);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 mat-card-header {
   padding-bottom: 12px;
   justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+mat-card-title {
+  color: var(--sys-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 mat-card-content {
@@ -53,6 +65,7 @@ mat-card-content {
   flex-direction: column;
   gap: 12px;
   font-size: 14px;
+  padding-top: 15px;
 }
 
 .info-list,

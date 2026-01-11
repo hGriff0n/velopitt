@@ -84,4 +84,11 @@ describe('SegmentOverlayComponent', () => {
         const popups = fixture.nativeElement.querySelectorAll('.segment-popup');
         expect(popups.length).toBe(4);
     });
+
+    it('should apply the glass-card class to all mat-card elements', () => {
+        const cards = fixture.nativeElement.querySelectorAll('mat-card');
+        cards.forEach((card: HTMLElement) => {
+            expect(card.classList.contains('glass-card')).toBeTrue();
+        });
+    });
 });

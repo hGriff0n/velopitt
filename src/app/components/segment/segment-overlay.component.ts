@@ -27,30 +27,44 @@ export class SegmentOverlayComponent {
     public lineChartType: ChartType = 'line';
     public lineChartOptions: ChartConfiguration['options'] = {
         responsive: true,
+        maintainAspectRatio: false,
         elements: {
             line: {
-                tension: 0.9
+                tension: 0.4,
+                borderWidth: 2
             },
             point: {
                 radius: 0,
-
+                hitRadius: 10
             }
         },
         scales: {
-
+            x: {
+                display: false,
+                grid: { display: false }
+            },
+            y: {
+                ticks: {
+                    color: '#E0E0E0', // --color-off-white
+                    font: { size: 10 }
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)'
+                }
+            }
         },
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                enabled: true,
+                backgroundColor: 'rgba(18, 18, 18, 0.9)',
+                titleColor: '#FFD54F',
+                bodyColor: '#E0E0E0',
+                borderColor: 'rgba(255, 213, 79, 0.3)',
+                borderWidth: 1
             }
-            // The intention with this is to display the gradient while hovering over the chart
-            // but it wouldn't compile
-            //     crosshair: {
-            //         line: {
-            //             color: '#F66',  // crosshair line color
-            //             width: 1        // crosshair line width
-            //         },
-            //     }
         }
     };
 
@@ -85,17 +99,17 @@ export class SegmentOverlayComponent {
         const gradient = deltaHeight / deltaLength * 100;
 
         if (gradient < 0) {
-            return "green";
+            return "#69F0AE"; // --color-signal-green
         } else if (gradient < 3) {
-            return "yellow";
+            return "#FFD54F"; // --color-electric-gold
         } else if (gradient < 7) {
-            return "orange";
+            return "#FB8C00"; // Orange
         } else if (gradient < 10) {
-            return "red";
+            return "#FF5252"; // --color-stop-red
         } else if (gradient < 15) {
-            return "purple";
+            return "#9C27B0"; // Purple
         } else {
-            return "black";
+            return "#121212"; // --color-gunmetal
         }
     }
 }
