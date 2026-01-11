@@ -1,14 +1,30 @@
 import { Component, signal, inject, ChangeDetectorRef } from '@angular/core';
-import { Map } from 'mapbox-gl';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { Map as MapboxMap } from 'mapbox-gl'; // Aliased to avoid collision with global Map
 
+import { AppMapComponent } from './components/map/map.component';
+import { SegmentOverlayComponent } from './components/segment/segment-overlay.component';
 import { ConfigService } from './services/config-service';
 import { SegmentService } from './services/segment-service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  // eslint-disable-next-line no-restricted-syntax
-  standalone: false,
+  standalone: true,
+  imports: [
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    RouterOutlet,
+    RouterLink,
+    AppMapComponent,
+    SegmentOverlayComponent
+  ],
   styleUrl: './app.css'
 })
 export class App {
@@ -30,7 +46,7 @@ export class App {
     // Services injected via inject()
   }
 
-  onMapLoaded(map: Map) {
+  onMapLoaded(map: MapboxMap) {
     console.log("Map loaded");
   }
 

@@ -4,7 +4,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { MapComponent } from 'ngx-mapbox-gl';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { App } from './app';
 import { ConfigService } from './services/config-service';
@@ -16,13 +15,6 @@ describe('App', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterModule.forRoot([]),
-        MatToolbarModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatListModule,
-        MapComponent
-      ],
-      declarations: [
         App
       ],
       providers: [
