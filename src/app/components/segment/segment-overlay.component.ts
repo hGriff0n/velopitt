@@ -1,7 +1,9 @@
-import { Component, ChangeDetectionStrategy, input, effect, ViewChild } from "@angular/core";
+import { Component, ChangeDetectionStrategy, input, output, effect, ViewChild } from "@angular/core";
 import { Segment, SegmentService } from "../../services/segment-service";
 import { DecimalPipe } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
 import { ChartConfiguration, ChartType, Color } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -13,12 +15,15 @@ import { BaseChartDirective } from 'ng2-charts';
     imports: [
         DecimalPipe,
         MatCardModule,
+        MatIconModule,
+        MatButtonModule,
         BaseChartDirective,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SegmentOverlayComponent {
     segment = input<Segment | undefined>(undefined);
+    closeOverlay = output<void>();
 
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
     public lineChartData: ChartConfiguration['data'] = {

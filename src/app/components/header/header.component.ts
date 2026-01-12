@@ -1,21 +1,31 @@
 import { Component, output, ChangeDetectionStrategy } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-header',
   template: `
-    <mat-toolbar style="background: var(--glass-bg); backdrop-filter: var(--glass-blur); border-bottom: var(--glass-border); color: var(--sys-primary);">
-      <button mat-icon-button (click)="menuToggled.emit()" style="color: var(--sys-on-surface);">
-        <mat-icon>menu</mat-icon>
-      </button>
+    <button mat-fab extended (click)="menuToggled.emit()" class="menu-float" aria-label="Toggle menu">
+      <mat-icon>menu</mat-icon>
       <span>Velopitt</span>
-    </mat-toolbar>
+    </button>
   `,
-  styles: [],
-  standalone: true,
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule],
+  styles: [`
+    .menu-float {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 1000;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      color: var(--sys-primary);
+    }
+    .menu-float:hover {
+      background: var(--sys-surface);
+    }
+  `],
+  imports: [MatIconModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {

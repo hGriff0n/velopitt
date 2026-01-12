@@ -7,9 +7,8 @@
     </app-map>
   </div>
 
-  <!-- TODO: me - Figure out how to keep map interactivity with drawer open -->
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <!-- <mat-drawer #drawer class="example-sidenav" mode="over"> -->
+  <!-- Drawer slides over the map -->
+  <mat-drawer #drawer class="example-sidenav" mode="over">
     <app-sidebar [regionShowing]="regionShowing()" [segmentShowing]="segmentShowing()"
       [bikemapShowing]="bikemapShowing()" [bikemapPlusShowing]="bikemapPlusShowing()"
       (toggleRegion)="toggleRegionLayer()" (toggleSegment)="toggleSegmentLayer()" (toggleBikeMap)="toggleBikeNetwork()"
@@ -17,6 +16,6 @@
   </mat-drawer>
 
   <segment-overlay [segment]="segment.getSegmentByDomId(selectedSegment())"
-    [style.display]="isShow() ? 'block' : 'none'"></segment-overlay>
+    [style.display]="isShow() ? 'block' : 'none'" (closeOverlay)="onSegmentSelected(-1)"></segment-overlay>
 </mat-drawer-container>
 <router-outlet />

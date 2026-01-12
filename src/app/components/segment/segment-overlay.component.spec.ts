@@ -98,9 +98,9 @@ describe('SegmentOverlayComponent', () => {
         expect(container).toBeTruthy();
     });
 
-    it('should contain four main segment popup sections', () => {
+    it('should contain five main segment popup sections (title, info, elevation, pacing, related)', () => {
         const popups = fixture.nativeElement.querySelectorAll('.segment-popup');
-        expect(popups.length).toBe(4);
+        expect(popups.length).toBe(5);
     });
 
     it('should apply the glass-card class to all mat-card elements', () => {

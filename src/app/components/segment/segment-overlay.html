@@ -1,9 +1,22 @@
 <section class="segment-overlay-container" [class.visible]="!!segment()">
     @if (segment(); as seg) {
+    <!-- Title Card - centered in top row -->
+    <div id="segment-title" class="segment-popup">
+        <mat-card class="glass-card title-card">
+            <mat-card-header>
+                <mat-card-title>{{ seg.name }}</mat-card-title>
+            </mat-card-header>
+            <button mat-icon-button class="close-button" (click)="closeOverlay.emit()"
+                aria-label="Close segment overlay">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-card>
+    </div>
+
     <div id="segment-info" class="segment-popup">
         <mat-card class="glass-card">
             <mat-card-header>
-                <mat-card-title>{{ seg.name }}</mat-card-title>
+                <mat-card-title>Segment Info</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <ul class="info-list">
