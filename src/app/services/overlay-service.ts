@@ -35,7 +35,7 @@ export class OverlayService {
             type: 'line',
             source: 'bikeplus',
             paint: {
-                'line-color': '#FF009D',
+                'line-color': '#69F0AE',  // --color-signal-green for visibility
                 'line-width': 5,
                 'line-opacity': 0
             }
@@ -57,8 +57,8 @@ export class OverlayService {
                 'fill-color': [
                     'case',
                     ['boolean', ['feature-state', 'hover'], false],
-                    '#3A3939',
-                    '#888'
+                    '#FFD54F',  // --color-electric-gold on hover
+                    'rgba(79, 195, 247, 0.3)'  // --color-river-blue with transparency
                 ],
                 'fill-opacity': 0
             }
@@ -69,7 +69,7 @@ export class OverlayService {
             source: 'regions',
             layout: {},
             paint: {
-                'line-color': '#627BC1',
+                'line-color': '#4FC3F7',  // --color-river-blue
                 'line-width': 2,
                 'line-opacity': 0,
             }
