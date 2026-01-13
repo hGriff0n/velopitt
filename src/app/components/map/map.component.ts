@@ -3,10 +3,7 @@ import { Map, MapEvent, NavigationControl, ScaleControl, GeolocateControl, Popup
 import { ConfigService } from '../../services/config-service';
 import { SegmentService, Segment } from '../../services/segment-service';
 import { OverlayService } from '../../services/overlay-service';
-
-const kUnselectedColor = '#1E1E1E'; // --color-steel-gray
-const kSelectedColor = '#69F0AE';   // --color-signal-green
-const kMarkerColor = '#FFD54F';     // --color-electric-gold
+import { ThemeService } from '../../services/theme-service';
 
 @Component({
     selector: 'app-map',
@@ -29,6 +26,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     private config = inject(ConfigService);
     private segmentService = inject(SegmentService);
     private overlayService = inject(OverlayService);
+    private themeService = inject(ThemeService);
 
     // Inputs for layer visibility
     regionShowing = input(false);
@@ -45,18 +43,22 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     private mapInstance: Map | undefined;
     private segmentMarkers: Marker[] = [];
     private focusedSegment = new Set<number>();
-    private overlayMarker: Marker | undefined;
+    // private overlayMarker: Marker | undefined; // REMOVED per plan (Using CSS Grid HUD)
 
     constructor() {
-        // Effect to handle layer visibility changes
+        // Effect to handle layer visibility changes and theme updates
         effect(() => {
             const map = this.mapSignal();
+            const themeChange = this.themeService.themeChanged(); // dependency on theme change
             if (!map) return;
 
             this.overlayService.setRegionVisibility(map, this.regionShowing());
             this.toggleSegmentLayer(this.segmentShowing());
             this.toggleBikeNetwork(this.bikemapShowing());
             map.setPaintProperty('bikeplus', 'line-opacity', this.bikemapPlusShowing() ? 0.9 : 0);
+
+            // Update theme colors
+            this.updateMapTheme(map);
         });
     }
 
@@ -92,8 +94,40 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         this.mapLoaded.emit(this.mapInstance);
     }
 
+    private updateMapTheme(map: Map) {
+        // Read current theme colors from CSS variables
+        const unselectedColor = this.themeService.getThemeColor('--color-steel-gray') || '#1E1E1E';
+        const selectedColor = this.themeService.getThemeColor('--color-signal-green') || '#69F0AE';
+        const markerColor = this.themeService.getThemeColor('--color-electric-gold') || '#FFD54F';
+
+        // Update Segment Layer Colors
+        if (map.getLayer('segments-layer')) {
+            map.setPaintProperty('segments-layer', 'line-color', [
+                'case',
+                ['boolean', ['feature-state', 'selected'], false],
+                selectedColor,
+                unselectedColor
+            ]);
+        }
+
+        // Update Markers (Standard markers, not the overlay)
+        this.segmentMarkers.forEach(marker => {
+            // Note: Mapbox GL JS Markers created with default DOM element don't have easy API to change color after creation
+            // if we are using the default SVG. 
+            // We might need to recreate them or use a custom element that inherits color?
+            // For now, let's assume valid 'color' option only works on creation.
+            // If we want dynamic updates, we'd need custom elements or remove/add.
+            // Skipping complex marker updates for now as user prioritized site/layer colors.
+        });
+    }
+
     private addAllSegments() {
         if (!this.mapInstance) return;
+
+        // Colors will be set by the effect/updateMapTheme shortly after load
+        // But we need initial values for the addLayer call.
+        const unselectedColor = '#1E1E1E';
+        const selectedColor = '#69F0AE';
 
         this.mapInstance.addSource("segments", {
             type: 'geojson',
@@ -121,8 +155,8 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
                 'line-color': [
                     'case',
                     ['boolean', ['feature-state', 'selected'], false],
-                    kSelectedColor,
-                    kUnselectedColor
+                    selectedColor,
+                    unselectedColor
                 ],
                 'line-width': [
                     'interpolate',
@@ -164,20 +198,13 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         });
 
         this.segmentMarkers = this.segmentService.getAllSegments().map(segment => {
-            return new Marker({ color: kMarkerColor })
+            return new Marker({ color: '#FFD54F' }) // Default, will update or be replaced eventually
                 .setLngLat(segment.start_latlng as LngLatLike)
                 .on('click', () => {
                     this.handleSegmentClickEvent(segment.id, segment.start_latlng);
                 });
         });
 
-        // Initial visibility state - handled by effect but effect might run before map load?
-        // Effect runs when signals change. If initial value is checked, it runs. 
-        // But map might be undefined. Effect has `if (!this.map) return`.
-        // So we need to call logic in onLoad or just let effect handle future changes?
-        // Signal initial run: map is undefined.
-        // onLoad: map becomes defined. We should apply current signal state.
-        // We can just set them here based on signals.
         this.toggleSegmentLayer(this.segmentShowing());
     }
 
@@ -189,7 +216,6 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         } else {
             this.segmentMarkers.forEach(marker => marker.remove());
         }
-        // Assuming 'segments-layer' exists (added in addAllSegments)
         if (this.mapInstance.getLayer("segments-layer")) {
             this.mapInstance.setPaintProperty("segments-layer", "line-opacity", isVisible ? 1 : 0);
         }
@@ -197,8 +223,6 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
 
     private toggleBikeNetwork(isVisible: boolean) {
         if (!this.mapInstance) return;
-        // We iterate layers and check if they exist or catch error
-        // Assuming these layers exist in the style
         ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trails", "bike-network-sidewalks"].forEach(layerId => {
             if (this.mapInstance!.getLayer(layerId)) {
                 this.mapInstance!.setLayoutProperty(layerId, "visibility", isVisible ? "visible" : "none");
@@ -230,41 +254,10 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         this.focusedSegment.add(segmentId);
         this.highlightSegment(segmentId, true);
 
-        // Location-Locked Overlay Implementation
-        if (this.overlayMarker) {
-            this.overlayMarker.remove();
-        }
-
-        // Get the overlay element from the DOM
-        const overlayElement = document.querySelector('segment-overlay') as HTMLElement;
-        if (overlayElement) {
-            this.overlayMarker = new Marker({
-                element: overlayElement,
-                anchor: 'left',
-                offset: [40, 0] // Offset to side of marker
-            })
-                .setLngLat(segment.start_latlng)
-                .addTo(this.mapInstance!);
-        }
-
-        // We can still use a small popup for the name or just let overlay handle it
-        const popup = new Popup({ closeButton: true, closeOnClick: false })
-            .setLngLat(segment.start_latlng)
-            .setHTML(`<p style="color: black; margin: 0; font-weight: bold;">${segment.name}</p>`)
-            .addTo(this.mapInstance!);
-
-        popup.on('close', () => {
-            this.focusedSegment.delete(segmentId);
-            this.highlightSegment(segmentId, false);
-            this.segmentSelected.emit(-1);
-            if (this.overlayMarker) {
-                this.overlayMarker.remove();
-                this.overlayMarker = undefined;
-
-                // Reparent overlay to body so Angular doesn't lose track of it?
-                // Actually Angular still owns it, but Mapbox moved it in the DOM.
-                // When isShow becomes false, it might hide via isShow() signal in app.html
-            }
-        });
+        // Overlay logic:
+        // Previously created a Marker here.
+        // NOW: The overlay is an Angular component rendered on top of the map map-container sibling.
+        // We just need to make sure the state is correct (handled by emit segmentSelected).
+        // The overlay component will be displayed by the parent (App) based on the signal.
     }
 }

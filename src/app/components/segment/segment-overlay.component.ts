@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy, input, output, effect, ViewChild } from "@angular/core";
+import { Component, ChangeDetectionStrategy, input, output, effect, ViewChild, inject } from "@angular/core";
 import { Segment, SegmentService } from "../../services/segment-service";
+import { ThemeService } from "../../services/theme-service";
 import { DecimalPipe } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
@@ -24,6 +25,7 @@ import { BaseChartDirective } from 'ng2-charts';
 export class SegmentOverlayComponent {
     segment = input<Segment | undefined>(undefined);
     closeOverlay = output<void>();
+    private themeService = inject(ThemeService);
 
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
     public lineChartData: ChartConfiguration['data'] = {
@@ -76,7 +78,19 @@ export class SegmentOverlayComponent {
     constructor() {
         effect(() => {
             const seg = this.segment();
+            // Trigger update when theme changes
+            const themeChange = this.themeService.themeChanged();
+
             if (!seg) return;
+
+            // Update chart options with theme colors
+            const textColor = this.themeService.getThemeColor('--sys-on-surface') || '#E0E0E0';
+            const gridColor = 'rgba(255, 255, 255, 0.1)'; // Could be themed too
+
+            if (this.lineChartOptions?.scales?.['y']?.ticks) {
+                this.lineChartOptions.scales['y'].ticks.color = textColor;
+            }
+
             this.lineChartData = {
                 datasets: [
                     {
@@ -107,17 +121,17 @@ export class SegmentOverlayComponent {
         const gradient = deltaHeight / deltaLength * 100;
 
         if (gradient < 0) {
-            return "#69F0AE"; // --color-signal-green
+            return this.themeService.getThemeColor('--color-signal-green') || "#69F0AE";
         } else if (gradient < 3) {
-            return "#FFD54F"; // --color-electric-gold
+            return this.themeService.getThemeColor('--color-electric-gold') || "#FFD54F";
         } else if (gradient < 7) {
-            return "#FB8C00"; // Orange
+            return "#FB8C00"; // Orange - needs theme variable?
         } else if (gradient < 10) {
-            return "#FF5252"; // --color-stop-red
+            return this.themeService.getThemeColor('--color-stop-red') || "#FF5252";
         } else if (gradient < 15) {
-            return "#9C27B0"; // Purple
+            return "#9C27B0"; // Purple - needs theme variable?
         } else {
-            return "#121212"; // --color-gunmetal
+            return this.themeService.getThemeColor('--color-gunmetal') || "#121212";
         }
     }
 }
