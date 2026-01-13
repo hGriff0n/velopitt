@@ -39,6 +39,12 @@ mgl-map {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   border-right: var(--glass-border);
+  /* Fix sidebar overhang: Start below the floating menu button */
+  margin-top: 80px;
+  height: calc(100% - 80px);
+  border-top: var(--glass-border);
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .example-sidenav button:hover {
