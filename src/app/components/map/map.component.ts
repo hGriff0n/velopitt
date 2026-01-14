@@ -44,7 +44,6 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     private mapInstance: Map | undefined;
     private segmentMarkers: Marker[] = [];
     private focusedSegment = new Set<number>();
-    // private overlayMarker: Marker | undefined; // REMOVED per plan (Using CSS Grid HUD)
 
     constructor() {
         // Effect to handle layer visibility changes and theme updates
@@ -54,11 +53,10 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
             if (!map) return;
 
             this.layerService.setRegionVisibility(map, this.regionShowing());
+            this.layerService.setBikeNetworkVisibility(map, this.bikemapShowing());
             this.toggleSegmentLayer(this.segmentShowing());
-            this.toggleBikeNetwork(this.bikemapShowing());
-            map.setPaintProperty('bikeplus', 'line-opacity', this.bikemapPlusShowing() ? 0.9 : 0);
 
-            // Update theme colors
+            // Update theme colors`
             this.updateMapTheme(map);
 
             // Handle selection changes from parent (e.g. overlay close)
@@ -227,15 +225,6 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         if (this.mapInstance.getLayer("segments-layer")) {
             this.mapInstance.setPaintProperty("segments-layer", "line-opacity", isVisible ? 1 : 0);
         }
-    }
-
-    private toggleBikeNetwork(isVisible: boolean) {
-        if (!this.mapInstance) return;
-        ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trails", "bike-network-sidewalks"].forEach(layerId => {
-            if (this.mapInstance!.getLayer(layerId)) {
-                this.mapInstance!.setLayoutProperty(layerId, "visibility", isVisible ? "visible" : "none");
-            }
-        });
     }
 
     private highlightSegment(segmentId: number, isSelected: boolean) {

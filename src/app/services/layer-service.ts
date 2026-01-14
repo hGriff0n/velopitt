@@ -114,6 +114,15 @@ export class LayerService {
         this.bikePlusVisible.update(v => !v);
         map.setPaintProperty('bikeplus', 'line-opacity', this.bikePlusVisible() ? 0.9 : 0);
     }
+
+    // TODO: me - these should probably be managed with "toggles" similar to bike plus
+    public setBikeNetworkVisibility(map: Map, isVisible: boolean) {
+        ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trails", "bike-network-sidewalks"].forEach(layerId => {
+            if (map.getLayer(layerId)) {
+                map.setLayoutProperty(layerId, "visibility", isVisible ? "visible" : "none");
+            }
+        });
+    }
 }
 
 export interface GeoJson {
