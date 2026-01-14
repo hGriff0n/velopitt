@@ -4,11 +4,13 @@
     --color-steel-gray: #1E1E1E;
     --color-electric-gold: #FFD54F;
     --color-river-blue: #4FC3F7;
+    --color-dull-blue: #1C688C;
     --color-off-white: #E0E0E0;
     --color-signal-green: #69F0AE;
     --color-stop-red: #FF5252;
     --color-warning-orange: #FB8C00;
     --color-deep-purple: #9C27B0;
+    --color-light-gray: #4E4E4E;
     --color-chart-grid: #FFFFFF1A;
     --color-tooltip-bg: #121212E6;
     --color-tooltip-border: #FFD54F4D;
@@ -17,6 +19,7 @@
     /* Functional Mappings */
     /* TODO: this need to be named more descriptively */
     --sys-primary: var(--color-electric-gold);
+    --sys-on-primary: var(--color-gunmetal);
     --sys-secondary: var(--color-river-blue);
     --sys-background: var(--color-gunmetal);
     --sys-surface: var(--color-steel-gray);
@@ -27,8 +30,9 @@
     --sys-tooltip-border: var(--color-tooltip-border);
     --sys-marker: var(--color-marker);
     --sys-segment-selected: var(--color-signal-green);
-    --sys-segment-unselected: var(--color-steel-gray);
-    --sys-layer-bikeplus: var(--color-signal-green);
+    --sys-segment-unselected: var(--color-dull-blue);
+    --sys-layer-bikemap: var(--color-electric-gold);
+    --sys-layer-bikeplus: var(--color-electric-gold);
 
     /* Gradient Slopes */
     --sys-gradient-downhill: var(--color-signal-green);
