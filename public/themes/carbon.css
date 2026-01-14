@@ -1,17 +1,18 @@
 :root {
     /* Carbon Fiber Palette (High Performance) */
     --color-carbon-bg: #121212;
-    /* Matte Black */
     --color-carbon-surface: #1F1F1F;
-    /* Dark Carbon Gray */
     --color-carbon-primary: #7CFC00;
-    /* Lime Green */
     --color-carbon-secondary: #FFFFFF;
-    /* White */
     --color-carbon-text: #F5F5F5;
-    /* Off-White */
     --color-carbon-success: #7CFC00;
     --color-carbon-error: #FF0033;
+    --color-carbon-warning: #FFA500;
+    --color-carbon-intense: #800080;
+    --color-chart-grid: #FFFFFF1A;
+    --color-tooltip-bg: #121212E6;
+    --color-tooltip-border: #7CFC004D;
+    --color-marker: #7CFC00;
 
     /* Functional Mappings */
     --sys-primary: var(--color-carbon-primary);
@@ -21,6 +22,21 @@
     --sys-surface: var(--color-carbon-surface);
     --sys-on-surface: var(--color-carbon-text);
     --sys-error: var(--color-carbon-error);
+    --sys-chart-grid: var(--color-chart-grid);
+    --sys-tooltip-bg: var(--color-tooltip-bg);
+    --sys-tooltip-border: var(--color-tooltip-border);
+    --sys-marker: var(--color-marker);
+    --sys-segment-selected: var(--color-carbon-success);
+    --sys-segment-unselected: var(--color-carbon-secondary);
+    --sys-layer-bikeplus: var(--color-carbon-success);
+
+    /* Gradient Slopes */
+    --sys-gradient-downhill: var(--color-carbon-success);
+    --sys-gradient-flat: var(--color-carbon-secondary);
+    --sys-gradient-uphill: var(--color-carbon-warning);
+    --sys-gradient-steep: var(--color-carbon-error);
+    --sys-gradient-very-steep: var(--color-carbon-intense);
+    --sys-gradient-extreme: var(--color-carbon-bg);
 
     /* Glassmorphism (Stealth) */
     --glass-bg: rgba(0, 0, 0, 0.88);

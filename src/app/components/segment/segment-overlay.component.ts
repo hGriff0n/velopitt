@@ -8,7 +8,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { ChartConfiguration, ChartType, Color } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
-// TODO: me - Should probably move all of the segment-related display logic here
 @Component({
     selector: 'segment-overlay',
     templateUrl: './segment-overlay.html',
@@ -52,11 +51,11 @@ export class SegmentOverlayComponent {
             },
             y: {
                 ticks: {
-                    color: '#E0E0E0', // --color-off-white
+                    color: this.themeService.getThemeColor('--sys-on-surface'),
                     font: { size: 10 }
                 },
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.1)'
+                    color: this.themeService.getThemeColor('--sys-chart-grid')
                 }
             }
         },
@@ -66,10 +65,10 @@ export class SegmentOverlayComponent {
             },
             tooltip: {
                 enabled: true,
-                backgroundColor: 'rgba(18, 18, 18, 0.9)',
-                titleColor: '#FFD54F',
-                bodyColor: '#E0E0E0',
-                borderColor: 'rgba(255, 213, 79, 0.3)',
+                backgroundColor: this.themeService.getThemeColor('--sys-tooltip-bg'),
+                titleColor: this.themeService.getThemeColor('--sys-primary'),
+                bodyColor: this.themeService.getThemeColor('--sys-on-surface'),
+                borderColor: this.themeService.getThemeColor('--sys-tooltip-border'),
                 borderWidth: 1
             }
         }
@@ -84,11 +83,20 @@ export class SegmentOverlayComponent {
             if (!seg) return;
 
             // Update chart options with theme colors
-            const textColor = this.themeService.getThemeColor('--sys-on-surface') || '#E0E0E0';
-            const gridColor = 'rgba(255, 255, 255, 0.1)'; // Could be themed too
+            if (this.lineChartOptions?.scales?.['y']) {
+                if (this.lineChartOptions.scales['y'].ticks) {
+                    this.lineChartOptions.scales['y'].ticks.color = this.themeService.getThemeColor('--sys-on-surface');
+                }
+                if (this.lineChartOptions.scales['y'].grid) {
+                    this.lineChartOptions.scales['y'].grid.color = this.themeService.getThemeColor('--sys-chart-grid');
+                }
+            }
 
-            if (this.lineChartOptions?.scales?.['y']?.ticks) {
-                this.lineChartOptions.scales['y'].ticks.color = textColor;
+            if (this.lineChartOptions?.plugins?.tooltip) {
+                this.lineChartOptions.plugins.tooltip.backgroundColor = this.themeService.getThemeColor('--sys-tooltip-bg');
+                this.lineChartOptions.plugins.tooltip.titleColor = this.themeService.getThemeColor('--sys-primary');
+                this.lineChartOptions.plugins.tooltip.bodyColor = this.themeService.getThemeColor('--sys-on-surface');
+                this.lineChartOptions.plugins.tooltip.borderColor = this.themeService.getThemeColor('--sys-tooltip-border');
             }
 
             this.lineChartData = {
@@ -120,18 +128,19 @@ export class SegmentOverlayComponent {
         const deltaLength = seg.map.segment_distance!;
         const gradient = deltaHeight / deltaLength * 100;
 
+        // Semantic theme variables for gradients
         if (gradient < 0) {
-            return this.themeService.getThemeColor('--color-signal-green') || "#69F0AE";
+            return this.themeService.getThemeColor('--sys-gradient-downhill');
         } else if (gradient < 3) {
-            return this.themeService.getThemeColor('--color-electric-gold') || "#FFD54F";
+            return this.themeService.getThemeColor('--sys-gradient-flat');
         } else if (gradient < 7) {
-            return "#FB8C00"; // Orange - needs theme variable?
+            return this.themeService.getThemeColor('--sys-gradient-uphill');
         } else if (gradient < 10) {
-            return this.themeService.getThemeColor('--color-stop-red') || "#FF5252";
+            return this.themeService.getThemeColor('--sys-gradient-steep');
         } else if (gradient < 15) {
-            return "#9C27B0"; // Purple - needs theme variable?
+            return this.themeService.getThemeColor('--sys-gradient-very-steep');
         } else {
-            return this.themeService.getThemeColor('--color-gunmetal') || "#121212";
+            return this.themeService.getThemeColor('--sys-gradient-extreme');
         }
     }
 }

@@ -96,9 +96,8 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
 
     private updateMapTheme(map: Map) {
         // Read current theme colors from CSS variables
-        const unselectedColor = this.themeService.getThemeColor('--color-steel-gray') || '#1E1E1E';
-        const selectedColor = this.themeService.getThemeColor('--color-signal-green') || '#69F0AE';
-        const markerColor = this.themeService.getThemeColor('--color-electric-gold') || '#FFD54F';
+        const unselectedColor = this.themeService.getThemeColor('--sys-segment-unselected');
+        const selectedColor = this.themeService.getThemeColor('--sys-segment-selected');
 
         // Update Segment Layer Colors
         if (map.getLayer('segments-layer')) {
@@ -124,10 +123,9 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     private addAllSegments() {
         if (!this.mapInstance) return;
 
-        // Colors will be set by the effect/updateMapTheme shortly after load
-        // But we need initial values for the addLayer call.
-        const unselectedColor = '#1E1E1E';
-        const selectedColor = '#69F0AE';
+        // Initial colors from theme service
+        const unselectedColor = this.themeService.getThemeColor('--sys-segment-unselected');
+        const selectedColor = this.themeService.getThemeColor('--sys-segment-selected');
 
         this.mapInstance.addSource("segments", {
             type: 'geojson',
@@ -198,7 +196,8 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         });
 
         this.segmentMarkers = this.segmentService.getAllSegments().map(segment => {
-            return new Marker({ color: '#FFD54F' }) // Default, will update or be replaced eventually
+            const markerColor = this.themeService.getThemeColor('--sys-marker');
+            return new Marker({ color: markerColor })
                 .setLngLat(segment.start_latlng as LngLatLike)
                 .on('click', () => {
                     this.handleSegmentClickEvent(segment.id, segment.start_latlng);

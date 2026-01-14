@@ -7,16 +7,36 @@
     --color-off-white: #E0E0E0;
     --color-signal-green: #69F0AE;
     --color-stop-red: #FF5252;
+    --color-warning-orange: #FB8C00;
+    --color-deep-purple: #9C27B0;
+    --color-chart-grid: #FFFFFF1A;
+    --color-tooltip-bg: #121212E6;
+    --color-tooltip-border: #FFD54F4D;
+    --color-marker: #FFD54F;
 
     /* Functional Mappings */
+    /* TODO: this need to be named more descriptively */
     --sys-primary: var(--color-electric-gold);
-    --sys-on-primary: #000000;
-    /* Text on primary */
     --sys-secondary: var(--color-river-blue);
     --sys-background: var(--color-gunmetal);
     --sys-surface: var(--color-steel-gray);
     --sys-on-surface: var(--color-off-white);
     --sys-error: var(--color-stop-red);
+    --sys-chart-grid: var(--color-chart-grid);
+    --sys-tooltip-bg: var(--color-tooltip-bg);
+    --sys-tooltip-border: var(--color-tooltip-border);
+    --sys-marker: var(--color-marker);
+    --sys-segment-selected: var(--color-signal-green);
+    --sys-segment-unselected: var(--color-steel-gray);
+    --sys-layer-bikeplus: var(--color-signal-green);
+
+    /* Gradient Slopes */
+    --sys-gradient-downhill: var(--color-signal-green);
+    --sys-gradient-flat: var(--color-electric-gold);
+    --sys-gradient-uphill: var(--color-warning-orange);
+    --sys-gradient-steep: var(--color-stop-red);
+    --sys-gradient-very-steep: var(--color-deep-purple);
+    --sys-gradient-extreme: var(--color-gunmetal);
 
     /* Glassmorphism */
     --glass-bg: rgba(18, 18, 18, 0.8);
