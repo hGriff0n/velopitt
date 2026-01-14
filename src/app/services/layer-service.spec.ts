@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { OverlayService } from './overlay-service';
+import { LayerService } from './layer-service';
 import { Map, MapMouseEvent } from 'mapbox-gl';
 
 // Mock Mapbox Map
@@ -12,13 +12,13 @@ class MockMap {
     setLayoutProperty = jasmine.createSpy('setLayoutProperty');
 }
 
-describe('OverlayService', () => {
-    let service: OverlayService;
+describe('LayerService', () => {
+    let service: LayerService;
     let mockMap: MockMap;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(OverlayService);
+        service = TestBed.inject(LayerService);
         mockMap = new MockMap();
     });
 

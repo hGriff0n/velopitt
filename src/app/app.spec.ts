@@ -8,7 +8,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { App } from './app';
 import { ConfigService } from './services/config-service';
 import { SegmentService } from './services/segment-service';
-import { OverlayService } from './services/overlay-service';
+import { LayerService } from './services/layer-service';
 
 describe('App', () => {
   beforeEach(async () => {
@@ -31,7 +31,7 @@ describe('App', () => {
             updateSegmentMapData: () => { }
           }
         },
-        { provide: OverlayService, useValue: { registerWithMap: () => { }, setRegionVisibility: () => { } } }
+        { provide: LayerService, useValue: { registerWithMap: () => { }, setRegionVisibility: () => { } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();

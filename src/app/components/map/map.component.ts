@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, inject, effect, input, output, View
 import { Map, MapEvent, NavigationControl, ScaleControl, GeolocateControl, Popup, Marker, LngLatLike } from 'mapbox-gl';
 import { ConfigService } from '../../services/config-service';
 import { SegmentService, Segment } from '../../services/segment-service';
-import { OverlayService } from '../../services/overlay-service';
+import { LayerService } from '../../services/layer-service';
 import { ThemeService } from '../../services/theme-service';
 
 @Component({
@@ -25,7 +25,7 @@ import { ThemeService } from '../../services/theme-service';
 export class AppMapComponent implements AfterViewInit, OnDestroy {
     private config = inject(ConfigService);
     private segmentService = inject(SegmentService);
-    private overlayService = inject(OverlayService);
+    private layerService = inject(LayerService);
     private themeService = inject(ThemeService);
 
     // Inputs for layer visibility
@@ -52,7 +52,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
             const themeChange = this.themeService.themeChanged(); // dependency on theme change
             if (!map) return;
 
-            this.overlayService.setRegionVisibility(map, this.regionShowing());
+            this.layerService.setRegionVisibility(map, this.regionShowing());
             this.toggleSegmentLayer(this.segmentShowing());
             this.toggleBikeNetwork(this.bikemapShowing());
             map.setPaintProperty('bikeplus', 'line-opacity', this.bikemapPlusShowing() ? 0.9 : 0);
@@ -86,7 +86,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         this.mapInstance.getCanvas().style.cursor = 'default';
 
         // Register layers
-        this.overlayService.registerWithMap(this.mapInstance, this.regionShowing());
+        this.layerService.registerWithMap(this.mapInstance, this.regionShowing());
         this.addAllSegments();
 
         // Update mapSignal to trigger effect

@@ -1,15 +1,17 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
+import { ThemeService } from './theme-service';
 import { Map } from 'mapbox-gl';
 
 import * as jsonData from './assets/mapgeo.json';
 import * as bikePlus from './assets/bikeplus.json';
 
 @Injectable({ providedIn: 'root' })
-export class OverlayService {
+export class LayerService {
     private layer: GeoJson[] = [];
     private bikePlusLayer: GeoJson[] = [];
     private readonly bikePlusVisible = signal(false);
     private hoveredRegions = new Set<number>();
+    private themeService = inject(ThemeService);
 
     constructor() {
         this.layer = Array.from((jsonData as any).default).map(segment => {
@@ -35,7 +37,7 @@ export class OverlayService {
             type: 'line',
             source: 'bikeplus',
             paint: {
-                'line-color': '#69F0AE',  // --color-signal-green for visibility
+                'line-color': this.themeService.getThemeColor('--sys-layer-bikeplus'),
                 'line-width': 5,
                 'line-opacity': 0
             }
@@ -57,8 +59,8 @@ export class OverlayService {
                 'fill-color': [
                     'case',
                     ['boolean', ['feature-state', 'hover'], false],
-                    '#FFD54F',  // --color-electric-gold on hover
-                    'rgba(79, 195, 247, 0.3)'  // --color-river-blue with transparency
+                    this.themeService.getThemeColor('--sys-primary'),
+                    this.themeService.getThemeColor('--sys-secondary')
                 ],
                 'fill-opacity': 0
             }
@@ -69,7 +71,7 @@ export class OverlayService {
             source: 'regions',
             layout: {},
             paint: {
-                'line-color': '#4FC3F7',  // --color-river-blue
+                'line-color': this.themeService.getThemeColor('--sys-secondary'),
                 'line-width': 2,
                 'line-opacity': 0,
             }
