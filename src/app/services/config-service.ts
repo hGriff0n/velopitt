@@ -8,14 +8,14 @@ import { environment } from '../../environments/environment';
 })
 export class ConfigService {
 
-  constructor() { }
+
 
   // This is an example property ... you can make it however you want.
   get stravaClient() {
     return {
-        "id": Base64.decode(environment.STRAVA_ID),
-        "secret": Base64.decode(environment.STRAVA_SECRET),
-        "token": Base64.decode(environment.STRAVA_TOKEN)
+      "id": Base64.decode(environment.STRAVA_ID),
+      "secret": Base64.decode(environment.STRAVA_SECRET),
+      "token": Base64.decode(environment.STRAVA_TOKEN)
     }
   }
 

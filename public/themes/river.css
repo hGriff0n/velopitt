@@ -1,0 +1,50 @@
+:root {
+    /* River & Trail Palette (Light Mode) */
+    --color-river-bg: #F5F7FA;
+    --color-river-surface: #FFFFFF;
+    --color-river-primary: #38AFCD;
+    --color-river-secondary: #4AAD64;
+    --color-river-text: #1C2A35;
+    --color-river-success: #259531;
+    --color-river-error: #D32F2F;
+    --color-river-warning: #F9A825;
+    --color-river-intense: #6A1B9A;
+    --color-chart-grid: #0000001A;
+    --color-tooltip-bg: #FFFFFFF2;
+    --color-tooltip-border: #38AFCD4D;
+    --color-marker: #38AFCD;
+
+    /* Functional Mappings */
+    --sys-primary: var(--color-river-primary);
+    --sys-on-primary: #FFFFFF;
+    --sys-secondary: var(--color-river-secondary);
+    --sys-background: var(--color-river-bg);
+    --sys-surface: var(--color-river-surface);
+    --sys-on-surface: var(--color-river-text);
+    --sys-error: var(--color-river-error);
+    --sys-chart-grid: var(--color-chart-grid);
+    --sys-tooltip-bg: var(--color-tooltip-bg);
+    --sys-tooltip-border: var(--color-tooltip-border);
+    --sys-marker: var(--color-marker);
+    --sys-segment-selected: var(--color-river-success);
+    --sys-segment-unselected: var(--color-river-secondary);
+    --sys-layer-bikeplus: var(--color-river-success);
+
+    /* Gradient Slopes */
+    --sys-gradient-downhill: var(--color-river-success);
+    --sys-gradient-flat: var(--color-river-primary);
+    --sys-gradient-uphill: var(--color-river-warning);
+    --sys-gradient-steep: var(--color-river-error);
+    --sys-gradient-very-steep: var(--color-river-intense);
+    --sys-gradient-extreme: var(--color-river-text);
+
+    /* Glassmorphism (Light) */
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.4);
+    --glass-blur: blur(16px);
+}
+
+body {
+    background-color: var(--sys-background);
+    color: var(--sys-on-surface);
+}

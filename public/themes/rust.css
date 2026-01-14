@@ -1,0 +1,49 @@
+:root {
+    /* Rust Belt Palette (Vintage Industrial) */
+    --color-rust-bg: #1A1512;
+    --color-rust-surface: #2C241F;
+    --color-rust-primary: #E86100;
+    --color-rust-secondary: #F9C74F;
+    --color-rust-text: #E8DCC3;
+    --color-rust-success: #81B29A;
+    --color-rust-error: #D62828;
+    --color-rust-intense: #5F0F40;
+    --color-chart-grid: #0000001A;
+    --color-tooltip-bg: #1A1512E6;
+    --color-tooltip-border: #E861004D;
+    --color-marker: #E86100;
+
+    /* Functional Mappings */
+    --sys-primary: var(--color-rust-primary);
+    --sys-on-primary: #1A1512;
+    --sys-secondary: var(--color-rust-secondary);
+    --sys-background: var(--color-rust-bg);
+    --sys-surface: var(--color-rust-surface);
+    --sys-on-surface: var(--color-rust-text);
+    --sys-error: var(--color-rust-error);
+    --sys-chart-grid: var(--color-chart-grid);
+    --sys-tooltip-bg: var(--color-tooltip-bg);
+    --sys-tooltip-border: var(--color-tooltip-border);
+    --sys-marker: var(--color-marker);
+    --sys-segment-selected: var(--color-rust-success);
+    --sys-segment-unselected: var(--color-rust-secondary);
+    --sys-layer-bikeplus: var(--color-rust-success);
+
+    /* Gradient Slopes */
+    --sys-gradient-downhill: var(--color-rust-success);
+    --sys-gradient-flat: var(--color-rust-secondary);
+    --sys-gradient-uphill: var(--color-rust-primary);
+    --sys-gradient-steep: var(--color-rust-error);
+    --sys-gradient-very-steep: var(--color-rust-intense);
+    --sys-gradient-extreme: var(--color-rust-bg);
+
+    /* Glassmorphism (Warm) */
+    --glass-bg: rgba(44, 36, 31, 0.85);
+    --glass-border: 1px solid rgba(232, 97, 0, 0.2);
+    --glass-blur: blur(12px);
+}
+
+body {
+    background-color: var(--sys-background);
+    color: var(--sys-on-surface);
+}

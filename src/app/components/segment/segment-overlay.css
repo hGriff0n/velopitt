@@ -1,84 +1,121 @@
-#segment_info {
-  grid-column: 2;
-  grid-row: 2;
-  width: 28%;
-  height: 25%;
-}
-
-#elevation_profile {
-  grid-column: 4;
-  grid-row: 2;
-  width: 91%;  /* the farther left start seems to affect the width */
-  height: 25%;
-}
-
-#pacing_calculator {
-  grid-column: 2;
-  grid-row: 3;
-  width: 28%;
-  height: 300px;
-}
-
-#related_segments {
-  grid-column: 4;
-  grid-row: 3;
-  width: 91%;
-  height: 300px;
-}
-
-.segment_popup {
+:host {
+  display: block;
   position: absolute;
-  margin: 0px auto;
-  word-wrap: anywhere;
-  white-space: pre-wrap;
-  padding: 10px;
-  border: none;
-  border-radius: 3px;
-  font-size: 12px;
-  text-align: left;
-  color: #222;
-  background: none;
-  /* This makes the pointer */
-  pointer-events: visibleFill;
-
-  display: flex;
-  align-content: center;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* https://css-tricks.com/snippets/css/complete-guide-grid/ */
-#segment_display {
-  display: grid;
-  grid-template-columns: [first] 2% [line2] 28% [line3] auto [col4-start] 28% [five] 2% [end];
-  grid-template-rows: [row1-start] 100px [row2-start] 25% [row3-start] 300px [row4-start] auto [last-line] 100px [row-end];
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  /* This breaks interactivity with the underlying map */
-  z-index: auto;
-  margin-top: 0;
-
-  /* This stops mouse clicks from being blocked by the segment overlay when it appears */
   pointer-events: none;
-  text-align: left;
+  z-index: 10;
 }
 
-mat-card {
-  background: whitesmoke;
+.segment-overlay-container {
+  display: grid;
+  grid-template-columns: 20px 1fr auto 1fr 20px;
+  grid-template-rows: 20px auto auto auto 1fr 20px;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  /* Removed absolute positioning here as host handles it, but container needs size */
+}
+
+.segment-popup {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title card - centered in top row */
+#segment-title {
+  grid-column: 3;
+  grid-row: 2;
+  align-self: start;
+}
+
+.title-card {
+  text-align: center;
+  padding: 8px 16px;
+  position: relative;
+  /* Ensure title doesn't expand too wide if not needed */
+  min-width: 200px;
+}
+
+.title-card .close-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  color: var(--sys-on-surface);
+}
+
+.title-card .close-button:hover {
+  color: var(--sys-primary);
+}
+
+#segment-info {
+  grid-column: 2;
+  grid-row: 2;
+  /* Moved to Row 2 to align with Title (X O X) */
+  grid-row-end: span 2;
+  /* Span down if needed */
+}
+
+#elevation-profile {
+  grid-column: 4;
+  grid-row: 2;
+  /* Moved to Row 2 to align with Title (X O X) */
+  grid-row-end: span 2;
+}
+
+#pacing-calculator {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+#related-segments {
+  grid-column: 4;
+  grid-row: 4;
+}
+
+mat-card.glass-card {
+  height: 100%;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  color: var(--sys-on-surface);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 mat-card-header {
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+mat-card-title {
+  color: var(--sys-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 mat-card-content {
-  display: grid;
-  gap: 15px
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14px;
+  padding-top: 15px;
 }
 
-ul {
+.info-list,
+.related-list {
   list-style-type: none;
-  padding-left: 0;
-  margin-bottom: initial;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+canvas {
+  max-height: 250px;
 }

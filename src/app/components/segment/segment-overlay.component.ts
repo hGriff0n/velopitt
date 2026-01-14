@@ -1,11 +1,13 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import { Component, ChangeDetectionStrategy, input, output, effect, ViewChild, inject } from "@angular/core";
 import { Segment, SegmentService } from "../../services/segment-service";
+import { ThemeService } from "../../services/theme-service";
 import { DecimalPipe } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
 import { ChartConfiguration, ChartType, Color } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
-// TODO: me - Should probably move all of the segment-related display logic here
 @Component({
     selector: 'segment-overlay',
     templateUrl: './segment-overlay.html',
@@ -13,35 +15,16 @@ import { BaseChartDirective } from 'ng2-charts';
     imports: [
         DecimalPipe,
         MatCardModule,
+        MatIconModule,
+        MatButtonModule,
         BaseChartDirective,
     ],
-    inputs: ["segment"]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SegmentOverlayComponent {
-    private segment_!: Segment;
-
-    set segment(segment: Segment) {
-        this.segment_ = segment;
-        this.lineChartData = {
-            datasets: [
-                {
-                    data: this.segment.map.elevation_data,
-                    label: 'Elevation',
-                    fill: true,
-                    segment: {
-                        backgroundColor: (ctx: any) => this.chooseBackgroundColor(ctx, 'background'),
-                        borderColor: (ctx: any) => this.chooseBackgroundColor(ctx, 'border'),
-                    }
-                }
-            ],
-            labels: Array.from(Array(SegmentService.MAX_SEGMENTS).keys())
-        };
-        this.chart?.update();
-    }
-
-    get segment() {
-        return this.segment_;
-    }
+    segment = input<Segment | undefined>(undefined);
+    closeOverlay = output<void>();
+    private themeService = inject(ThemeService);
 
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
     public lineChartData: ChartConfiguration['data'] = {
@@ -50,53 +33,114 @@ export class SegmentOverlayComponent {
     public lineChartType: ChartType = 'line';
     public lineChartOptions: ChartConfiguration['options'] = {
         responsive: true,
+        maintainAspectRatio: false,
         elements: {
             line: {
-                tension: 0.9
+                tension: 0.4,
+                borderWidth: 2
             },
             point: {
                 radius: 0,
-
+                hitRadius: 10
             }
         },
         scales: {
-
+            x: {
+                display: false,
+                grid: { display: false }
+            },
+            y: {
+                ticks: {
+                    color: this.themeService.getThemeColor('--sys-on-surface'),
+                    font: { size: 10 }
+                },
+                grid: {
+                    color: this.themeService.getThemeColor('--sys-chart-grid')
+                }
+            }
         },
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                enabled: true,
+                backgroundColor: this.themeService.getThemeColor('--sys-tooltip-bg'),
+                titleColor: this.themeService.getThemeColor('--sys-primary'),
+                bodyColor: this.themeService.getThemeColor('--sys-on-surface'),
+                borderColor: this.themeService.getThemeColor('--sys-tooltip-border'),
+                borderWidth: 1
             }
-            // The intention with this is to display the gradient while hovering over the chart
-            // but it wouldn't compile
-            //     crosshair: {
-            //         line: {
-            //             color: '#F66',  // crosshair line color
-            //             width: 1        // crosshair line width
-            //         },
-            //     }
         }
     };
+
+    constructor() {
+        effect(() => {
+            const seg = this.segment();
+            // Trigger update when theme changes
+            const themeChange = this.themeService.themeChanged();
+
+            if (!seg) return;
+
+            // Update chart options with theme colors
+            if (this.lineChartOptions?.scales?.['y']) {
+                if (this.lineChartOptions.scales['y'].ticks) {
+                    this.lineChartOptions.scales['y'].ticks.color = this.themeService.getThemeColor('--sys-on-surface');
+                }
+                if (this.lineChartOptions.scales['y'].grid) {
+                    this.lineChartOptions.scales['y'].grid.color = this.themeService.getThemeColor('--sys-chart-grid');
+                }
+            }
+
+            if (this.lineChartOptions?.plugins?.tooltip) {
+                this.lineChartOptions.plugins.tooltip.backgroundColor = this.themeService.getThemeColor('--sys-tooltip-bg');
+                this.lineChartOptions.plugins.tooltip.titleColor = this.themeService.getThemeColor('--sys-primary');
+                this.lineChartOptions.plugins.tooltip.bodyColor = this.themeService.getThemeColor('--sys-on-surface');
+                this.lineChartOptions.plugins.tooltip.borderColor = this.themeService.getThemeColor('--sys-tooltip-border');
+            }
+
+            this.lineChartData = {
+                datasets: [
+                    {
+                        data: seg.map.elevation_data,
+                        label: 'Elevation',
+                        fill: true,
+                        segment: {
+                            backgroundColor: (ctx: any) => this.chooseBackgroundColor(ctx, 'background'),
+                            borderColor: (ctx: any) => this.chooseBackgroundColor(ctx, 'border'),
+                        }
+                    }
+                ],
+                labels: Array.from(Array(SegmentService.MAX_SEGMENTS).keys())
+            };
+            this.chart?.update();
+        });
+    }
 
     onChartHover(event: any) {
         // console.log(event);
     }
     chooseBackgroundColor(ctx: any, value: any): Color {
-        const deltaHeight = this.segment.map.elevation_data[ctx.p1DataIndex]! - this.segment.map.elevation_data[ctx.p0DataIndex]!;
-        const deltaLength = this.segment.map.segment_distance!;
+        const seg = this.segment();
+        if (!seg) return "black";
+
+        const deltaHeight = seg.map.elevation_data[ctx.p1DataIndex]! - seg.map.elevation_data[ctx.p0DataIndex]!;
+        const deltaLength = seg.map.segment_distance!;
         const gradient = deltaHeight / deltaLength * 100;
 
+        // Semantic theme variables for gradients
         if (gradient < 0) {
-            return "green";
+            return this.themeService.getThemeColor('--sys-gradient-downhill');
         } else if (gradient < 3) {
-            return "yellow";
+            return this.themeService.getThemeColor('--sys-gradient-flat');
         } else if (gradient < 7) {
-            return "orange";
+            return this.themeService.getThemeColor('--sys-gradient-uphill');
         } else if (gradient < 10) {
-            return "red";
+            return this.themeService.getThemeColor('--sys-gradient-steep');
         } else if (gradient < 15) {
-            return "purple";
+            return this.themeService.getThemeColor('--sys-gradient-very-steep');
         } else {
-            return "black";
+            return this.themeService.getThemeColor('--sys-gradient-extreme');
         }
     }
 }

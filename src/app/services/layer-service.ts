@@ -1,26 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
+import { ThemeService } from './theme-service';
 import { Map } from 'mapbox-gl';
 
 import * as jsonData from './assets/mapgeo.json';
 import * as bikePlus from './assets/bikeplus.json';
 
 @Injectable({ providedIn: 'root' })
-export class OverlayService {
+export class LayerService {
     private layer: GeoJson[] = [];
     private bikePlusLayer: GeoJson[] = [];
-    private bikePlusVisible = false;
+    private readonly bikePlusVisible = signal(false);
     private hoveredRegions = new Set<number>();
+    private themeService = inject(ThemeService);
 
     constructor() {
         this.layer = Array.from((jsonData as any).default).map(segment => {
-            const s = <GeoJson>segment;
-            s.features.forEach(feature => {
-                feature.geometry.coordinates.forEach(coord => coord.reverse());
-            });
-            return s;
+            return segment as GeoJson;
         });
         this.bikePlusLayer = Array.from((bikePlus as any).default).map(segment => {
-            return <GeoJson>segment;
+            return segment as GeoJson;
         });
     }
 
@@ -39,7 +37,7 @@ export class OverlayService {
             type: 'line',
             source: 'bikeplus',
             paint: {
-                'line-color': '#FF009D',
+                'line-color': this.themeService.getThemeColor('--sys-layer-bikeplus'),
                 'line-width': 5,
                 'line-opacity': 0
             }
@@ -61,8 +59,8 @@ export class OverlayService {
                 'fill-color': [
                     'case',
                     ['boolean', ['feature-state', 'hover'], false],
-                    '#3A3939',
-                    '#888'
+                    this.themeService.getThemeColor('--sys-primary'),
+                    this.themeService.getThemeColor('--sys-secondary')
                 ],
                 'fill-opacity': 0
             }
@@ -73,7 +71,7 @@ export class OverlayService {
             source: 'regions',
             layout: {},
             paint: {
-                'line-color': '#627BC1',
+                'line-color': this.themeService.getThemeColor('--sys-secondary'),
                 'line-width': 2,
                 'line-opacity': 0,
             }
@@ -83,7 +81,7 @@ export class OverlayService {
             type: 'mouseenter',
             target: { layerId: 'regions' },
             handler: (e) => {
-                var regionid = e.feature?.id as number;
+                const regionid = e.feature?.id as number;
                 if (!this.hoveredRegions.has(regionid)) {
                     this.hoveredRegions.add(regionid);
                     map.setFeatureState({ source: 'regions', id: regionid }, { hover: true });
@@ -94,7 +92,7 @@ export class OverlayService {
             type: 'mouseleave',
             target: { layerId: 'regions' },
             handler: (e) => {
-                var regionid = e.feature?.id as number;
+                const regionid = e.feature?.id as number;
                 if (this.hoveredRegions.has(regionid)) {
                     this.hoveredRegions.delete(regionid);
                     map.setFeatureState({ source: 'regions', id: regionid }, { hover: false });
@@ -113,17 +111,26 @@ export class OverlayService {
     }
 
     public toggleBikePlus(map: Map) {
-        this.bikePlusVisible = !this.bikePlusVisible;
-        map.setPaintProperty('bikeplus', 'line-opacity', this.bikePlusVisible ? 0.9 : 0);
+        this.bikePlusVisible.update(v => !v);
+        map.setPaintProperty('bikeplus', 'line-opacity', this.bikePlusVisible() ? 0.9 : 0);
+    }
+
+    // TODO: me - these should probably be managed with "toggles" similar to bike plus
+    public setBikeNetworkVisibility(map: Map, isVisible: boolean) {
+        ["bike-network-sharrow", "bike-network-lane", "bike-network-protected", "bike-network-trails", "bike-network-sidewalks"].forEach(layerId => {
+            if (map.getLayer(layerId)) {
+                map.setLayoutProperty(layerId, "visibility", isVisible ? "visible" : "none");
+            }
+        });
     }
 }
 
-export type GeoJson = {
+export interface GeoJson {
     type: "FeatureCollection";
     features: Feature[];
-};
+}
 
-type Feature = {
+interface Feature {
     type: "Feature";
     properties: {
         name?: string;
@@ -134,4 +141,4 @@ type Feature = {
         coordinates: number[][][];
     };
     id?: number;
-};
+}

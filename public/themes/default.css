@@ -1,0 +1,56 @@
+:root {
+    /* Neon Steel Palette */
+    --color-gunmetal: #121212;
+    --color-steel-gray: #1E1E1E;
+    --color-electric-gold: #FFD54F;
+    --color-river-blue: #4FC3F7;
+    --color-dull-blue: #1C688C;
+    --color-off-white: #E0E0E0;
+    --color-signal-green: #69F0AE;
+    --color-stop-red: #FF5252;
+    --color-warning-orange: #FB8C00;
+    --color-deep-purple: #9C27B0;
+    --color-light-gray: #4E4E4E;
+    --color-chart-grid: #FFFFFF1A;
+    --color-tooltip-bg: #121212E6;
+    --color-tooltip-border: #FFD54F4D;
+    --color-marker: #FFD54F;
+
+    /* Functional Mappings */
+    /* TODO: this need to be named more descriptively */
+    --sys-primary: var(--color-electric-gold);
+    --sys-on-primary: var(--color-gunmetal);
+    --sys-secondary: var(--color-river-blue);
+    --sys-background: var(--color-gunmetal);
+    --sys-surface: var(--color-steel-gray);
+    --sys-on-surface: var(--color-off-white);
+    --sys-error: var(--color-stop-red);
+    --sys-chart-grid: var(--color-chart-grid);
+    --sys-tooltip-bg: var(--color-tooltip-bg);
+    --sys-tooltip-border: var(--color-tooltip-border);
+    --sys-marker: var(--color-marker);
+    --sys-segment-selected: var(--color-signal-green);
+    --sys-segment-unselected: var(--color-dull-blue);
+    --sys-layer-bikemap: var(--color-electric-gold);
+    --sys-layer-bikeplus: var(--color-electric-gold);
+
+    /* Gradient Slopes */
+    --sys-gradient-downhill: var(--color-signal-green);
+    --sys-gradient-flat: var(--color-electric-gold);
+    --sys-gradient-uphill: var(--color-warning-orange);
+    --sys-gradient-steep: var(--color-stop-red);
+    --sys-gradient-very-steep: var(--color-deep-purple);
+    --sys-gradient-extreme: var(--color-gunmetal);
+
+    /* Glassmorphism */
+    --glass-bg: rgba(18, 18, 18, 0.8);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(12px);
+}
+
+body {
+    background-color: var(--sys-background);
+    color: var(--sys-on-surface);
+    font-family: 'Roboto', sans-serif;
+    /* Setup later */
+}
