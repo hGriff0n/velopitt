@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, effect, input, output, ViewChild, ElementRef, AfterViewInit, OnDestroy, signal } from '@angular/core';
-import { Map, MapEvent, NavigationControl, ScaleControl, GeolocateControl, Popup, Marker, LngLatLike } from 'mapbox-gl';
+import { Map, MapEvent, MapMouseEvent, NavigationControl, ScaleControl, GeolocateControl, Popup, Marker, LngLatLike } from 'mapbox-gl';
 import { ConfigService } from '../../services/config-service';
 import { SegmentService, Segment } from '../../services/segment-service';
 import { LayerService } from '../../services/layer-service';
@@ -33,6 +33,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     segmentShowing = input(false);
     bikemapShowing = input(true);
     bikemapPlusShowing = input(false);
+    selectedSegmentId = input<number>(0);
 
     // Outputs
     segmentSelected = output<number>();
@@ -59,6 +60,13 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
 
             // Update theme colors
             this.updateMapTheme(map);
+
+            // Handle selection changes from parent (e.g. overlay close)
+            const currentSelected = this.selectedSegmentId();
+            if (currentSelected <= 0 && this.focusedSegment.size > 0) {
+                this.focusedSegment.forEach(id => this.highlightSegment(id, false));
+                this.focusedSegment.clear();
+            }
         });
     }
 
@@ -74,6 +82,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         });
 
         this.mapInstance.on('load', (e) => this.onLoad(e));
+        this.mapInstance.on('click', (e) => this.onMapClick(e));
     }
 
     ngOnDestroy() {
@@ -250,13 +259,24 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
             speed: 0.8
         });
 
+        // Clear previous highlights if any (single select mode)
+        this.focusedSegment.forEach(id => {
+            if (id !== segmentId) this.highlightSegment(id, false);
+        });
+        this.focusedSegment.clear();
         this.focusedSegment.add(segmentId);
         this.highlightSegment(segmentId, true);
+    }
 
-        // Overlay logic:
-        // Previously created a Marker here.
-        // NOW: The overlay is an Angular component rendered on top of the map map-container sibling.
-        // We just need to make sure the state is correct (handled by emit segmentSelected).
-        // The overlay component will be displayed by the parent (App) based on the signal.
+    private onMapClick(e: MapMouseEvent) {
+        if (!this.mapInstance) return;
+
+        // Check if we clicked on a segment
+        const features = this.mapInstance.queryRenderedFeatures(e.point, { layers: ['segments-layer'] });
+
+        // If we didn't click a segment, and we have a segment selected, deselect it
+        if (features.length === 0 && this.selectedSegmentId() > 0) {
+            this.segmentSelected.emit(-1);
+        }
     }
 }

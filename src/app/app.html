@@ -2,8 +2,8 @@
 <mat-drawer-container class="example-container" autosize [hasBackdrop]="true">
   <div class="map" style="height:100%; width:100%;">
     <app-map [regionShowing]="regionShowing()" [segmentShowing]="segmentShowing()" [bikemapShowing]="bikemapShowing()"
-      [bikemapPlusShowing]="bikemapPlusShowing()" (segmentSelected)="onSegmentSelected($event)"
-      (mapLoaded)="onMapLoaded($event)">
+      [bikemapPlusShowing]="bikemapPlusShowing()" [selectedSegmentId]="selectedSegment()"
+      (segmentSelected)="onSegmentSelected($event)" (mapLoaded)="onMapLoaded($event)">
     </app-map>
   </div>
 
