@@ -44,4 +44,6 @@ Thumbs.db
 # Local Env
 /src/environments/.env
 src/environments/environment.ts
+# .bmad-core/
+# .gemini/commands/BMad
 .vscode/
