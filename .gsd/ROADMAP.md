@@ -32,4 +32,28 @@
 ### Phase 4: Community Calendar (Research & Build)
 **Status**: ⬜ Not Started
 **Objective**: Research and implement the event calendar and map integration.
-**Requirements**: REQ-07, REQ-08
+35. **Requirements**: None
+
+---
+
+> **Milestone**: Route Capabilities (Future)
+
+### Phase 5: GPX IO & Viewer
+**Status**: ⬜ Not Started
+**Objective**: Implement GPX file import/export and a "View Mode" to visualize existing routes with elevation profiles.
+**Requirements**: REQ-07
+
+### Phase 6: Route Editor Foundation
+**Status**: ⬜ Not Started
+**Objective**: Build the interactive map tools for placing and editing waypoints manually (straight lines).
+**Requirements**: REQ-08
+
+### Phase 7: Smart Routing Engine
+**Status**: ⬜ Not Started
+**Objective**: Integrate a routing service (e.g. Mapbox Directions) to snap waypoints to roads and fetch elevation data.
+**Requirements**: REQ-09
+
+### Phase 8: Editor Polish
+**Status**: ⬜ Not Started
+**Objective**: Finalize the builder UI, add route metrics, and ensure smooth UX for the "Create" flow.
+**Requirements**: REQ-10
