@@ -2,35 +2,31 @@
 
 ## Current Position
 - **Phase**: 1
-- **Task**: Task 1.3/1.4 - Refactor MapComponent & MapStateService
-- **Status**: Paused at 2026-01-24
+- **Task**: Task 1.2 - Fix MapStateService Coverage (Gap Closure)
+- **Status**: Paused at 2026-01-24T13:13:35-05:00
 
 ## Last Session Summary
-Executed Phase 1 initialization.
-- Refactored `LayerService` (Tests > 97% coverage).
-- Refactored `SegmentOverlayComponent` (Tests > 95% coverage).
-- Extracted `MapStateService` from `MapComponent`.
-- **Pivot**: Decided to move DEEP map logic (layers, markers) into the service (Option A) to support future Route Editor.
+Executed Phase 1 Execution (Refactor MapComponent). Tests passed, but coverage for `MapStateService` was low (36%). Created Gap Closure plan.
 
 ## In-Progress Work
-- `MapComponent` is currently using `MapStateService` for basic flyTo/init, but needs to be stripped of layer/marker logic.
-- `MapStateService` needs to be expanded to handle layers/markers.
-- Tests for `MapComponent` are currently failing/incomplete due to this mid-refactor state.
+- `MapStateService.spec.ts` needs significant updates to mock `Map` correctly and cover all branches.
+- Files modified: `src/app/services/map-state.service.ts`, `src/app/components/map/map.component.ts`, `src/app/services/map-state.service.spec.ts`.
+- Tests status: Failing coverage threshold.
 
 ## Blockers
-- None. Just pausing for session break.
+Coverage threshold (80%) not met.
 
 ## Context Dump
 We are in the middle of a "Deep Refactor" of the Map architecture.
-Previously, `MapComponent` did everything.
-We want `MapStateService` to own the Mapbox instance and all logic (addLayer, addMarker).
-`MapComponent` should just be a dumb container that calls `service.setMap(map)`.
+Moved complex logic from `MapComponent` to `MapStateService`.
+Tests for `MapStateService` are brittle regarding Mapbox mocks (`_addMarker`, `off`).
+Need to implement a robust MockMap in the spec file.
 
 ### Files of Interest
-- `src/app/services/map-state.service.ts`: Needs to grow (add methods for toggling layers).
-- `src/app/components/map/map.component.ts`: Needs to shrink (remove private methods, delegate to service).
+- `src/app/services/map-state.service.spec.ts`: Needs work.
+- `.gsd/phases/1/1-GAP-COVERAGE-PLAN.md`: The plan to fix this.
 
 ## Next Steps
-1. Resume `/execute 1`
-2. Complete Task 1.3 (Move private methods to Service).
-3. Complete Task 1.4 (Update tests).
+1. Resume `/execute 1 --gaps-only`
+2. Implement robust mocks for Mapbox in `MapStateService.spec.ts`.
+3. Verify 80% coverage.
