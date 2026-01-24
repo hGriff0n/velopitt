@@ -4,6 +4,7 @@ import { ConfigService } from '../../services/config-service';
 import { SegmentService, Segment } from '../../services/segment-service';
 import { LayerService } from '../../services/layer-service';
 import { ThemeService } from '../../services/theme-service';
+import { MapStateService } from '../../services/map-state.service';
 
 @Component({
     selector: 'app-map',
@@ -27,6 +28,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     private segmentService = inject(SegmentService);
     private layerService = inject(LayerService);
     private themeService = inject(ThemeService);
+    private mapStateService = inject(MapStateService);
 
     // Inputs for layer visibility
     regionShowing = input(false);
@@ -42,8 +44,6 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
     private mapSignal = signal<Map | undefined>(undefined);
     private mapInstance: Map | undefined;
-    private segmentMarkers: Marker[] = [];
-    private focusedSegment = new Set<number>();
 
     constructor() {
         // Effect to handle layer visibility changes and theme updates
@@ -54,16 +54,22 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
 
             this.layerService.setRegionVisibility(map, this.regionShowing());
             this.layerService.setBikeNetworkVisibility(map, this.bikemapShowing());
-            this.toggleSegmentLayer(this.segmentShowing());
 
-            // Update theme colors`
-            this.updateMapTheme(map);
+            this.mapStateService.toggleSegmentLayer(map, this.segmentShowing());
+            this.mapStateService.updateMapTheme(map);
 
             // Handle selection changes from parent (e.g. overlay close)
             const currentSelected = this.selectedSegmentId();
-            if (currentSelected <= 0 && this.focusedSegment.size > 0) {
-                this.focusedSegment.forEach(id => this.highlightSegment(id, false));
-                this.focusedSegment.clear();
+
+            // If nothing is selected, clear highlights
+            if (currentSelected <= 0) {
+                this.mapStateService.clearHighlights(map);
+            } else {
+                // If something IS selected, ensure it's highlighted and map handles it?
+                // Actually the service handles the highlight state if we tell it.
+                // But typically the click handler does it.
+                // If the selection comes from OUTSIDE (e.g. valid ID passed in), we should highlight it.
+                this.mapStateService.highlightSegment(map, currentSelected, true);
             }
         });
     }
@@ -94,144 +100,25 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
 
         // Register layers
         this.layerService.registerWithMap(this.mapInstance, this.regionShowing());
-        this.addAllSegments();
+
+        // Delegate to Service
+        this.mapStateService.setMap(this.mapInstance);
+        this.mapStateService.addAllSegments(this.mapInstance, this.segmentShowing());
+
+        this.mapStateService.addInteractions(this.mapInstance, {
+            onClick: (id, lngLat) => this.handleSegmentClickEvent(id, lngLat),
+            onHover: (id) => this.mapStateService.highlightSegment(this.mapInstance!, id, true),
+            onLeave: (id) => {
+                // Only unhighlight if it's NOT the selected one
+                if (id !== this.selectedSegmentId()) {
+                    this.mapStateService.highlightSegment(this.mapInstance!, id, false);
+                }
+            }
+        });
 
         // Update mapSignal to trigger effect
         this.mapSignal.set(this.mapInstance);
         this.mapLoaded.emit(this.mapInstance);
-    }
-
-    private updateMapTheme(map: Map) {
-        // Read current theme colors from CSS variables
-        const unselectedColor = this.themeService.getThemeColor('--sys-segment-unselected');
-        const selectedColor = this.themeService.getThemeColor('--sys-segment-selected');
-
-        // Update Segment Layer Colors
-        if (map.getLayer('segments-layer')) {
-            map.setPaintProperty('segments-layer', 'line-color', [
-                'case',
-                ['boolean', ['feature-state', 'selected'], false],
-                selectedColor,
-                unselectedColor
-            ]);
-        }
-
-        // Update Markers (Standard markers, not the overlay)
-        this.segmentMarkers.forEach(marker => {
-            // Note: Mapbox GL JS Markers created with default DOM element don't have easy API to change color after creation
-            // if we are using the default SVG. 
-            // We might need to recreate them or use a custom element that inherits color?
-            // For now, let's assume valid 'color' option only works on creation.
-            // If we want dynamic updates, we'd need custom elements or remove/add.
-            // Skipping complex marker updates for now as user prioritized site/layer colors.
-        });
-    }
-
-    private addAllSegments() {
-        if (!this.mapInstance) return;
-
-        // Initial colors from theme service
-        const unselectedColor = this.themeService.getThemeColor('--sys-segment-unselected');
-        const selectedColor = this.themeService.getThemeColor('--sys-segment-selected');
-
-        this.mapInstance.addSource("segments", {
-            type: 'geojson',
-            generateId: true,
-            data: {
-                type: 'FeatureCollection',
-                features: this.segmentService.getAllSegments().map(segment => {
-                    this.segmentService.updateSegmentMapData(segment.id, this.mapInstance as Map);
-                    return {
-                        type: 'Feature',
-                        properties: {},
-                        geometry: segment.map.geojson
-                    };
-                })
-            }
-        });
-
-        this.mapInstance.addLayer({
-            id: "segments-layer",
-            type: 'line',
-            source: "segments",
-            layout: { 'line-join': 'round', 'line-cap': 'round' },
-            paint: {
-                'line-emissive-strength': 1,
-                'line-color': [
-                    'case',
-                    ['boolean', ['feature-state', 'selected'], false],
-                    selectedColor,
-                    unselectedColor
-                ],
-                'line-width': [
-                    'interpolate',
-                    ['exponential', 2],
-                    ['zoom'],
-                    0, ["*", 12, ["^", 2, -6]],
-                    24, ["*", 12, ["^", 2, 8]]
-                ],
-                'line-opacity': 0,
-            }
-        });
-
-        this.mapInstance.addInteraction('segment-clicks', {
-            type: 'click',
-            target: { layerId: "segments-layer" },
-            handler: (e: any) => this.handleSegmentClickEvent(e.feature?.id as number, e.lngLat)
-        });
-
-        this.mapInstance.addInteraction('segments-hover', {
-            type: 'mouseenter',
-            target: { layerId: "segments-layer" },
-            handler: (e: any) => {
-                if (!this.mapInstance) return;
-                this.mapInstance.getCanvas().style.cursor = 'pointer';
-                this.highlightSegment(e.feature?.id as number, true);
-            }
-        });
-
-        this.mapInstance.addInteraction('segments-leave', {
-            type: 'mouseleave',
-            target: { layerId: "segments-layer" },
-            handler: (e: any) => {
-                if (!this.mapInstance) return;
-                if (!this.focusedSegment.has(e.feature?.id as number)) {
-                    this.highlightSegment(e.feature?.id as number, false);
-                }
-                this.mapInstance.getCanvas().style.cursor = 'default';
-            }
-        });
-
-        this.segmentMarkers = this.segmentService.getAllSegments().map(segment => {
-            const markerColor = this.themeService.getThemeColor('--sys-marker');
-            return new Marker({ color: markerColor })
-                .setLngLat(segment.start_latlng as LngLatLike)
-                .on('click', () => {
-                    this.handleSegmentClickEvent(segment.id, segment.start_latlng);
-                });
-        });
-
-        this.toggleSegmentLayer(this.segmentShowing());
-    }
-
-    private toggleSegmentLayer(isVisible: boolean) {
-        if (!this.mapInstance) return;
-
-        if (isVisible) {
-            this.segmentMarkers.forEach(marker => marker.addTo(this.mapInstance!));
-        } else {
-            this.segmentMarkers.forEach(marker => marker.remove());
-        }
-        if (this.mapInstance.getLayer("segments-layer")) {
-            this.mapInstance.setPaintProperty("segments-layer", "line-opacity", isVisible ? 1 : 0);
-        }
-    }
-
-    private highlightSegment(segmentId: number, isSelected: boolean) {
-        this.mapInstance?.setFeatureState({
-            source: "segments",
-            id: segmentId
-        }, { selected: isSelected });
     }
 
     private handleSegmentClickEvent(segmentId: number, lnglat: any) {
@@ -240,7 +127,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         const segment = this.segmentService.getSegmentByDomId(segmentId) as Segment;
         if (!segment) return;
 
-        this.mapInstance!.flyTo({
+        this.mapStateService.flyTo({
             center: segment.start_latlng as [number, number],
             bearing: this.segmentService.vectorToBearing(
                 this.segmentService.directionVector(segment)),
@@ -248,13 +135,9 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
             speed: 0.8
         });
 
-        // Clear previous highlights if any (single select mode)
-        this.focusedSegment.forEach(id => {
-            if (id !== segmentId) this.highlightSegment(id, false);
-        });
-        this.focusedSegment.clear();
-        this.focusedSegment.add(segmentId);
-        this.highlightSegment(segmentId, true);
+        // Update Service State
+        this.mapStateService.clearHighlights(this.mapInstance!, segmentId);
+        this.mapStateService.highlightSegment(this.mapInstance!, segmentId, true);
     }
 
     private onMapClick(e: MapMouseEvent) {
@@ -266,6 +149,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         // If we didn't click a segment, and we have a segment selected, deselect it
         if (features.length === 0 && this.selectedSegmentId() > 0) {
             this.segmentSelected.emit(-1);
+            this.mapStateService.clearHighlights(this.mapInstance);
         }
     }
 }

@@ -1,17 +1,17 @@
 ---
-phase: 6
+phase: 7
 plan: 1
 wave: 1
 ---
 
-# Plan 6.1: GPX Viewer Implementation
+# Plan 7.1: GPX Viewer Implementation
 
 ## Objective
 Implement the ability to import GPX files, visualize the route on the 3D map, and display an interactive elevation profile.
 
 ## Context
 - .gsd/SPEC.md
-- .gsd/phases/6/RESEARCH.md
+- .gsd/phases/7/RESEARCH.md
 - src/app/components/map/map.component.ts
 - src/app/services/theme.service.ts
 
