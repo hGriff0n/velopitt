@@ -4,6 +4,7 @@ import { ConfigService } from '../../services/config-service';
 import { SegmentService, Segment } from '../../services/segment-service';
 import { LayerService } from '../../services/layer-service';
 import { ThemeService } from '../../services/theme-service';
+import { MapStateService } from '../../services/map-state.service';
 
 @Component({
     selector: 'app-map',
@@ -27,6 +28,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     private segmentService = inject(SegmentService);
     private layerService = inject(LayerService);
     private themeService = inject(ThemeService);
+    private mapStateService = inject(MapStateService);
 
     // Inputs for layer visibility
     regionShowing = input(false);
@@ -95,6 +97,9 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         // Register layers
         this.layerService.registerWithMap(this.mapInstance, this.regionShowing());
         this.addAllSegments();
+
+        // Register with state service
+        this.mapStateService.setMap(this.mapInstance);
 
         // Update mapSignal to trigger effect
         this.mapSignal.set(this.mapInstance);
@@ -240,7 +245,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         const segment = this.segmentService.getSegmentByDomId(segmentId) as Segment;
         if (!segment) return;
 
-        this.mapInstance!.flyTo({
+        this.mapStateService.flyTo({
             center: segment.start_latlng as [number, number],
             bearing: this.segmentService.vectorToBearing(
                 this.segmentService.directionVector(segment)),
