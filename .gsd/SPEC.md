@@ -6,12 +6,21 @@
 Transform the existing Velopitt codebase from a legacy/hackish state into a robust, high-performance Angular v20+ application. The focus is on adopting modern best practices (Signals, Standalone Components, Strict Typing) to ensure maintainability, performance, and correctness, even for non-expert frontend engineers.
 
 ## Goals
-1.  **Modernize Architecture**: Fully adopt Angular Signals for state management and Standalone components to reduce boilerplate and complexity.
-2.  **Elevate Code Quality**: Enforce strict TypeScript typing, rigorous linting, and best-practice abstractions to eliminate "hackish" patterns.
-3.  **Ensure Reliability**: Establish a comprehensive testing strategy with >80% coverage to prevent regressions and ensure stability.
+1.  **Modernize Architecture**: Fully adopt Angular Signals for state management and Standalone components.
+2.  **Elevate Code Quality**: Enforce strict TypeScript typing and best-practice abstractions.
+3.  **Preserve Functionality**: Maintain 100% of existing feature set during refactor.
+
+## Functional Requirements (The Product)
+- **Interactive Map**: 3D terrain map of Pittsburgh area.
+- **Segments of Interest**: Curated cycling segments (not routes) selectable for detailed data.
+- **Data Visualization**: Gradient coloring, elevation charts, and bearing metadata for selected segments.
+- **Layer Overlays**:
+    - "Cycling Zones": Custom geographical groupings based on riding style (e.g., river trails vs. hills).
+    - "Infrastructure": Official bike lanes/trails (BikePGH data).
+    - "Bike+ Plan": Sketch overlay of future network plans.
 
 ## Non-Goals (Out of Scope)
-- Adding major new user-facing features (focus is purely on refactoring/modernization first).
+- Adding major new user-facing features (focus is on refactoring/modernization).
 - changing the underlying map provider (Mapbox GL JS stays).
 
 ## Users

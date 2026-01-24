@@ -12,10 +12,12 @@ must_haves:
     - "Build status is known and documented"
     - "Test status is known and documented"
     - "Code quality baseline is established"
+    - "Functional verification baseline is established"
   artifacts:
     - "Build logs"
     - "Test reports"
     - "Audit findings in .gsd/TODO.md"
+    - "Requirement mapping in .gsd/REQUIREMENTS.md"
 ---
 
 # Plan 1.1: Baseline Assessment
@@ -81,6 +83,19 @@ Load for context:
   <done>TODO.md contains specific technical debt items</done>
 </task>
 
+<task type="auto">
+  <name>Functional Audit & Requirements Mapping</name>
+  <files>.gsd/REQUIREMENTS.md</files>
+  <action>
+    Create .gsd/REQUIREMENTS.md.
+    Verify that every Functional Requirement in SPEC.md actually exists in current code.
+    Map Component/Service responsibility to each Requirement.
+    Document any broken or missing features found during audit.
+  </action>
+  <verify>REQUIREMENTS.md exists and covers all SPEC items</verify>
+  <done>Functional baseline established</done>
+</task>
+
 </tasks>
 
 <verification>
@@ -88,6 +103,7 @@ After all tasks, verify:
 - [ ] Build status is documented
 - [ ] Test status is documented
 - [ ] TODO.md lists specific areas for improvement
+- [ ] REQUIREMENTS.md maps features to code
 </verification>
 
 <success_criteria>
