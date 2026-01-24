@@ -50,44 +50,28 @@ export class ThemeService {
 
     private loadTheme(filename: string) {
         const head = this.document.getElementsByTagName('head')[0];
-        const existingLink = this.document.getElementById(ThemeService.THEME_LINK_ID) as HTMLLinkElement;
+        let link = this.document.getElementById(ThemeService.THEME_LINK_ID) as HTMLLinkElement;
 
-        // Path relative to index.html (public folder content is served at root)
+        // Path relative to index.html
         const url = `themes/${filename}`;
 
-        if (existingLink) {
-            existingLink.href = url;
+        if (link) {
+            link.href = url;
+            // Add onload for existing link updates if needed? 
+            // Reuse logic below
         } else {
-            const link = this.document.createElement('link');
+            link = this.document.createElement('link');
             link.id = ThemeService.THEME_LINK_ID;
             link.rel = 'stylesheet';
             link.href = url;
             head.appendChild(link);
         }
 
-        // Notify dependants that theme url has been requested
-        // Note: link loading is async, but for color swapping typically 
-        // waiting for next tick or just relying on eventual consistency is fine.
-        // If we need strict sync, we'd need onload handlers.
-        // For Mapbox, it's safer to check computed styles after a small delay 
-        // or when the link loads.
-
-        if (existingLink) {
-            // Force a signal update after a short delay to allow CSS OM to update?
-            // Or just rely on the fact that when we set the signal, effects run,
-            // and we might need to read the style *then*.
-            // But setting href is async.
-            // Let's add a load listener if possible, or just emit immediately and hope.
-            // Better: use onload on the link element.
-            existingLink.onload = () => {
-                this.themeChanged.update(v => v + 1);
-            };
-        } else {
-            // Newly created link
-            const link = this.document.getElementById(ThemeService.THEME_LINK_ID) as HTMLLinkElement;
-            link.onload = () => {
-                this.themeChanged.update(v => v + 1);
-            };
-        }
+        // Attach handler to whichever link we have
+        // Note: setting onload on an existing link that is already loaded might not fire?
+        // But changing href triggers load.
+        link.onload = () => {
+            this.themeChanged.update(v => v + 1);
+        };
     }
 }

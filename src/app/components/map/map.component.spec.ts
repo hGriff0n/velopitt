@@ -39,6 +39,12 @@ class MockThemeService {
 class MockMapStateService {
     setMap = jasmine.createSpy('setMap');
     flyTo = jasmine.createSpy('flyTo');
+    addAllSegments = jasmine.createSpy('addAllSegments');
+    addInteractions = jasmine.createSpy('addInteractions');
+    toggleSegmentLayer = jasmine.createSpy('toggleSegmentLayer');
+    updateMapTheme = jasmine.createSpy('updateMapTheme');
+    highlightSegment = jasmine.createSpy('highlightSegment');
+    clearHighlights = jasmine.createSpy('clearHighlights');
 }
 
 // Mock Mapbox Map Instance
@@ -123,9 +129,10 @@ describe('AppMapComponent', () => {
         (component as any).onLoad({ target: mockMapInstance });
         (component as any).handleSegmentClickEvent(123, { lng: 0, lat: 0 });
 
-        expect(mockMapInstance.setFeatureState).toHaveBeenCalledWith(
-            jasmine.objectContaining({ source: 'segments', id: 123 }),
-            { selected: true }
+        expect(mapStateService.highlightSegment).toHaveBeenCalledWith(
+            mockMapInstance as any,
+            123,
+            true
         );
     });
 
@@ -141,5 +148,41 @@ describe('AppMapComponent', () => {
         (component as any).onMapClick({ point: { x: 0, y: 0 } });
 
         expect(component.segmentSelected.emit).toHaveBeenCalledWith(-1);
+    });
+    it('should register interactions and handle callbacks', () => {
+        (component as any).onLoad({ target: mockMapInstance });
+
+        expect(mapStateService.addInteractions).toHaveBeenCalled();
+        const callArgs = mapStateService.addInteractions.calls.mostRecent().args;
+        expect(callArgs[0]).toBe(mockMapInstance as any);
+
+        const callbacks = callArgs[1];
+        expect(callbacks).toBeDefined();
+
+        // 1. Test onClick callback
+        spyOn(component as any, 'handleSegmentClickEvent');
+        callbacks.onClick(999, { lng: 1, lat: 2 });
+        expect(component['handleSegmentClickEvent']).toHaveBeenCalledWith(999, { lng: 1, lat: 2 });
+
+        // 2. Test onHover callback
+        callbacks.onHover(999);
+        expect(mapStateService.highlightSegment).toHaveBeenCalledWith(mockMapInstance as any, 999, true);
+
+        // 3. Test onLeave callback
+        // Case A: Unhighlight if not selected
+        fixture.componentRef.setInput('selectedSegmentId', 888); // Different ID
+        fixture.detectChanges();
+        mapStateService.highlightSegment.calls.reset();
+
+        callbacks.onLeave(999);
+        expect(mapStateService.highlightSegment).toHaveBeenCalledWith(mockMapInstance as any, 999, false);
+
+        // Case B: Do NOT unhighlight if selected
+        fixture.componentRef.setInput('selectedSegmentId', 999); // Same ID
+        fixture.detectChanges();
+        mapStateService.highlightSegment.calls.reset();
+
+        callbacks.onLeave(999);
+        expect(mapStateService.highlightSegment).not.toHaveBeenCalled();
     });
 });

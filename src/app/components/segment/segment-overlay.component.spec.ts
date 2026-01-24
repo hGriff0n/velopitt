@@ -133,6 +133,27 @@ describe('SegmentOverlayComponent', () => {
         expect(testGradient(0, 20)).toBe('--sys-gradient-extreme');
     });
 
+    it('should use chooseBackgroundColor in chart segment configuration', () => {
+        // Ensure data is initialized
+        expect(component.lineChartData.datasets[0]).toBeDefined();
+
+        // Cast to any to avoid Chart.js strict typing issues
+        const dataset = component.lineChartData.datasets[0] as any;
+        const segmentConfig = dataset.segment;
+        expect(segmentConfig).toBeDefined();
+
+        spyOn(component, 'chooseBackgroundColor').and.returnValue('red');
+
+        // Invoke callbacks
+        const bgResult = segmentConfig.backgroundColor({ p0DataIndex: 0, p1DataIndex: 1 });
+        expect(component.chooseBackgroundColor).toHaveBeenCalledWith(jasmine.any(Object), 'background');
+        expect(bgResult).toBe('red');
+
+        const borderResult = segmentConfig.borderColor({ p1DataIndex: 2 });
+        expect(component.chooseBackgroundColor).toHaveBeenCalledWith(jasmine.any(Object), 'border');
+        expect(borderResult).toBe('red');
+    });
+
     it('should handle undefined segment in chooseBackgroundColor', () => {
         fixture.componentRef.setInput('segment', undefined);
         fixture.detectChanges();
