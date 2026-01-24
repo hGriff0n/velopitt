@@ -10,11 +10,11 @@ A comprehensive atlas that enables new and visiting avid cyclists to explore and
 2. **Deep Segment Analysis**: Focusable Strava segments that provide rich context—gradient profiles, pacing data, and related segment connectivity.
 3. **Community Integration**: A unified event and group ride calendar integrated with map markers to connect cyclists with local culture.
 4. **Curated Discovery**: Filterable and focusable segment collections to guide users to the region's best riding experiences.
+5. **Route Capabilities**: Tools to import, view, creation, and export routes (GPX) with elevation analysis and road-fitting.
 
 ## Non-Goals (Out of Scope)
 - **User Accounts**: No personalized login, saved routes, or social features requiring authentication.
 - **Native Mobile Apps**: Focus strictly on a high-quality responsive web experience.
-- **Route Building**: The tool is for discovery and analysis, not turn-by-turn route planning.
 
 ## Users
 - **Primary**: Avid, sporting cyclists (both locals and visitors) looking for high-quality rides and climbs.
@@ -30,3 +30,5 @@ A comprehensive atlas that enables new and visiting avid cyclists to explore and
 - [ ] **Segment Detail**: Selecting a segment instantly focuses the camera and opens a detailed overlay with gradient visualization and stats.
 - [ ] **Collections**: Users can filter visible segments by categories (e.g., "Steepest Climbs", "Scenic Routes").
 - [ ] **Events**: A functional calendar view exists that plots upcoming rides on the map.
+- [ ] **Route Viewer**: Users can import and view GPX files with elevation profiles.
+- [ ] **Route Builder**: Users can create new routes by clicking on the map, with automatic road-fitting.
