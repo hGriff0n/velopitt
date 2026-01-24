@@ -1,32 +1,35 @@
 # ROADMAP.md
 
 > **Current Phase**: Not started
-> **Milestone**: v2.0-Refactor
+> **Milestone**: v1.0 (The Atlas)
 
 ## Must-Haves (from SPEC)
-- [ ] Strict TypeScript Configuration
-- [ ] Angular Signal Migration
-- [ ] Standalone Component Migration
-- [ ] 80% Test Coverage
+- [ ] Interactive 3D Map with Layers
+- [ ] Deep Segment Analysis (Overlay + Charts)
+- [ ] Segment Collections & Filtering
 
 ## Phases
 
-### Phase 1: GSD Setup & Baseline
+### Phase 1: Interactive Atlas (Foundation)
 **Status**: ⬜ Not Started
-**Objective**: Establish the "Get Shit Done" methodology and lock in the current architectural understanding.
-**Deliverables**: GSD file structure, initial code map updates.
+**Objective**: Ensure the core map, infrastructure layers, and basic segment rendering are solid and performant. Refactor existing brownfield layer logic if needed.
+**Requirements**: REQ-01, REQ-02, REQ-03
 
-### Phase 2: Testing & Verification
+### Phase 2: Segment Analysis Deep Dive
 **Status**: ⬜ Not Started
-**Objective**: Ensure the new system is bulletproof.
-**Deliverables**: Unit tests for all services/components, E2E smoke tests.
+**Objective**: Implement the rich details overlay, gradient charts, and contextual camera focus interactions.
+**Requirements**: REQ-04, REQ-05
 
-### Phase 3: Foundation & Hygiene
+### Phase 3: Curated Discovery
 **Status**: ⬜ Not Started
-**Objective**: Clean up the "hackish" parts. Enforce strict typing, fix lint errors, and standardizing project structure.
-**Deliverables**: `strict: true` in tsconfig, passing lint checks, removal of dead code/files.
+**Objective**: Build the filtering system and "Collection" views to guide user discovery.
+**Requirements**: REQ-06
 
-### Phase 4: Modernization (Signals & Standalone)
+---
+
+> **Milestone**: v2.0 (Community Integration)
+
+### Phase 4: Community Calendar (Research & Build)
 **Status**: ⬜ Not Started
-**Objective**: The "Rewrite". Convert components to Standalone and State to Signals.
-**Deliverables**: No `NgModule`s, all `input()`/`output()` usage, `OnPush` change detection everywhere.
+**Objective**: Research and implement the event calendar and map integration.
+**Requirements**: REQ-07, REQ-08

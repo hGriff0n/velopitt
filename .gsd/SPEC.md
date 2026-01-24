@@ -3,36 +3,30 @@
 > **Status**: `FINALIZED`
 
 ## Vision
-Transform the existing Velopitt codebase from a legacy/hackish state into a robust, high-performance Angular v20+ application. The focus is on adopting modern best practices (Signals, Standalone Components, Strict Typing) to ensure maintainability, performance, and correctness, even for non-expert frontend engineers.
+A comprehensive atlas that enables new and visiting avid cyclists to explore and navigate Pittsburgh, showcasing it as one of the premier cycling regions in the US.
 
 ## Goals
-1.  **Modernize Architecture**: Fully adopt Angular Signals for state management and Standalone components.
-2.  **Elevate Code Quality**: Enforce strict TypeScript typing and best-practice abstractions.
-3.  **Preserve Functionality**: Maintain 100% of existing feature set during refactor.
-
-## Functional Requirements (The Product)
-- **Interactive Map**: 3D terrain map of Pittsburgh area.
-- **Segments of Interest**: Curated cycling segments (not routes) selectable for detailed data.
-- **Data Visualization**: Gradient coloring, elevation charts, and bearing metadata for selected segments.
-- **Layer Overlays**:
-    - "Cycling Zones": Custom geographical groupings based on riding style (e.g., river trails vs. hills).
-    - "Infrastructure": Official bike lanes/trails (BikePGH data).
-    - "Bike+ Plan": Sketch overlay of future network plans.
+1. **Interactive Atlas**: specific 3D map interface with toggleable infrastructure and segment layers to visualize the cycling network.
+2. **Deep Segment Analysis**: Focusable Strava segments that provide rich context—gradient profiles, pacing data, and related segment connectivity.
+3. **Community Integration**: A unified event and group ride calendar integrated with map markers to connect cyclists with local culture.
+4. **Curated Discovery**: Filterable and focusable segment collections to guide users to the region's best riding experiences.
 
 ## Non-Goals (Out of Scope)
-- Adding major new user-facing features (focus is on refactoring/modernization).
-- changing the underlying map provider (Mapbox GL JS stays).
+- **User Accounts**: No personalized login, saved routes, or social features requiring authentication.
+- **Native Mobile Apps**: Focus strictly on a high-quality responsive web experience.
+- **Route Building**: The tool is for discovery and analysis, not turn-by-turn route planning.
 
 ## Users
-- **Main User**: Cycling enthusiasts in Pittsburgh viewing segment data.
-- **Developer User**: The "User" (you), needing a clean, understandable, and safe codebase to work in.
+- **Primary**: Avid, sporting cyclists (both locals and visitors) looking for high-quality rides and climbs.
+- **Secondary**: Commuters and new cyclists seeking safe infrastructure and an introduction to the sport side of cycling.
 
 ## Constraints
-- **Tech Stack**: Angular 20+, TypeScript 5+, Mapbox GL JS.
-- **Performance**: Map interactions must remain 60fps; initial load time should decrease.
+- **Platform**: Web (Angular v20+).
+- **Architecture**: Client-side heavy with Mapbox GL JS.
+- **Data**: Strava API for segment data; manual/community sources for events.
 
 ## Success Criteria
-- [ ] All components converted to Standalone API.
-- [ ] Application state fully managed via Signals (no `Zone.js` reliance where possible).
-- [ ] `npm test` coverage report shows >80% coverage.
-- [ ] Application passes `ng build` with `strict: true` and no linting errors.
+- [ ] **Map Experience**: Users can seamlessly toggle layers (Roads, Bike Lanes, Trails) on a performant 3D map.
+- [ ] **Segment Detail**: Selecting a segment instantly focuses the camera and opens a detailed overlay with gradient visualization and stats.
+- [ ] **Collections**: Users can filter visible segments by categories (e.g., "Steepest Climbs", "Scenic Routes").
+- [ ] **Events**: A functional calendar view exists that plots upcoming rides on the map.

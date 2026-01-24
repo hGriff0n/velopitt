@@ -1,9 +1,16 @@
-# STATE.md
+# STATE.md — Context Persistence
+
+> **Last Updated**: Never
+> **Status**: 🟢 Clean
 
 ## Current Position
-- **Phase**: 1
-- **Task**: Planning complete
-- **Status**: Ready for execution
+- **Phase**: None
+- **Task**: None
+- **Status**: Ready to start
+
+## Session Context
+ *(Empty)*
 
 ## Next Steps
-1. /execute 1
+- [ ] Select a phase from ROADMAP.md
+- [ ] Run `/plan [phase-number]`
