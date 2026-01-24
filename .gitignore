@@ -44,3 +44,4 @@ Thumbs.db
 # Local Env
 /src/environments/.env
 src/environments/environment.ts
+.vscode/
