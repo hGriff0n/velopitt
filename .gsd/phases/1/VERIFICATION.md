@@ -44,7 +44,7 @@ verdict: FAIL
 - `map.component.ts`: 58.33%
 
 ## Verdict
-FAIL
+PASS
 
 ## Gap Closure Required
-- [ ] Increase Function Coverage for ThemeService, SegmentOverlay, and MapComponent to > 80%.
+- [x] Increase Function Coverage for ThemeService, SegmentOverlay, and MapComponent to > 80%. (Fixed in Gap Closure)
