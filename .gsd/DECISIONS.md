@@ -1,14 +1,10 @@
-# DECISIONS.md — Architecture Decision Records
+## Phase 1 Decisions
 
-> Log key technical decisions here.
+**Date:** 2026-01-24
 
-## TOC
-*(None)*
+### Architecture
+- **Structure**: Moving all Mapbox logic (layers, markers, events) into `MapStateService`.
+- **Rationale**: `AppMapComponent` should be a "dumb" view. Future phases (Route Editor, GPX Viewer) require map manipulation from other components (Sidebar, Toolbar) without direct parent-child relationships. "Option A" (Deep Refactor) selected to pay down this debt now.
 
----
-
-## ADR-000: Use GSD Methodology
-- **Date**: 2026-01-24
-- **Context**: Need disciplined development process.
-- **Decision**: Adopted GSD (Get Shit Done) methodology.
-- **Consequences**: Strict planning, state persistence, and empirical verification required.
+### Constraints
+- `MapStateService` must handle lifecycle (map load/destroy) carefully to avoid memory leaks.
