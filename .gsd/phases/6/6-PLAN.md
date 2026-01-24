@@ -87,9 +87,38 @@ Implement the ability to import GPX files, visualize the route on the 3D map, an
   <done>Functionality verified in browser.</done>
 </task>
 
+<task type="auto">
+  <name>Implement Synced Route Interaction</name>
+  <files>
+    src/app/components/map/map.component.ts
+    src/app/components/elevation-profile/elevation-profile.component.ts
+  </files>
+  <action>
+    1. **Hover Sync (Profile -> Map)**:
+       - On `ElevationProfileComponent`, capture hover event (using `chartjs-plugin-crosshair` or native events).
+       - Emit `hoverIndex` or `hoverDistance`.
+       - In `MapComponent`, update a GeoJSON source (Point) to move a "Tracker Marker" to the coordinate at that index.
+    2. **Hover Sync (Map -> Profile)**:
+       - Add hover listener on the Route Line layer.
+       - Find nearest point on line.
+       - Highlight corresponding point on the chart (programmatically trigger tooltip).
+    3. **Camera Follow Option**:
+       - Add a toggle checkbox "Follow Tracker".
+       - If enabled, when hovering/sliding on the chart, update map camera center to the tracker position.
+  </action>
+  <verify>
+    1. Load GPX.
+    2. Hover over chart -> Blue dot moves on map.
+    3. Enable "Follow" -> Map pans as you slide over chart.
+  </verify>
+  <done>Bi-directional syncing and camera follow working.</done>
+</task>
+
 ## Success Criteria
 - [ ] Users can upload a valid GPX file from their local machine.
 - [ ] The route is rendered on the 3D map with a distinct color.
 - [ ] The camera automatically zooms to fit the imported route.
 - [ ] An elevation profile chart appears showing the route's verticality.
+- [ ] hovering the chart moves a tracker on the map (and vice-versa).
+- [ ] Users can toggle "Camera Follow" to have the view track the position.
 - [ ] Code is covered by unit tests (Service) and manual verification (UI).
