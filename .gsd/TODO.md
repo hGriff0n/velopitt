@@ -1,14 +1,14 @@
-# TODO.md — Backlog & Ideas
-
-> Capture random ideas and technical debt here.
-
-- [ ] (Tech Debt) Refactor `StravaService` to backend proxy (detected during mapping)
-- [ ] (Idea) 3D building extrusions on map
-- [ ] (Idea) FIT File Integration (Animated Movies)
-  - Parse FIT files (activity recordings) to create animated visualizations of rides.
-  - Playback controls (play, pause, speed).
-  - "Ghost" rider marker moving along the route.
-  - Camera follow mode (3rd person view behind the rider).
-  - Telemetry dashboard (Power, HR, Cadence) synced to video frame/position.
-- [ ] Evaluate and implement recommendations from [.gsd/phases/1/RESEARCH.md] (Cluster Markers, MapEntity) medium � 2026-01-24
-- [ ] Evaluate Research Recommendations: Implement MapEntity abstraction, use clustering/symbol layers for scale, and lazy load heavy assets. (Ref: .gsd/phases/1/RESEARCH.md) `medium` � 2026-01-24
+- [ ] Evaluate Research Recommendations: Implement MapEntity abstraction, use clustering/symbol layers for scale, and lazy load heavy assets. (Ref: .gsd/phases/1/RESEARCH.md) medium — 2026-01-24
+- [ ] Feature: Highlight areas to avoid (safety/preference layer) `medium` — 2026-01-26
+- [ ] Feature: Pacing calculator in segment details `medium` — 2026-01-26
+- [ ] Tech: Investigate deck.gl for advanced visualizations `medium` — 2026-01-26
+- [ ] Feature: Zonal breakdown overlay at low zoom levels `medium` — 2026-01-26
+- [ ] Feature: Highlight missing bike network connections `medium` — 2026-01-26
+- [ ] Feature: Showcase proposed/in-progress bike network connections `medium` — 2026-01-26
+- [ ] Content: Short routing answers (Q&A style for common queries) `medium` — 2026-01-26
+- [ ] Content: Include riding etiquette and legal resources `medium` — 2026-01-26
+- [ ] Project: Club with loaner bikes initiative `low` — 2026-01-26
+- [ ] Project: Establish a development team `low` — 2026-01-26
+- [ ] Event: Allegheny Cup (multi-state cycling event series) `low` — 2026-01-26
+- [ ] Feature: Isochrone map (Where can I go in 30min) `low` — 2026-01-26
+- [ ] Visual: Dynamic building colors based on zoom level `low` — 2026-01-26
