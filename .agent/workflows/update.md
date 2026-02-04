@@ -35,7 +35,7 @@ fi
 
 ```bash
 # Clone latest to temp directory
-git clone --depth 1 https://github.com/toonight/get-shit-done-for-antigravity.git .gsd-update-temp
+git clone --depth 1 https://github.com/toonight/get-shit-done-for-antigravity.git .agent/state-update-temp
 ```
 
 ---
@@ -52,7 +52,7 @@ Write-Output "Remote version: $($remoteVersion.Matches.Groups[1].Value)"
 
 **Bash:**
 ```bash
-remote_version=$(grep -oP '## \[\K[0-9]+\.[0-9]+\.[0-9]+' .gsd-update-temp/CHANGELOG.md | head -1)
+remote_version=$(grep -oP '## \[\K[0-9]+\.[0-9]+\.[0-9]+' .agent/state-update-temp/CHANGELOG.md | head -1)
 echo "Remote version: $remote_version"
 ```
 
@@ -104,13 +104,13 @@ B) No — Cancel
 ```powershell
 # Backup current
 Copy-Item -Recurse ".agent" ".agent.backup"
-Copy-Item -Recurse ".gsd/templates" ".gsd/templates.backup"
+Copy-Item -Recurse ".agent/state/templates" ".agent/state/templates.backup"
 
-# Update workflows and skills (preserve user's .gsd docs)
+# Update workflows and skills (preserve user's .agent/state docs)
 Copy-Item -Recurse -Force ".gsd-update-temp/.agent/*" ".agent/"
 
 # Update templates only
-Copy-Item -Recurse -Force ".gsd-update-temp/.gsd/templates/*" ".gsd/templates/"
+Copy-Item -Recurse -Force ".gsd-update-temp/.agent/state/templates/*" ".agent/state/templates/"
 
 # Update root files
 Copy-Item -Force ".gsd-update-temp/GSD-STYLE.md" "./"
@@ -121,17 +121,17 @@ Copy-Item -Force ".gsd-update-temp/CHANGELOG.md" "./"
 ```bash
 # Backup current
 cp -r .agent .agent.backup
-cp -r .gsd/templates .gsd/templates.backup
+cp -r .agent/state/templates .agent/state/templates.backup
 
-# Update workflows and skills (preserve user's .gsd docs)
-cp -r .gsd-update-temp/.agent/* .agent/
+# Update workflows and skills (preserve user's .agent/state docs)
+cp -r .agent/state-update-temp/.agent/* .agent/
 
 # Update templates only
-cp -r .gsd-update-temp/.gsd/templates/* .gsd/templates/
+cp -r .agent/state-update-temp/.agent/state/templates/* .agent/state/templates/
 
 # Update root files
-cp .gsd-update-temp/GSD-STYLE.md ./
-cp .gsd-update-temp/CHANGELOG.md ./
+cp .agent/state-update-temp/GSD-STYLE.md ./
+cp .agent/state-update-temp/CHANGELOG.md ./
 ```
 
 ---
@@ -142,14 +142,14 @@ cp .gsd-update-temp/CHANGELOG.md ./
 ```powershell
 Remove-Item -Recurse -Force ".gsd-update-temp"
 Remove-Item -Recurse -Force ".agent.backup"
-Remove-Item -Recurse -Force ".gsd/templates.backup"
+Remove-Item -Recurse -Force ".agent/state/templates.backup"
 ```
 
 **Bash:**
 ```bash
-rm -rf .gsd-update-temp
+rm -rf .agent/state-update-temp
 rm -rf .agent.backup
-rm -rf .gsd/templates.backup
+rm -rf .agent/state/templates.backup
 ```
 
 ---
@@ -174,14 +174,15 @@ Updated to version {remote-version}
 
 <preserved_files>
 These user files are NEVER overwritten:
-- .gsd/SPEC.md
-- .gsd/ROADMAP.md
-- .gsd/STATE.md
-- .gsd/ARCHITECTURE.md
-- .gsd/STACK.md
-- .gsd/DECISIONS.md
-- .gsd/JOURNAL.md
-- .gsd/TODO.md
-- .gsd/phases/*
+- .agent/state/SPEC.md
+- .agent/state/ROADMAP.md
+- .agent/state/STATE.md
+- .agent/state/ARCHITECTURE.md
+- .agent/state/STACK.md
+- .agent/state/DECISIONS.md
+- .agent/state/JOURNAL.md
+- .agent/state/TODO.md
+- .agent/state/phases/*
 - .gemini/GEMINI.md
 </preserved_files>
+

@@ -69,7 +69,7 @@ Based on discovery level:
 
 ## 4. Generate RESEARCH.md
 
-Create `.gsd/phases/{N}/RESEARCH.md`:
+Create `.agent/state/phases/{N}/RESEARCH.md`:
 
 ```markdown
 ---
@@ -128,7 +128,7 @@ researched_at: {date}
 ## 5. Commit Research
 
 ```powershell
-git add .gsd/phases/{N}/RESEARCH.md
+git add .agent/state/phases/{N}/RESEARCH.md
 git commit -m "docs(phase-{N}): research complete"
 ```
 
@@ -158,3 +158,4 @@ Key findings:
 ```
 
 </process>
+

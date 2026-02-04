@@ -20,7 +20,7 @@ Safely pause work with complete state preservation for session handoff.
 
 ## 1. Capture Current State
 
-Update `.gsd/STATE.md`:
+Update `.agent/state/STATE.md`:
 
 ```markdown
 ## Current Position
@@ -67,7 +67,7 @@ Update `.gsd/STATE.md`:
 
 ## 2. Add Journal Entry
 
-Create entry in `.gsd/JOURNAL.md`:
+Create entry in `.agent/state/JOURNAL.md`:
 
 ```markdown
 ## Session: {YYYY-MM-DD HH:MM}
@@ -95,7 +95,7 @@ Create entry in `.gsd/JOURNAL.md`:
 ## 3. Commit State
 
 ```bash
-git add .gsd/STATE.md .gsd/JOURNAL.md
+git add .agent/state/STATE.md .agent/state/JOURNAL.md
 git commit -m "docs: pause session - {brief reason}"
 ```
 
@@ -109,8 +109,8 @@ git commit -m "docs: pause session - {brief reason}"
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 State saved to:
-• .gsd/STATE.md
-• .gsd/JOURNAL.md
+• .agent/state/STATE.md
+• .agent/state/JOURNAL.md
 
 ───────────────────────────────────────────────────────
 
@@ -139,3 +139,4 @@ If pausing due to debugging failures:
 
 A fresh context often immediately sees solutions that a polluted context missed.
 </context_hygiene>
+

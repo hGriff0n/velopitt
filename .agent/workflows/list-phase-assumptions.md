@@ -14,7 +14,7 @@ Surface and document assumptions made during phase planning that should be valid
 ## 1. Load Phase Plans
 
 ```powershell
-Get-ChildItem ".gsd/phases/{N}/*-PLAN.md"
+Get-ChildItem ".agent/state/phases/{N}/*-PLAN.md"
 ```
 
 ---
@@ -80,3 +80,4 @@ Ask if user wants to:
 - Accept and proceed
 
 </process>
+

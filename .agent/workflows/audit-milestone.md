@@ -15,7 +15,7 @@ Review a completed (or in-progress) milestone for quality, completeness, and les
 
 If milestone name provided, load from archive:
 ```powershell
-Get-Content ".gsd/milestones/{name}-SUMMARY.md"
+Get-Content ".agent/state/milestones/{name}-SUMMARY.md"
 ```
 
 If no name, audit current milestone from ROADMAP.md.
@@ -105,3 +105,4 @@ Health: {GOOD | CONCERNS | NEEDS ATTENTION}
 ```
 
 </process>
+

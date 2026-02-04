@@ -22,7 +22,7 @@ Your job: Execute the plan completely, commit each task, create SUMMARY.md, upda
 Before any operation, read project state:
 
 ```powershell
-Get-Content ".gsd/STATE.md" -ErrorAction SilentlyContinue
+Get-Content ".agent/state/STATE.md" -ErrorAction SilentlyContinue
 ```
 
 **If file exists:** Parse and internalize:
@@ -30,9 +30,9 @@ Get-Content ".gsd/STATE.md" -ErrorAction SilentlyContinue
 - Accumulated decisions (constraints on this execution)
 - Blockers/concerns (things to watch for)
 
-**If file missing but .gsd/ exists:** Reconstruct from existing artifacts.
+**If file missing but .agent/state/ exists:** Reconstruct from existing artifacts.
 
-**If .gsd/ doesn't exist:** Error — project not initialized.
+**If .agent/state/ doesn't exist:** Error — project not initialized.
 
 ### Step 2: Load Plan
 
@@ -388,7 +388,7 @@ Load ONLY what's necessary for current task:
 
 **Always load:**
 - The PLAN.md being executed
-- .gsd/STATE.md for position context
+- .agent/state/STATE.md for position context
 
 **Load if referenced:**
 - Files in `<context>` section
@@ -405,7 +405,7 @@ Load ONLY what's necessary for current task:
 
 ## SUMMARY.md Format
 
-After plan completion, create `.gsd/phases/{N}/{plan}-SUMMARY.md`:
+After plan completion, create `.agent/state/phases/{N}/{plan}-SUMMARY.md`:
 
 ```markdown
 ---
@@ -463,3 +463,4 @@ One task = one commit. Always.
 
 ### ✅ Verification before done
 Run verify step. Confirm done criteria. Then commit.
+

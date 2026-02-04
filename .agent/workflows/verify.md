@@ -28,9 +28,9 @@ The verifier checks the CODEBASE, not SUMMARY claims.
 **Phase:** $ARGUMENTS (required — phase number to verify)
 
 **Required files:**
-- `.gsd/SPEC.md` — Original requirements
-- `.gsd/ROADMAP.md` — Phase definition with must-haves
-- `.gsd/phases/{phase}/*-SUMMARY.md` — What was implemented
+- `.agent/state/SPEC.md` — Original requirements
+- `.agent/state/ROADMAP.md` — Phase definition with must-haves
+- `.agent/state/phases/{phase}/*-SUMMARY.md` — What was implemented
 </context>
 
 <process>
@@ -38,9 +38,9 @@ The verifier checks the CODEBASE, not SUMMARY claims.
 ## 1. Load Verification Context
 
 Read:
-- Phase definition from `.gsd/ROADMAP.md`
-- Original requirements from `.gsd/SPEC.md`
-- All SUMMARY.md files from `.gsd/phases/{phase}/`
+- Phase definition from `.agent/state/ROADMAP.md`
+- Original requirements from `.agent/state/SPEC.md`
+- All SUMMARY.md files from `.agent/state/phases/{phase}/`
 
 ---
 
@@ -93,7 +93,7 @@ For each must-have, record:
 
 ## 4. Create Verification Report
 
-Write `.gsd/phases/{phase}/VERIFICATION.md`:
+Write `.agent/state/phases/{phase}/VERIFICATION.md`:
 
 ```markdown
 ---
@@ -135,7 +135,7 @@ verdict: PASS | FAIL | PARTIAL
 
 ### If PASS (all must-haves verified):
 
-Update `.gsd/STATE.md`:
+Update `.agent/state/STATE.md`:
 ```markdown
 ## Current Position
 - **Phase**: {N} (verified)
@@ -165,7 +165,7 @@ All requirements satisfied.
 
 **Create gap closure plans:**
 
-For each failed must-have, create a fix plan in `.gsd/phases/{phase}/`:
+For each failed must-have, create a fix plan in `.agent/state/phases/{phase}/`:
 
 ```markdown
 ---
@@ -216,7 +216,7 @@ Gap closure plans created.
 ## 6. Commit Verification
 
 ```bash
-git add .gsd/phases/{phase}/VERIFICATION.md
+git add .agent/state/phases/{phase}/VERIFICATION.md
 git commit -m "docs(phase-{N}): verification report"
 ```
 
@@ -261,3 +261,4 @@ Never accept these as verification:
 | `verifier` | Detailed verification methodology |
 | `empirical-validation` | Evidence requirements |
 </related>
+

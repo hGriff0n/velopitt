@@ -85,7 +85,7 @@ Listen for:
 
 ## 5. Document Decisions
 
-Update `.gsd/DECISIONS.md`:
+Update `.agent/state/DECISIONS.md`:
 
 ```markdown
 ## Phase {N} Decisions
@@ -121,3 +121,4 @@ Update `.gsd/DECISIONS.md`:
 ```
 
 </process>
+

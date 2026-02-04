@@ -35,9 +35,16 @@
 > **Milestone**: Community Integration (Future)
 
 ### Phase 5: Community Calendar (Research & Build)
-**Status**: ⬜ Not Started
+**Status**: 🏗️ In Progress
 **Objective**: Research and implement the event calendar and map integration.
 **Requirements**: None
+**Tasks**:
+- [ ] **Data Core**: Define `CyclingGroup` and `RideDefinition` interfaces and JSON schema.
+- [ ] **Infrastructure**: Create `EventService` and `assets/data/groups/` structure.
+- [ ] **Ingestion Logic**: Implement `EventService.loadAllGroups()` and "Weekly" recurrence generator.
+- [ ] **UI Base**: Install FullCalendar and create `CalendarComponent` with route.
+- [ ] **UI Logic**: Hook up `EventService` to `CalendarComponent` display.
+- [ ] **Map Layer**: Add "Ride Start Locations" layer to `MapComponent` with popups.
 
 ### Phase 6: Community Integration (Research & Spec)
 **Status**: ⬜ Not Started

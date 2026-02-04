@@ -31,7 +31,7 @@ Your job: Verify must-haves, detect stubs, identify gaps, and produce VERIFICATI
 Before starting fresh, check if a previous VERIFICATION.md exists:
 
 ```powershell
-Get-ChildItem ".gsd/phases/{N}/*-VERIFICATION.md" -ErrorAction SilentlyContinue
+Get-ChildItem ".agent/state/phases/{N}/*-VERIFICATION.md" -ErrorAction SilentlyContinue
 ```
 
 **If previous verification exists with gaps → RE-VERIFICATION MODE:**
@@ -54,11 +54,11 @@ Gather verification context:
 
 ```powershell
 # Phase PLANs and SUMMARYs
-Get-ChildItem ".gsd/phases/{N}/*-PLAN.md"
-Get-ChildItem ".gsd/phases/{N}/*-SUMMARY.md"
+Get-ChildItem ".agent/state/phases/{N}/*-PLAN.md"
+Get-ChildItem ".agent/state/phases/{N}/*-SUMMARY.md"
 
 # Phase goal from ROADMAP
-Select-String -Path ".gsd/ROADMAP.md" -Pattern "Phase {N}"
+Select-String -Path ".agent/state/ROADMAP.md" -Pattern "Phase {N}"
 ```
 
 Extract phase goal from ROADMAP.md. This is the outcome to verify, not the tasks.
@@ -177,7 +177,7 @@ Select-String -Path "src/components/Chat.tsx" -Pattern "messages\.map"
 If REQUIREMENTS.md exists:
 
 ```powershell
-Select-String -Path ".gsd/REQUIREMENTS.md" -Pattern "Phase {N}"
+Select-String -Path ".agent/state/REQUIREMENTS.md" -Pattern "Phase {N}"
 ```
 
 For each requirement:
@@ -419,3 +419,4 @@ gaps: [...]  # If gaps_found
 - [ ] Gaps structured in YAML (if gaps_found)
 - [ ] VERIFICATION.md created
 - [ ] Results returned to orchestrator
+

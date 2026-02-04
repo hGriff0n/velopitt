@@ -10,11 +10,11 @@ Initialize a new project through unified flow: questioning → research (optiona
 This is the most leveraged moment in any project. Deep questioning here means better plans, better execution, better outcomes. One command takes you from idea to ready-for-planning.
 
 **Creates:**
-- `.gsd/SPEC.md` — project specification
-- `.gsd/ROADMAP.md` — phase structure
-- `.gsd/STATE.md` — project memory
-- `.gsd/ARCHITECTURE.md` — system design (if brownfield)
-- All other .gsd/ documentation files
+- `.agent/state/SPEC.md` — project specification
+- `.agent/state/ROADMAP.md` — phase structure
+- `.agent/state/STATE.md` — project memory
+- `.agent/state/ARCHITECTURE.md` — system design (if brownfield)
+- All other .agent/state/ documentation files
 
 **After this command:** Run `/plan 1` to start execution.
 </objective>
@@ -28,7 +28,7 @@ This is the most leveraged moment in any project. Deep questioning here means be
 
    **PowerShell:**
    ```powershell
-   if (Test-Path ".gsd/SPEC.md") {
+   if (Test-Path ".agent/state/SPEC.md") {
        Write-Error "Project already initialized. Use /progress"
        exit 1
    }
@@ -36,7 +36,7 @@ This is the most leveraged moment in any project. Deep questioning here means be
 
    **Bash:**
    ```bash
-   if [ -f ".gsd/SPEC.md" ]; then
+   if [ -f ".agent/state/SPEC.md" ]; then
        echo "Error: Project already initialized. Use /progress" >&2
        exit 1
    fi
@@ -69,7 +69,7 @@ This is the most leveraged moment in any project. Deep questioning here means be
        Select-Object -First 20
    
    $hasPackage = Test-Path "package.json" -or Test-Path "requirements.txt" -or Test-Path "Cargo.toml"
-   $hasArchitecture = Test-Path ".gsd/ARCHITECTURE.md"
+   $hasArchitecture = Test-Path ".agent/state/ARCHITECTURE.md"
    ```
 
    **Bash:**
@@ -78,7 +78,7 @@ This is the most leveraged moment in any project. Deep questioning here means be
        -not -path '*/node_modules/*' -not -path '*/.git/*' | head -20)
    
    has_package=$(test -f "package.json" -o -f "requirements.txt" -o -f "Cargo.toml" && echo true || echo false)
-   has_architecture=$(test -f ".gsd/ARCHITECTURE.md" && echo true || echo false)
+   has_architecture=$(test -f ".agent/state/ARCHITECTURE.md" && echo true || echo false)
    ```
 
 ---
@@ -166,7 +166,7 @@ Loop until "Create SPEC.md" selected.
 
 ## Phase 4: Write SPEC.md
 
-Create `.gsd/SPEC.md`:
+Create `.agent/state/SPEC.md`:
 
 ```markdown
 # SPEC.md — Project Specification
@@ -216,7 +216,7 @@ B) Skip research — I know what I want, let's plan
 ```
 
 **If research selected:**
-- Create `.gsd/RESEARCH.md` with findings
+- Create `.agent/state/RESEARCH.md` with findings
 - Document technology choices and rationale
 - Return to continue
 
@@ -247,7 +247,7 @@ Generate requirements from SPEC.md:
 
 ## Phase 7: Create Roadmap
 
-Create `.gsd/ROADMAP.md`:
+Create `.agent/state/ROADMAP.md`:
 
 ```markdown
 # ROADMAP.md
@@ -290,21 +290,21 @@ Create `.gsd/ROADMAP.md`:
 ## Phase 8: Initialize Remaining Files
 
 Create with templates:
-- `.gsd/STATE.md` — Empty state
-- `.gsd/DECISIONS.md` — Empty ADR log
-- `.gsd/JOURNAL.md` — Empty journal
-- `.gsd/TODO.md` — Empty todo list
+- `.agent/state/STATE.md` — Empty state
+- `.agent/state/DECISIONS.md` — Empty ADR log
+- `.agent/state/JOURNAL.md` — Empty journal
+- `.agent/state/TODO.md` — Empty todo list
 
 Create directories:
-- `.gsd/phases/`
-- `.gsd/templates/`
+- `.agent/state/phases/`
+- `.agent/state/templates/`
 
 ---
 
 ## Phase 9: Initial Commit
 
 ```bash
-git add .gsd/
+git add .agent/state/
 git commit -m "chore: initialize GSD project
 
 - SPEC.md with vision and goals
@@ -325,11 +325,11 @@ Project: {name}
 Phases: {N}
 
 Files created:
-• .gsd/SPEC.md (FINALIZED)
-• .gsd/ROADMAP.md ({N} phases)
-• .gsd/STATE.md
-• .gsd/DECISIONS.md
-• .gsd/JOURNAL.md
+• .agent/state/SPEC.md (FINALIZED)
+• .agent/state/ROADMAP.md ({N} phases)
+• .agent/state/STATE.md
+• .agent/state/DECISIONS.md
+• .agent/state/JOURNAL.md
 
 ───────────────────────────────────────────────────────
 
@@ -366,3 +366,4 @@ Every minute spent understanding what to build saves hours of building the wrong
 - Success is defined as "it works"
 - Scope keeps expanding during discussion
 </questioning_philosophy>
+

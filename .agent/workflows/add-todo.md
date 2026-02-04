@@ -16,7 +16,7 @@ Quickly capture an idea, task, or issue without interrupting current work flow.
 - `--priority high|medium|low` — Set priority (default: medium)
 
 **Output:**
-- `.gsd/TODO.md` — Accumulated todo items
+- `.agent/state/TODO.md` — Accumulated todo items
 </context>
 
 <process>
@@ -32,7 +32,7 @@ Extract:
 ## 2. Ensure TODO.md Exists
 
 ```powershell
-if (-not (Test-Path ".gsd/TODO.md")) {
+if (-not (Test-Path ".agent/state/TODO.md")) {
     # Create with header
 }
 ```
@@ -41,7 +41,7 @@ if (-not (Test-Path ".gsd/TODO.md")) {
 
 ## 3. Add Todo Item
 
-Append to `.gsd/TODO.md`:
+Append to `.agent/state/TODO.md`:
 
 ```markdown
 - [ ] {description} `{priority}` — {date}
@@ -67,3 +67,4 @@ Priority: {priority}
 ```
 
 </process>
+

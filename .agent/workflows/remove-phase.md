@@ -15,7 +15,7 @@ Remove a phase from the roadmap, with safety checks for in-progress or completed
 
 **PowerShell:**
 ```powershell
-$phase = Select-String -Path ".gsd/ROADMAP.md" -Pattern "### Phase $N:"
+$phase = Select-String -Path ".agent/state/ROADMAP.md" -Pattern "### Phase $N:"
 if (-not $phase) {
     Write-Error "Phase $N not found in ROADMAP.md"
 }
@@ -23,7 +23,7 @@ if (-not $phase) {
 
 **Bash:**
 ```bash
-if ! grep -q "### Phase $N:" ".gsd/ROADMAP.md"; then
+if ! grep -q "### Phase $N:" ".agent/state/ROADMAP.md"; then
     echo "Error: Phase $N not found in ROADMAP.md" >&2
 fi
 ```
@@ -34,12 +34,12 @@ fi
 
 **PowerShell:**
 ```powershell
-$status = Select-String -Path ".gsd/ROADMAP.md" -Pattern "Phase $N:.*\n.*Status: (.*)"
+$status = Select-String -Path ".agent/state/ROADMAP.md" -Pattern "Phase $N:.*\n.*Status: (.*)"
 ```
 
 **Bash:**
 ```bash
-status=$(grep -A1 "Phase $N:" ".gsd/ROADMAP.md" | grep "Status:" | cut -d: -f2)
+status=$(grep -A1 "Phase $N:" ".agent/state/ROADMAP.md" | grep "Status:" | cut -d: -f2)
 ```
 
 **Safety checks:**
@@ -58,12 +58,12 @@ Are other phases depending on this one?
 
 **PowerShell:**
 ```powershell
-Select-String -Path ".gsd/ROADMAP.md" -Pattern "Depends on.*Phase $N"
+Select-String -Path ".agent/state/ROADMAP.md" -Pattern "Depends on.*Phase $N"
 ```
 
 **Bash:**
 ```bash
-grep "Depends on.*Phase $N" ".gsd/ROADMAP.md"
+grep "Depends on.*Phase $N" ".agent/state/ROADMAP.md"
 ```
 
 **If dependencies exist:**
@@ -87,7 +87,7 @@ Status: {status}
 
 This will:
 - Remove phase from ROADMAP.md
-- Delete .gsd/phases/{N}/ if exists
+- Delete .agent/state/phases/{N}/ if exists
 - Renumber subsequent phases
 
 Type "REMOVE" to confirm:
@@ -98,7 +98,7 @@ Type "REMOVE" to confirm:
 ## 5. Remove Phase
 
 1. Delete from ROADMAP.md
-2. Remove `.gsd/phases/{N}/` directory
+2. Remove `.agent/state/phases/{N}/` directory
 3. Renumber subsequent phases (N+1 becomes N, etc.)
 4. Update dependencies
 
@@ -137,3 +137,4 @@ Renumbered: {M} phases
 ```
 
 </process>
+

@@ -188,9 +188,9 @@ issue:
 ### Step 1: Load Context
 ```
 Read:
-- .gsd/ROADMAP.md (phase goals)
-- .gsd/REQUIREMENTS.md (if exists)
-- .gsd/phases/{N}/*-PLAN.md (all plans)
+- .agent/state/ROADMAP.md (phase goals)
+- .agent/state/REQUIREMENTS.md (if exists)
+- .agent/state/phases/{N}/*-PLAN.md (all plans)
 ```
 
 ### Step 2: Parse Plans
@@ -281,3 +281,4 @@ issue:
 - After plan modifications
 
 Plan checker is the quality gate between planning and execution.
+

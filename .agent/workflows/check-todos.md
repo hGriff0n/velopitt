@@ -15,7 +15,7 @@ Display pending todo items, optionally filtered by priority or status.
 - `--priority high|medium|low` — Filter by priority
 
 **Input:**
-- `.gsd/TODO.md` — Todo items
+- `.agent/state/TODO.md` — Todo items
 </context>
 
 <process>
@@ -23,12 +23,12 @@ Display pending todo items, optionally filtered by priority or status.
 ## 1. Load TODO.md
 
 ```powershell
-if (-not (Test-Path ".gsd/TODO.md")) {
+if (-not (Test-Path ".agent/state/TODO.md")) {
     Write-Output "No todos found. Use /add-todo to create one."
     exit
 }
 
-Get-Content ".gsd/TODO.md"
+Get-Content ".agent/state/TODO.md"
 ```
 
 ---
@@ -78,3 +78,4 @@ COMPLETED ({M} items)
 | low | 🟢 |
 | done | ✅ |
 </priority_indicators>
+

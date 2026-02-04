@@ -15,13 +15,13 @@ Finalize the current milestone, archive documentation, and prepare for next mile
 **PowerShell:**
 ```powershell
 # Check ROADMAP.md for incomplete phases
-Select-String -Path ".gsd/ROADMAP.md" -Pattern "Status.*Not Started|Status.*In Progress"
+Select-String -Path ".agent/state/ROADMAP.md" -Pattern "Status.*Not Started|Status.*In Progress"
 ```
 
 **Bash:**
 ```bash
 # Check ROADMAP.md for incomplete phases
-grep -E "Status.*Not Started|Status.*In Progress" ".gsd/ROADMAP.md"
+grep -E "Status.*Not Started|Status.*In Progress" ".agent/state/ROADMAP.md"
 ```
 
 **If incomplete phases found:**
@@ -44,7 +44,7 @@ Verify all must-haves from ROADMAP.md:
 
 ## 3. Generate Milestone Summary
 
-Create `.gsd/milestones/{name}-SUMMARY.md`:
+Create `.agent/state/milestones/{name}-SUMMARY.md`:
 
 ```markdown
 # Milestone: {name}
@@ -76,19 +76,19 @@ Create `.gsd/milestones/{name}-SUMMARY.md`:
 **PowerShell:**
 ```powershell
 # Create milestone archive
-New-Item -ItemType Directory -Force ".gsd/milestones/{name}"
+New-Item -ItemType Directory -Force ".agent/state/milestones/{name}"
 
 # Move phase-specific files
-Move-Item ".gsd/phases/*" ".gsd/milestones/{name}/"
+Move-Item ".agent/state/phases/*" ".agent/state/milestones/{name}/"
 ```
 
 **Bash:**
 ```bash
 # Create milestone archive
-mkdir -p ".gsd/milestones/{name}"
+mkdir -p ".agent/state/milestones/{name}"
 
 # Move phase-specific files
-mv .gsd/phases/* ".gsd/milestones/{name}/"
+mv .agent/state/phases/* ".agent/state/milestones/{name}/"
 ```
 
 ---
@@ -133,3 +133,4 @@ Tag: {name}
 ```
 
 </process>
+

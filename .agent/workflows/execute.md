@@ -31,9 +31,9 @@ Orchestrator stays lean: discover plans, analyze dependencies, group into waves,
 - `--gaps-only` — Execute only gap closure plans (created by `/verify` when issues found)
 
 **Required files:**
-- `.gsd/ROADMAP.md` — Phase definitions
-- `.gsd/STATE.md` — Current position
-- `.gsd/phases/{phase}/` — Phase directory with PLAN.md files
+- `.agent/state/ROADMAP.md` — Phase definitions
+- `.agent/state/STATE.md` — Current position
+- `.agent/state/phases/{phase}/` — Phase directory with PLAN.md files
 </context>
 
 <process>
@@ -42,14 +42,14 @@ Orchestrator stays lean: discover plans, analyze dependencies, group into waves,
 
 **PowerShell:**
 ```powershell
-Test-Path ".gsd/ROADMAP.md"
-Test-Path ".gsd/STATE.md"
+Test-Path ".agent/state/ROADMAP.md"
+Test-Path ".agent/state/STATE.md"
 ```
 
 **Bash:**
 ```bash
-test -f ".gsd/ROADMAP.md"
-test -f ".gsd/STATE.md"
+test -f ".agent/state/ROADMAP.md"
+test -f ".agent/state/STATE.md"
 ```
 
 **If not found:** Error — user should run `/plan` first.
@@ -61,13 +61,13 @@ test -f ".gsd/STATE.md"
 **PowerShell:**
 ```powershell
 # Check phase exists in roadmap
-Select-String -Path ".gsd/ROADMAP.md" -Pattern "Phase $PHASE:"
+Select-String -Path ".agent/state/ROADMAP.md" -Pattern "Phase $PHASE:"
 ```
 
 **Bash:**
 ```bash
 # Check phase exists in roadmap
-grep "Phase $PHASE:" ".gsd/ROADMAP.md"
+grep "Phase $PHASE:" ".agent/state/ROADMAP.md"
 ```
 
 **If not found:** Error with available phases from ROADMAP.md.
@@ -78,7 +78,7 @@ grep "Phase $PHASE:" ".gsd/ROADMAP.md"
 
 **PowerShell:**
 ```powershell
-$PHASE_DIR = ".gsd/phases/$PHASE"
+$PHASE_DIR = ".agent/state/phases/$PHASE"
 if (-not (Test-Path $PHASE_DIR)) {
     New-Item -ItemType Directory -Path $PHASE_DIR
 }
@@ -86,7 +86,7 @@ if (-not (Test-Path $PHASE_DIR)) {
 
 **Bash:**
 ```bash
-PHASE_DIR=".gsd/phases/$PHASE"
+PHASE_DIR=".agent/state/phases/$PHASE"
 mkdir -p "$PHASE_DIR"
 ```
 
@@ -229,7 +229,7 @@ Phase {N} executed successfully. {X} plans, {Y} tasks completed.
 ## 9. Commit Phase Completion
 
 ```bash
-git add .gsd/ROADMAP.md .gsd/STATE.md
+git add .agent/state/ROADMAP.md .agent/state/STATE.md
 git commit -m "docs(phase-{N}): complete {phase-name}"
 ```
 
@@ -294,7 +294,7 @@ Gap closure plans created.
 <context_hygiene>
 **After 3 failed debugging attempts:**
 1. Stop current approach
-2. Document to `.gsd/STATE.md` what was tried
+2. Document to `.agent/state/STATE.md` what was tried
 3. Recommend `/pause` for fresh session
 </context_hygiene>
 
@@ -316,3 +316,4 @@ Gap closure plans created.
 | `context-health-monitor` | 3-strike rule enforcement |
 | `empirical-validation` | Verification requirements |
 </related>
+

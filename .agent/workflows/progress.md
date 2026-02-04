@@ -13,8 +13,8 @@ Quick status check — where are we and what's next?
 ## 1. Load Current State
 
 Read:
-- `.gsd/STATE.md` — Current position
-- `.gsd/ROADMAP.md` — Phase statuses
+- `.agent/state/STATE.md` — Current position
+- `.agent/state/ROADMAP.md` — Phase statuses
 
 ---
 
@@ -88,3 +88,4 @@ Based on status, recommend:
 | SPEC not finalized | Complete SPEC.md first |
 
 </process>
+

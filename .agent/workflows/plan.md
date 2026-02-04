@@ -33,8 +33,8 @@ Create executable phase prompts (PLAN.md files) for a roadmap phase with integra
 - `--gaps` — Gap closure mode (reads VERIFICATION.md, skips research)
 
 **Required files:**
-- `.gsd/SPEC.md` — Must be FINALIZED (Planning Lock)
-- `.gsd/ROADMAP.md` — Must have phases defined
+- `.agent/state/SPEC.md` — Must be FINALIZED (Planning Lock)
+- `.agent/state/ROADMAP.md` — Must have phases defined
 </context>
 
 <philosophy>
@@ -106,7 +106,7 @@ Discovery is MANDATORY unless you can prove current context exists.
 **PowerShell:**
 ```powershell
 # Check SPEC.md exists and is finalized
-$spec = Get-Content ".gsd/SPEC.md" -Raw
+$spec = Get-Content ".agent/state/SPEC.md" -Raw
 if ($spec -notmatch "FINALIZED") {
     Write-Error "SPEC.md must be FINALIZED before planning"
     exit
@@ -116,7 +116,7 @@ if ($spec -notmatch "FINALIZED") {
 **Bash:**
 ```bash
 # Check SPEC.md exists and is finalized
-if ! grep -q "FINALIZED" ".gsd/SPEC.md"; then
+if ! grep -q "FINALIZED" ".agent/state/SPEC.md"; then
     echo "Error: SPEC.md must be FINALIZED before planning" >&2
     exit 1
 fi
@@ -142,12 +142,12 @@ Extract from $ARGUMENTS:
 
 **PowerShell:**
 ```powershell
-Select-String -Path ".gsd/ROADMAP.md" -Pattern "Phase $PHASE:"
+Select-String -Path ".agent/state/ROADMAP.md" -Pattern "Phase $PHASE:"
 ```
 
 **Bash:**
 ```bash
-grep "Phase $PHASE:" ".gsd/ROADMAP.md"
+grep "Phase $PHASE:" ".agent/state/ROADMAP.md"
 ```
 
 **If not found:** Error with available phases.
@@ -159,7 +159,7 @@ grep "Phase $PHASE:" ".gsd/ROADMAP.md"
 
 **PowerShell:**
 ```powershell
-$PHASE_DIR = ".gsd/phases/$PHASE"
+$PHASE_DIR = ".agent/state/phases/$PHASE"
 if (-not (Test-Path $PHASE_DIR)) {
     New-Item -ItemType Directory -Path $PHASE_DIR
 }
@@ -167,7 +167,7 @@ if (-not (Test-Path $PHASE_DIR)) {
 
 **Bash:**
 ```bash
-PHASE_DIR=".gsd/phases/$PHASE"
+PHASE_DIR=".agent/state/phases/$PHASE"
 mkdir -p "$PHASE_DIR"
 ```
 
@@ -220,10 +220,10 @@ Display banner:
 
 ### 6a. Gather Context
 Load:
-- `.gsd/SPEC.md` — Requirements
-- `.gsd/ROADMAP.md` — Phase description
+- `.agent/state/SPEC.md` — Requirements
+- `.agent/state/ROADMAP.md` — Phase description
 - `$PHASE_DIR/RESEARCH.md` — If exists
-- `.gsd/ARCHITECTURE.md` — If exists
+- `.agent/state/ARCHITECTURE.md` — If exists
 
 ### 6b. Decompose into Tasks
 For the phase goal:
@@ -249,8 +249,8 @@ wave: 1
 {What this plan delivers and why}
 
 ## Context
-- .gsd/SPEC.md
-- .gsd/ARCHITECTURE.md
+- .agent/state/SPEC.md
+- .agent/state/ARCHITECTURE.md
 - {relevant source files}
 
 ## Tasks
@@ -293,7 +293,7 @@ For each plan, verify:
 
 ## 8. Update State
 
-Update `.gsd/STATE.md`:
+Update `.agent/state/STATE.md`:
 ```markdown
 ## Current Position
 - **Phase**: {N}
@@ -309,8 +309,8 @@ Update `.gsd/STATE.md`:
 ## 9. Commit Plans
 
 ```bash
-git add .gsd/phases/$PHASE/
-git add .gsd/STATE.md
+git add .agent/state/phases/$PHASE/
+git add .agent/state/STATE.md
 git commit -m "docs(phase-$PHASE): create execution plans"
 ```
 
@@ -373,3 +373,4 @@ Plans:
 | `planner` | Detailed planning methodology |
 | `plan-checker` | Validates plans before execution |
 </related>
+

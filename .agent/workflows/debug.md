@@ -26,12 +26,12 @@ Systematically diagnose an issue using hypothesis-driven debugging, with persist
 Check for existing debug state:
 **PowerShell:**
 ```powershell
-Test-Path ".gsd/DEBUG.md"
+Test-Path ".agent/state/DEBUG.md"
 ```
 
 **Bash:**
 ```bash
-test -f ".gsd/DEBUG.md"
+test -f ".agent/state/DEBUG.md"
 ```
 
 If exists, load previous attempts. If not, create new session.
@@ -49,7 +49,7 @@ Issue: {description}
 
 ## 2. Document Symptom
 
-Create/update `.gsd/DEBUG.md`:
+Create/update `.agent/state/DEBUG.md`:
 
 ```markdown
 # Debug Session: {Issue ID}
@@ -203,7 +203,7 @@ Committed: {hash}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 3 attempts exhausted on current approach.
-State saved to .gsd/DEBUG.md
+State saved to .agent/state/DEBUG.md
 
 ───────────────────────────────────────────────────────
 
@@ -233,3 +233,4 @@ Options:
 | `debugger` | Detailed debugging methodology |
 | `context-health-monitor` | 3-strike rule |
 </related>
+

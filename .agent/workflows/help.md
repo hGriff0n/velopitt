@@ -88,9 +88,10 @@ CORE RULES
 
 ───────────────────────────────────────────────────────
 
-📚 Docs: GSD-STYLE.md, .gsd/examples/
+📚 Docs: GSD-STYLE.md, .agent/state/examples/
 
 ───────────────────────────────────────────────────────
 ```
 
 </process>
+

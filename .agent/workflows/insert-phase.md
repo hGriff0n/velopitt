@@ -23,7 +23,7 @@ Extract:
 
 **PowerShell:**
 ```powershell
-$totalPhases = (Select-String -Path ".gsd/ROADMAP.md" -Pattern "### Phase \d+").Count
+$totalPhases = (Select-String -Path ".agent/state/ROADMAP.md" -Pattern "### Phase \d+").Count
 if ($position -lt 1 -or $position -gt $totalPhases + 1) {
     Write-Error "Invalid position. Valid: 1-$($totalPhases + 1)"
 }
@@ -31,7 +31,7 @@ if ($position -lt 1 -or $position -gt $totalPhases + 1) {
 
 **Bash:**
 ```bash
-total_phases=$(grep -c "### Phase [0-9]" ".gsd/ROADMAP.md")
+total_phases=$(grep -c "### Phase [0-9]" ".agent/state/ROADMAP.md")
 if [ "$position" -lt 1 ] || [ "$position" -gt $((total_phases + 1)) ]; then
     echo "Error: Invalid position. Valid: 1-$((total_phases + 1))" >&2
 fi
@@ -52,7 +52,7 @@ Ask for:
 For phases >= position, increment phase number by 1.
 
 **Also update:**
-- Phase directory names (`.gsd/phases/{N}/`)
+- Phase directory names (`.agent/state/phases/{N}/`)
 - References in PLAN.md files
 - Dependencies in ROADMAP.md
 
@@ -107,3 +107,4 @@ Phase insertion can be disruptive. Consider:
 - Existing plans reference phase numbers
 - Use sparingly and early in milestone lifecycle
 </warning>
+
