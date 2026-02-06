@@ -7,7 +7,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1000;
+    z-index: 1;
     /* Ensure on top of map/sidebar */
     background: var(--surface-low, #f9f9f9);
     /* Fallback to opaque */
@@ -39,4 +39,19 @@
 
 ::ng-deep .fc-toolbar-title {
     font-size: 1.5em !important;
+}
+
+.custom-tooltip {
+    position: fixed;
+    z-index: 9999;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    /* Let mouse pass through so it doesn't flicker */
+    font-size: 0.9em;
+    max-width: 300px;
 }

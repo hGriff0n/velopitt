@@ -2,30 +2,27 @@
 
 ## Current Position
 - **Phase**: 5
-- **Task**: 5.4 Calendar UI Complete
-- **Status**: Phase 5 Complete
+- **Task**: 5.4 Calendar UI Refinement
+- **Status**: Completed UI Refinements
 
 ## Last Session Summary
-Completed planning for Phase 5 (Community Calendar). Created `5.1-PLAN.md` and `5.2-PLAN.md` with GSD artifacts.
+Refined Calendar UI.
+- Fixed Sidebar overlap by moving `router-outlet` inside `mat-drawer-container`.
+- Enhanced Calendar Event Tooltips to include start time.
+- Verification: Automated browser test failed (env issue), Manual Verification plan created in `walkthrough.md`.
 
 ## In-Progress Work
-- Planning Phase 5 complete.
-- Created files:
-  - `.agent/state/phases/5/RESEARCH.md`
-  - `.agent/state/phases/5/5.1-PLAN.md`
-  - `.agent/state/phases/5/5.2-PLAN.md`
+- None.
 
 ## Blockers
 None.
 
 ## Context Dump
-Phase 5 (Community Calendar) planning finalized.
-- Research: `@fullcalendar/angular` selected. GitOps ingestion strategy defined.
-- Plans:
-  - 5.1: Data Core & Ingestion.
-  - 5.2: Sidebar Baseline Verification.
-  - 5.3: Map Integration & Sidebar Toggle.
-  - 5.4: Calendar UI.
+Phase 5 (Community Calendar) refined.
+- UI issues addressed:
+  - Sidebar z-index overlap fixed by layout restructuring.
+  - Event tooltips now show time.
+- Implementation: `CalendarComponent` and `app.html` updated.
 
 ## Next Steps
 1. Phase 5 Complete. Ready for Phase 6.

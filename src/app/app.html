@@ -19,5 +19,5 @@
 
   <segment-overlay [segment]="segment.getSegmentByDomId(selectedSegment())"
     [style.display]="isShow() ? 'block' : 'none'" (closeOverlay)="onSegmentSelected(-1)"></segment-overlay>
+  <router-outlet />
 </mat-drawer-container>
-<router-outlet />

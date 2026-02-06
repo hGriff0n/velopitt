@@ -23,6 +23,8 @@ export class CalendarComponent {
 
     @ViewChild('calendar') calendarComponent: FullCalendarComponent | undefined;
 
+    hoveredEvent = signal<{ title: string; html: string; x: number; y: number } | null>(null);
+
     calendarOptions = signal<CalendarOptions>({
         plugins: [dayGridPlugin, listPlugin, interactionPlugin],
         initialView: 'dayGridMonth',
@@ -39,13 +41,26 @@ export class CalendarComponent {
         eventClick: (info) => {
             console.log('Event clicked', info.event);
         },
-        eventDidMount: (info) => {
-            // Native Tooltip
+        eventMouseEnter: (info) => {
             const groupName = info.event.extendedProps['groupName'] || '';
             const location = info.event.extendedProps['locationLabel'] || '';
-            const tooltip = `${groupName}: ${info.event.title}\nLocation: ${location}\n${info.event.extendedProps['description'] || ''}`;
+            const desc = info.event.extendedProps['description'] || '';
 
-            info.el.setAttribute('title', tooltip);
+            const start = info.event.start;
+            let timeString = '';
+            if (start) {
+                timeString = start.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            }
+
+            this.hoveredEvent.set({
+                title: info.event.title,
+                html: `<strong>${timeString}</strong> - <strong>${groupName}</strong><br>${location}<br><br>${desc}`,
+                x: info.jsEvent.clientX + 15,
+                y: info.jsEvent.clientY + 15
+            });
+        },
+        eventMouseLeave: () => {
+            this.hoveredEvent.set(null);
         },
         eventContent: (arg) => {
             // Custom rendering: Title + Group Name
