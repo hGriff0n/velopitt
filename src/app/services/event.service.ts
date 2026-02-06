@@ -96,6 +96,30 @@ export class EventService {
                     }
                     current.setDate(current.getDate() + 1);
                 }
+            } else if (ride.recurrence === 'Once' && ride.startDate) {
+                // Handle One-Time events
+                const eventDate = new Date(ride.startDate + 'T' + ride.startTime);
+
+                if (eventDate >= start && eventDate <= end) {
+                    const eventEnd = new Date(eventDate);
+                    eventEnd.setMinutes(eventEnd.getMinutes() + ride.durationMinutes);
+
+                    const group = getGroup(ride.groupId);
+
+                    events.push({
+                        id: ride.id,
+                        title: ride.name,
+                        start: eventDate,
+                        end: eventEnd,
+                        rideDefId: ride.id,
+                        groupId: ride.groupId,
+                        extendedProps: {
+                            description: ride.description,
+                            locationLabel: ride.startLocationLabel,
+                            groupName: group ? group.name : 'Unknown Group',
+                        }
+                    });
+                }
             }
             // TODO: Handle other recurrences
         }

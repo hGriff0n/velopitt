@@ -126,8 +126,8 @@ describe('EventService', () => {
                     startLocation: { type: 'Point', coordinates: [0, 0] }, startLocationLabel: 'Loc'
                 },
                 {
-                    id: 'once', groupId: 'g1', name: 'One Time',
-                    startTime: '10:00', durationMinutes: 60, recurrence: 'Once', // Should be ignored
+                    id: 'unknown', groupId: 'g1', name: 'Unknown Type',
+                    startTime: '10:00', durationMinutes: 60, recurrence: 'flargnarg' as any,
                     startLocation: { type: 'Point', coordinates: [0, 0] }, startLocationLabel: 'Loc'
                 }
             ]
@@ -139,10 +139,35 @@ describe('EventService', () => {
         const janEvents = service.generateEvents(new Date('2024-01-01'), new Date('2024-01-31'));
         const hasWinter = janEvents.some(e => e.title === 'Winter Ride');
         const hasSummer = janEvents.some(e => e.title === 'Summer Ride');
-        const hasOnce = janEvents.some(e => e.title === 'One Time');
+        const hasUnknown = janEvents.some(e => e.title === 'Unknown Type');
 
         expect(hasWinter).toBeTrue();
         expect(hasSummer).toBeFalse();
-        expect(hasOnce).toBeFalse();
+        expect(hasUnknown).toBeFalse();
+    }));
+
+    it('should generate Once event', fakeAsync(() => {
+        service.loadAllGroups();
+        httpMock.expectOne('assets/data/groups-manifest.json').flush(['g.json']);
+        tick();
+
+        httpMock.expectOne('assets/data/groups/g.json').flush({
+            group: { id: 'g1', name: 'G1' },
+            rides: [
+                {
+                    id: 'once', groupId: 'g1', name: 'One Time',
+                    startTime: '10:00', durationMinutes: 60, recurrence: 'Once',
+                    startDate: '2024-01-15',
+                    startLocation: { type: 'Point', coordinates: [0, 0] }, startLocationLabel: 'Loc'
+                }
+            ]
+        });
+        tick();
+
+        // Check coverage for Once event
+        const events = service.generateEvents(new Date('2024-01-01'), new Date('2024-01-31'));
+        expect(events.length).toBe(1);
+        expect(events[0].title).toBe('One Time');
+        expect(events[0].start.getDate()).toBe(15);
     }));
 });

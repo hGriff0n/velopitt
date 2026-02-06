@@ -27,6 +27,7 @@ export interface RideDefinition {
     startLocationLabel: string; // "Market Square", etc.
     recurrence: RecurrenceType;
     dayOfWeek?: number; // 0=Sunday, 1=Monday... for Weekly
+    startDate?: string; // YYYY-MM-DD for Once
     activeMonths?: number[]; // [0, 1...11] - for seasonality
 }
 
