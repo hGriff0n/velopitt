@@ -33,8 +33,8 @@ describe('SidebarComponent', () => {
 
     it('should render all layer toggle buttons', () => {
         const buttons = fixture.debugElement.queryAll(By.css('button[mat-list-item]'));
-        // We expect 4 toggle buttons + 5 link buttons = 9 total
-        expect(buttons.length).toBe(9);
+        // We expect 5 toggle buttons + 5 link buttons = 10 total
+        expect(buttons.length).toBe(10);
 
         // Check specific toggle texts to ensure order/existence
         const buttonTexts = buttons.map(b => b.nativeElement.textContent.trim());
@@ -42,14 +42,15 @@ describe('SidebarComponent', () => {
         expect(buttonTexts).toContain('Toggle segment layer');
         expect(buttonTexts).toContain('Toggle Bike Map layer');
         expect(buttonTexts).toContain('Toggle Bike Plus layer');
+        expect(buttonTexts).toContain('Toggle Ride Starts');
     });
 
     it('should render all navigation links', () => {
         const linkButtons = fixture.debugElement.queryAll(By.directive(RouterLink)); // Actually standard buttons for now but with routerLink
 
-        // Just check the texts of the bottom section
+        // Just check the texts of the bottom section (skipping 5 toggles)
         const buttons = fixture.debugElement.queryAll(By.css('button[mat-list-item]'));
-        const linkTexts = buttons.slice(4).map(b => b.nativeElement.textContent.trim());
+        const linkTexts = buttons.slice(5).map(b => b.nativeElement.textContent.trim());
 
         expect(linkTexts).toEqual([
             'Group Rides + Events',
@@ -79,6 +80,12 @@ describe('SidebarComponent', () => {
         fixture.detectChanges();
         // Index 1 is Segment
         expect(buttons[1].nativeElement.classList).toContain('active-button');
+
+        // Toggle Ride Starts
+        fixture.componentRef.setInput('rideStartsShowing', true);
+        fixture.detectChanges();
+        // Index 4 is Ride Starts
+        expect(buttons[4].nativeElement.classList).toContain('active-button');
     });
 
     it('should emit outputs when clicked', () => {
@@ -95,5 +102,10 @@ describe('SidebarComponent', () => {
         // Click Segment (Index 1)
         buttons[1].triggerEventHandler('click', null);
         expect(component.toggleSegment.emit).toHaveBeenCalled();
+
+        // Click Ride Starts (Index 4)
+        spyOn(component.toggleRideStarts, 'emit');
+        buttons[4].triggerEventHandler('click', null);
+        expect(component.toggleRideStarts.emit).toHaveBeenCalled();
     });
 });

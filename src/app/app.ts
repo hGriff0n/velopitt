@@ -35,6 +35,7 @@ export class App {
   segmentShowing = signal(false);
   bikemapShowing = signal(true);
   bikemapPlusShowing = signal(false);
+  rideStartsShowing = signal(false);
 
   selectedSegment = signal(0);
   private detector = inject(ChangeDetectorRef);
@@ -78,5 +79,9 @@ export class App {
 
   toggleBikePlus() {
     this.bikemapPlusShowing.update(v => !v);
+  }
+
+  toggleRideStarts() {
+    this.rideStartsShowing.update(v => !v);
   }
 }

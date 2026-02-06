@@ -5,6 +5,7 @@ import { SegmentService } from '../../services/segment-service';
 import { LayerService } from '../../services/layer-service';
 import { ThemeService } from '../../services/theme-service';
 import { MapStateService } from '../../services/map-state.service';
+import { EventService } from '../../services/event.service';
 import { signal } from '@angular/core';
 
 // Mock Services
@@ -46,6 +47,15 @@ class MockMapStateService {
     highlightSegment = jasmine.createSpy('highlightSegment');
     clearHighlights = jasmine.createSpy('clearHighlights');
 }
+class MockEventService {
+    rides = signal<any[]>([{
+        id: 'r1',
+        name: 'Ride 1',
+        startLocation: { coordinates: [0, 0] },
+        startLocationLabel: 'Loc'
+    }]);
+    loadAllGroups = jasmine.createSpy('loadAllGroups');
+}
 
 // Mock Mapbox Map Instance
 const mockMapInstance = {
@@ -63,17 +73,11 @@ const mockMapInstance = {
     queryRenderedFeatures: jasmine.createSpy('queryRenderedFeatures').and.returnValue([])
 };
 
-// We need to bypass the Mapbox Map constructor being called in ngAfterViewInit
-// typically this requires mocking the library or suppressing the call.
-// For this test, we might assume the environment handles it or we catch the error,
-// OR we spy on the private map creation if we can't easily mock the import.
-// However, since we are testing the component logic, we can verify calling 'onLoad' manually
-// does what we expect, even if ngAfterViewInit fails or creates a real map (which won't work in headless).
-
 describe('AppMapComponent', () => {
     let component: AppMapComponent;
     let fixture: ComponentFixture<AppMapComponent>;
     let mapStateService: MockMapStateService;
+    let eventService: MockEventService;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -83,13 +87,15 @@ describe('AppMapComponent', () => {
                 { provide: SegmentService, useClass: MockSegmentService },
                 { provide: LayerService, useClass: MockLayerService },
                 { provide: ThemeService, useClass: MockThemeService },
-                { provide: MapStateService, useClass: MockMapStateService }
+                { provide: MapStateService, useClass: MockMapStateService },
+                { provide: EventService, useClass: MockEventService }
             ]
         }).compileComponents();
 
         fixture = TestBed.createComponent(AppMapComponent);
         component = fixture.componentInstance;
         mapStateService = TestBed.inject(MapStateService) as unknown as MockMapStateService;
+        eventService = TestBed.inject(EventService) as unknown as MockEventService;
 
         // Suppress ngAfterViewInit to avoid real Map creation issues in test env
         spyOn(component, 'ngAfterViewInit').and.stub();
@@ -106,17 +112,13 @@ describe('AppMapComponent', () => {
         (component as any).onLoad({ target: mockMapInstance });
 
         expect(mapStateService.setMap).toHaveBeenCalledWith(mockMapInstance as any);
-        expect(component.mapLoaded.emit).toBeDefined(); // verify emit works (output emit is not easily spyable unless subscribed)
+        expect(component.mapLoaded.emit).toBeDefined();
     });
 
     it('should fly to segment via MapStateService when clicked', () => {
-        // Setup
         (component as any).onLoad({ target: mockMapInstance });
-
-        // Spy on emit
         spyOn(component.segmentSelected, 'emit');
 
-        // Trigger click
         (component as any).handleSegmentClickEvent(123, { lng: 0, lat: 0 });
 
         expect(component.segmentSelected.emit).toHaveBeenCalledWith(123);
@@ -140,15 +142,14 @@ describe('AppMapComponent', () => {
         (component as any).onLoad({ target: mockMapInstance });
         spyOn(component.segmentSelected, 'emit');
 
-        // Select one first
         fixture.componentRef.setInput('selectedSegmentId', 123);
         fixture.detectChanges();
 
-        // Click outside (queryRenderedFeatures returns empty array by default mock)
         (component as any).onMapClick({ point: { x: 0, y: 0 } });
 
         expect(component.segmentSelected.emit).toHaveBeenCalledWith(-1);
     });
+
     it('should register interactions and handle callbacks', () => {
         (component as any).onLoad({ target: mockMapInstance });
 
@@ -159,30 +160,53 @@ describe('AppMapComponent', () => {
         const callbacks = callArgs[1];
         expect(callbacks).toBeDefined();
 
-        // 1. Test onClick callback
         spyOn(component as any, 'handleSegmentClickEvent');
         callbacks.onClick(999, { lng: 1, lat: 2 });
         expect(component['handleSegmentClickEvent']).toHaveBeenCalledWith(999, { lng: 1, lat: 2 });
 
-        // 2. Test onHover callback
         callbacks.onHover(999);
         expect(mapStateService.highlightSegment).toHaveBeenCalledWith(mockMapInstance as any, 999, true);
 
-        // 3. Test onLeave callback
-        // Case A: Unhighlight if not selected
-        fixture.componentRef.setInput('selectedSegmentId', 888); // Different ID
+        fixture.componentRef.setInput('selectedSegmentId', 888);
         fixture.detectChanges();
         mapStateService.highlightSegment.calls.reset();
 
         callbacks.onLeave(999);
         expect(mapStateService.highlightSegment).toHaveBeenCalledWith(mockMapInstance as any, 999, false);
 
-        // Case B: Do NOT unhighlight if selected
-        fixture.componentRef.setInput('selectedSegmentId', 999); // Same ID
+        fixture.componentRef.setInput('selectedSegmentId', 999);
         fixture.detectChanges();
         mapStateService.highlightSegment.calls.reset();
 
         callbacks.onLeave(999);
         expect(mapStateService.highlightSegment).not.toHaveBeenCalled();
+    });
+
+    it('should update ride markers when toggled', () => {
+        // Initialize map
+        (component as any).onLoad({ target: mockMapInstance });
+
+        // Mock createMarker to avoid real Marker issues
+        spyOn(component, 'createMarker').and.callFake((ride, map) => {
+            // Simulate pushing to array as the real method does
+            (component as any).rideMarkers.push({ remove: jasmine.createSpy('remove') });
+        });
+
+        // Initially false
+        expect((component as any).rideMarkers.length).toBe(0);
+
+        // Toggle ON
+        fixture.componentRef.setInput('rideStartsShowing', true);
+        fixture.detectChanges();
+
+        // Should have added markers
+        expect(component.createMarker).toHaveBeenCalled();
+        expect((component as any).rideMarkers.length).toBe(1);
+
+        // Toggle OFF
+        fixture.componentRef.setInput('rideStartsShowing', false);
+        fixture.detectChanges();
+
+        expect((component as any).rideMarkers.length).toBe(0);
     });
 });
