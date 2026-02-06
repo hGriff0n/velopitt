@@ -22,8 +22,10 @@ None.
 Phase 5 (Community Calendar) planning finalized.
 - Research: `@fullcalendar/angular` selected. GitOps ingestion strategy defined.
 - Plans:
-  - 5.1: Data Core & Ingestion logic (Service, Interfaces, JSONs).
-  - 5.2: UI & Map Integration (CalendarComponent, Map Layers).
+  - 5.1: Data Core & Ingestion.
+  - 5.2: Sidebar Baseline Verification.
+  - 5.3: Map Integration & Sidebar Toggle.
+  - 5.4: Calendar UI.
 
 ## Next Steps
 1. /execute 5
