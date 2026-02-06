@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
       <button mat-list-item [class.active-button]="bikemapPlusShowing()" (click)="toggleBikePlus.emit()">Toggle Bike Plus layer</button>
       <button mat-list-item [class.active-button]="rideStartsShowing()" (click)="toggleRideStarts.emit()">Toggle Ride Starts</button>
       <mat-divider></mat-divider>
-      <button routerLink="/" mat-list-item>Group Rides + Events</button>
+      <button routerLink="/calendar" mat-list-item>Group Rides + Events</button>
       <button routerLink="/" mat-list-item>Community Resources</button>
       <button routerLink="/" mat-list-item>Route Builder</button>
       <button routerLink="/" mat-list-item>Etiquette and Safety</button>

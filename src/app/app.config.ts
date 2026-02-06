@@ -10,11 +10,10 @@ import { environment } from '../environments/environment';
 import { Routes } from '@angular/router';
 
 const routes: Routes = [
-    // {
-    //   path: '',
-    //   component: null,
-    //   pathMatch: 'full'
-    // }
+    {
+        path: 'calendar',
+        loadComponent: () => import('./components/calendar/calendar.component').then(m => m.CalendarComponent)
+    }
 ];
 
 export const appConfig: ApplicationConfig = {
