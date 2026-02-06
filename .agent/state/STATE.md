@@ -6,14 +6,15 @@
 - **Status**: Completed
 
 ## Last Session Summary
-Refactored Data Loading and Fixed Layer Toggle.
-- Moved JSON assets to `src/assets/data` to decouple from build-time imports.
-- Updated `LayerService` and `SegmentService` to load data asynchronously via `HttpClient`.
-- Fixed `Bike Plus` layer toggle by implementing reactive state management in `MapComponent`.
+Refactored Data Loading and Polished UI.
+- Moved assets to `src/assets/data` (Async loading).
+- Fixed `Bike Plus` layer toggle (Reactive).
+- Fixed Layer Z-Index (Bike Plus now on top).
+- Fixed Tooltip Styling (Global CSS for Mapbox popups).
 - Verified with `ng build`.
 
 ## In-Progress Work
-- None.
+- Creating PR for `groups2` -> `main`.
 
 ## Blockers
 None.

@@ -110,7 +110,10 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         const marker = new Marker({ color: '#FF5722' })
             .setLngLat(ride.startLocation.coordinates as LngLatLike)
             .setPopup(new Popup({ offset: 25 })
-                .setHTML(`<h3>${ride.name}</h3><p>${ride.startLocationLabel}</p>`))
+                .setHTML(`<div class="ride-info">
+                    <h3>${ride.name}</h3>
+                    <p>${ride.startLocationLabel}</p>
+                </div>`))
             .addTo(map);
 
         this.rideMarkers.push(marker);

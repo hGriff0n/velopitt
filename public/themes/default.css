@@ -32,7 +32,7 @@
     --sys-segment-selected: var(--color-signal-green);
     --sys-segment-unselected: var(--color-dull-blue);
     --sys-layer-bikemap: var(--color-electric-gold);
-    --sys-layer-bikeplus: var(--color-electric-gold);
+    --sys-layer-bikeplus: var(--color-warning-orange);
 
     /* Gradient Slopes */
     --sys-gradient-downhill: var(--color-signal-green);

@@ -54,7 +54,8 @@ export class LayerService {
             paint: {
                 'line-color': this.themeService.getThemeColor('--sys-layer-bikeplus'),
                 'line-width': 5,
-                'line-opacity': 0
+                'line-opacity': 0,
+                'line-emissive-strength': 0.9
             }
         });
 

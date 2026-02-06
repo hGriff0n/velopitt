@@ -10,5 +10,38 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: var(--sys-background);
+}
+
+/* Mapbox Popup Styling */
+.mapboxgl-popup-content {
+    background-color: var(--sys-tooltip-bg) !important;
+    color: var(--sys-primary) !important;
+    border: 1px solid var(--sys-tooltip-border);
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.mapboxgl-popup-close-button {
     color: var(--sys-on-surface);
+    font-size: 16px;
+    padding: 4px 8px;
+}
+
+.mapboxgl-popup-content h3 {
+    margin: 0 0 5px 0;
+    color: var(--sys-primary);
+    font-family: 'Roboto', sans-serif;
+}
+
+.mapboxgl-popup-content p {
+    margin: 0;
+    color: var(--sys-on-surface);
+    font-size: 0.9em;
+}
+
+.mapboxgl-popup-tip {
+    border-top-color: var(--sys-tooltip-bg) !important;
+    border-bottom-color: var(--sys-tooltip-bg) !important;
+    border-left-color: var(--sys-tooltip-bg) !important;
+    border-right-color: var(--sys-tooltip-bg) !important;
 }
