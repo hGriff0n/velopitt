@@ -58,6 +58,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
 
             this.layerService.setRegionVisibility(map, this.regionShowing());
             this.layerService.setBikeNetworkVisibility(map, this.bikemapShowing());
+            this.layerService.setBikePlusVisibility(map, this.bikemapPlusShowing());
 
             this.mapStateService.toggleSegmentLayer(map, this.segmentShowing());
             this.mapStateService.updateMapTheme(map);
@@ -115,8 +116,18 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
         this.rideMarkers.push(marker);
     }
 
-    ngAfterViewInit() {
+    async ngAfterViewInit() {
         this.eventService.loadAllGroups(); // Start loading data
+
+        try {
+            await Promise.all([
+                this.layerService.loadLayerData(),
+                this.segmentService.loadSegmentData()
+            ]);
+        } catch (e) {
+            console.error('Failed to load map data', e);
+        }
+
         this.initMap();
     }
 

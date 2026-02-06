@@ -2,14 +2,15 @@
 
 ## Current Position
 - **Phase**: 5
-- **Task**: 5.4 Calendar UI Refinement
-- **Status**: Completed UI Refinements
+- **Task**: 5.5 Data Layer Refactor & Fixes
+- **Status**: Completed
 
 ## Last Session Summary
-Refined Calendar UI.
-- Fixed Sidebar overlap by moving `router-outlet` inside `mat-drawer-container`.
-- Enhanced Calendar Event Tooltips to include start time.
-- Verification: Automated browser test failed (env issue), Manual Verification plan created in `walkthrough.md`.
+Refactored Data Loading and Fixed Layer Toggle.
+- Moved JSON assets to `src/assets/data` to decouple from build-time imports.
+- Updated `LayerService` and `SegmentService` to load data asynchronously via `HttpClient`.
+- Fixed `Bike Plus` layer toggle by implementing reactive state management in `MapComponent`.
+- Verified with `ng build`.
 
 ## In-Progress Work
 - None.
@@ -18,11 +19,12 @@ Refined Calendar UI.
 None.
 
 ## Context Dump
-Phase 5 (Community Calendar) refined.
-- UI issues addressed:
-  - Sidebar z-index overlap fixed by layout restructuring.
-  - Event tooltips now show time.
-- Implementation: `CalendarComponent` and `app.html` updated.
+Phase 5 (Community Calendar) and Foundation Refined.
+- Data Layer: Async loading implemented for Maps/Segments.
+- UI Fixes:
+  - Sidebar overlap fixed.
+  - Layer toggles fixed (reactive signals).
+  - Calendar tooltips enhanced.
 
 ## Next Steps
 1. Phase 5 Complete. Ready for Phase 6.
