@@ -2,8 +2,9 @@
 <mat-drawer-container class="example-container" autosize [hasBackdrop]="true">
   <div class="map" style="height:100%; width:100%;">
     <app-map [regionShowing]="regionShowing()" [segmentShowing]="segmentShowing()" [bikemapShowing]="bikemapShowing()"
-      [bikemapPlusShowing]="bikemapPlusShowing()" [selectedSegmentId]="selectedSegment()"
-      (segmentSelected)="onSegmentSelected($event)" (mapLoaded)="onMapLoaded($event)">
+      [bikemapPlusShowing]="bikemapPlusShowing()" [rideStartsShowing]="rideStartsShowing()"
+      [selectedSegmentId]="selectedSegment()" (segmentSelected)="onSegmentSelected($event)"
+      (mapLoaded)="onMapLoaded($event)">
     </app-map>
   </div>
 
@@ -11,11 +12,12 @@
   <mat-drawer #drawer class="example-sidenav" mode="over">
     <app-sidebar [regionShowing]="regionShowing()" [segmentShowing]="segmentShowing()"
       [bikemapShowing]="bikemapShowing()" [bikemapPlusShowing]="bikemapPlusShowing()"
-      (toggleRegion)="toggleRegionLayer()" (toggleSegment)="toggleSegmentLayer()" (toggleBikeMap)="toggleBikeNetwork()"
-      (toggleBikePlus)="toggleBikePlus()"></app-sidebar>
+      [rideStartsShowing]="rideStartsShowing()" (toggleRegion)="toggleRegionLayer()"
+      (toggleSegment)="toggleSegmentLayer()" (toggleBikeMap)="toggleBikeNetwork()" (toggleBikePlus)="toggleBikePlus()"
+      (toggleRideStarts)="toggleRideStarts()"></app-sidebar>
   </mat-drawer>
 
   <segment-overlay [segment]="segment.getSegmentByDomId(selectedSegment())"
     [style.display]="isShow() ? 'block' : 'none'" (closeOverlay)="onSegmentSelected(-1)"></segment-overlay>
+  <router-outlet />
 </mat-drawer-container>
-<router-outlet />

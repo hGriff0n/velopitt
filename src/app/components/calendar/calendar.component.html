@@ -1,0 +1,12 @@
+<div class="calendar-container">
+    <div class="header-actions">
+        <button mat-raised-button color="primary" (click)="close()">Close Calendar</button>
+    </div>
+    <full-calendar #calendar [options]="calendarOptions()"></full-calendar>
+
+    @if (hoveredEvent()) {
+    <div class="custom-tooltip" [style.top.px]="hoveredEvent()!.y" [style.left.px]="hoveredEvent()!.x">
+        <div [innerHTML]="hoveredEvent()!.html"></div>
+    </div>
+    }
+</div>

@@ -1,9 +1,8 @@
 import { Injectable, signal, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { ThemeService } from './theme-service';
 import { Map } from 'mapbox-gl';
-
-import * as jsonData from './assets/mapgeo.json';
-import * as bikePlus from './assets/bikeplus.json';
 
 @Injectable({ providedIn: 'root' })
 export class LayerService {
@@ -12,14 +11,25 @@ export class LayerService {
     private readonly bikePlusVisible = signal(false);
     private hoveredRegions = new Set<number>();
     private themeService = inject(ThemeService);
+    private http = inject(HttpClient);
 
     constructor() {
-        this.layer = Array.from((jsonData as any).default).map(segment => {
-            return segment as GeoJson;
-        });
-        this.bikePlusLayer = Array.from((bikePlus as any).default).map(segment => {
-            return segment as GeoJson;
-        });
+    }
+
+    async loadLayerData(): Promise<void> {
+        const [mapGeoData, bikePlusData] = await Promise.all([
+            firstValueFrom(this.http.get<any>('assets/data/mapgeo.json')),
+            firstValueFrom(this.http.get<any>('assets/data/bikeplus.json'))
+        ]);
+
+        this.layer = this.normalizeData(mapGeoData);
+        this.bikePlusLayer = this.normalizeData(bikePlusData);
+    }
+
+    private normalizeData(data: any): GeoJson[] {
+        // Handle potential build-tool wrapping or raw array
+        const raw = data.default || data;
+        return Array.isArray(raw) ? raw as GeoJson[] : [raw as GeoJson];
     }
 
     getRegionLayer(): GeoJson[] {
@@ -27,6 +37,11 @@ export class LayerService {
     }
 
     registerWithMap(map: Map, isVisible: boolean) {
+        if (this.bikePlusLayer.length === 0 || this.layer.length === 0) {
+            console.warn('Layer data not loaded yet');
+            return;
+        }
+
         map.addSource('bikeplus', {
             type: 'geojson',
             generateId: true,
@@ -39,7 +54,8 @@ export class LayerService {
             paint: {
                 'line-color': this.themeService.getThemeColor('--sys-layer-bikeplus'),
                 'line-width': 5,
-                'line-opacity': 0
+                'line-opacity': 0,
+                'line-emissive-strength': 0.9
             }
         });
 
@@ -106,13 +122,21 @@ export class LayerService {
     }
 
     public setRegionVisibility(map: Map, isVisible: boolean) {
+        if (!map.getLayer('regions')) return;
         map.setPaintProperty('regions', 'fill-opacity', isVisible ? 0.2 : 0);
         map.setPaintProperty('region-borders', 'line-opacity', isVisible ? 1 : 0);
     }
 
     public toggleBikePlus(map: Map) {
+        if (!map.getLayer('bikeplus')) return;
         this.bikePlusVisible.update(v => !v);
         map.setPaintProperty('bikeplus', 'line-opacity', this.bikePlusVisible() ? 0.9 : 0);
+    }
+
+    public setBikePlusVisibility(map: Map, isVisible: boolean) {
+        if (!map.getLayer('bikeplus')) return;
+        this.bikePlusVisible.set(isVisible);
+        map.setPaintProperty('bikeplus', 'line-opacity', isVisible ? 0.9 : 0);
     }
 
     // TODO: me - these should probably be managed with "toggles" similar to bike plus

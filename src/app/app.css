@@ -51,7 +51,3 @@ mgl-map {
   background-color: var(--sys-primary);
   color: var(--sys-on-primary);
 }
-
-.active-button {
-  box-shadow: inset 1px 1px 11px var(--sys-primary);
-}

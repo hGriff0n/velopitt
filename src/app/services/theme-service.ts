@@ -45,7 +45,23 @@ export class ThemeService {
      * Useful for syncing canvas/JS colors with CSS theme.
      */
     getThemeColor(variableName: string): string {
-        return getComputedStyle(this.document.body).getPropertyValue(variableName).trim();
+        const style = getComputedStyle(this.document.body);
+        let value = style.getPropertyValue(variableName).trim();
+
+        let maxDepth = 5;
+        while (value.startsWith('var(') && maxDepth > 0) {
+            const match = value.match(/^var\(([^,)]+)/);
+            if (match) {
+                const nextVar = match[1].trim();
+                const nextVal = style.getPropertyValue(nextVar).trim();
+                if (!nextVal) break;
+                value = nextVal;
+            } else {
+                break;
+            }
+            maxDepth--;
+        }
+        return value;
     }
 
     private loadTheme(filename: string) {

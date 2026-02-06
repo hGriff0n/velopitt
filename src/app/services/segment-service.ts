@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { InteractionEvent, Map, MapEvent, Popup, Marker } from 'mapbox-gl';
 
-import * as jsonData from './assets/segment.json';
 import * as turf from '@turf/turf';
 import * as polyline from '@mapbox/polyline';
 
@@ -9,9 +10,16 @@ import * as polyline from '@mapbox/polyline';
 export class SegmentService {
     private segmentList: Segment[] = [];
     static MAX_SEGMENTS = 10;
+    private http = inject(HttpClient);
 
     constructor() {
-        this.segmentList = Array.from((jsonData as any).default).map(segment => {
+    }
+
+    async loadSegmentData(): Promise<void> {
+        const data = await firstValueFrom(this.http.get<any>('assets/data/segment.json'));
+        const rawList = this.normalizeData(data);
+
+        this.segmentList = rawList.map(segment => {
             const s = segment as Segment;
             s.start_latlng.reverse();
             s.end_latlng.reverse();
@@ -20,6 +28,11 @@ export class SegmentService {
             s.map.segment_distance = s.distance / SegmentService.MAX_SEGMENTS;
             return s;
         });
+    }
+
+    private normalizeData(data: any): Segment[] {
+        const raw = data.default || data;
+        return Array.isArray(raw) ? raw as Segment[] : [raw as Segment];
     }
 
     // This has to be in a separate function because the map is not guaranteed to be available

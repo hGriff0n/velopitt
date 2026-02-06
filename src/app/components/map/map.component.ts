@@ -5,6 +5,7 @@ import { SegmentService, Segment } from '../../services/segment-service';
 import { LayerService } from '../../services/layer-service';
 import { ThemeService } from '../../services/theme-service';
 import { MapStateService } from '../../services/map-state.service';
+import { EventService } from '../../services/event.service';
 
 @Component({
     selector: 'app-map',
@@ -29,12 +30,14 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     private layerService = inject(LayerService);
     private themeService = inject(ThemeService);
     private mapStateService = inject(MapStateService);
+    private eventService = inject(EventService);
 
     // Inputs for layer visibility
     regionShowing = input(false);
     segmentShowing = input(false);
     bikemapShowing = input(true);
     bikemapPlusShowing = input(false);
+    rideStartsShowing = input(false);
     selectedSegmentId = input<number>(0);
 
     // Outputs
@@ -44,6 +47,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
     private mapSignal = signal<Map | undefined>(undefined);
     private mapInstance: Map | undefined;
+    private rideMarkers: Marker[] = [];
 
     constructor() {
         // Effect to handle layer visibility changes and theme updates
@@ -54,6 +58,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
 
             this.layerService.setRegionVisibility(map, this.regionShowing());
             this.layerService.setBikeNetworkVisibility(map, this.bikemapShowing());
+            this.layerService.setBikePlusVisibility(map, this.bikemapPlusShowing());
 
             this.mapStateService.toggleSegmentLayer(map, this.segmentShowing());
             this.mapStateService.updateMapTheme(map);
@@ -72,9 +77,64 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
                 this.mapStateService.highlightSegment(map, currentSelected, true);
             }
         });
+
+        // Effect for Ride Start Markers
+        effect(() => {
+            const map = this.mapSignal();
+            const show = this.rideStartsShowing();
+            const rides = this.eventService.rides(); // Reactive to data load
+
+            if (!map) return;
+
+            this.removeRideMarkers();
+
+            if (show) {
+                rides.forEach(ride => {
+                    if (ride.startLocation && ride.startLocation.coordinates) {
+                        this.createMarker(ride, map);
+                    }
+                });
+            }
+        });
     }
 
-    ngAfterViewInit() {
+    // Protected for testing
+    createMarker(ride: any, map: Map) {
+        const el = document.createElement('div');
+        el.className = 'ride-marker';
+        // el.style.backgroundImage = 'url(assets/icons/marker-start.svg)';
+        el.style.width = '30px';
+        el.style.height = '30px';
+        el.style.backgroundSize = 'cover';
+
+        const marker = new Marker({ color: '#FF5722' })
+            .setLngLat(ride.startLocation.coordinates as LngLatLike)
+            .setPopup(new Popup({ offset: 25 })
+                .setHTML(`<div class="ride-info">
+                    <h3>${ride.name}</h3>
+                    <p>${ride.startLocationLabel}</p>
+                </div>`))
+            .addTo(map);
+
+        this.rideMarkers.push(marker);
+    }
+
+    async ngAfterViewInit() {
+        this.eventService.loadAllGroups(); // Start loading data
+
+        try {
+            await Promise.all([
+                this.layerService.loadLayerData(),
+                this.segmentService.loadSegmentData()
+            ]);
+        } catch (e) {
+            console.error('Failed to load map data', e);
+        }
+
+        this.initMap();
+    }
+
+    protected initMap() {
         this.mapInstance = new Map({
             container: this.mapContainer.nativeElement,
             style: 'mapbox://styles/hgriff0n/cmds2q1t100u101s2063wbeh6',
@@ -91,6 +151,12 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
 
     ngOnDestroy() {
         this.mapInstance?.remove();
+        this.removeRideMarkers();
+    }
+
+    private removeRideMarkers() {
+        this.rideMarkers.forEach(m => m.remove());
+        this.rideMarkers = [];
     }
 
     private onLoad(event: MapEvent) {

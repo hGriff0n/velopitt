@@ -12,8 +12,9 @@ import { RouterLink } from '@angular/router';
       <button mat-list-item [class.active-button]="segmentShowing()" (click)="toggleSegment.emit()">Toggle segment layer</button>
       <button mat-list-item [class.active-button]="bikemapShowing()" (click)="toggleBikeMap.emit()">Toggle Bike Map layer</button>
       <button mat-list-item [class.active-button]="bikemapPlusShowing()" (click)="toggleBikePlus.emit()">Toggle Bike Plus layer</button>
+      <button mat-list-item [class.active-button]="rideStartsShowing()" (click)="toggleRideStarts.emit()">Toggle Ride Starts</button>
       <mat-divider></mat-divider>
-      <button routerLink="/" mat-list-item>Group Rides + Events</button>
+      <button routerLink="/calendar" mat-list-item>Group Rides + Events</button>
       <button routerLink="/" mat-list-item>Community Resources</button>
       <button routerLink="/" mat-list-item>Route Builder</button>
       <button routerLink="/" mat-list-item>Etiquette and Safety</button>
@@ -49,9 +50,11 @@ export class SidebarComponent {
   segmentShowing = input(false);
   bikemapShowing = input(true);
   bikemapPlusShowing = input(false);
+  rideStartsShowing = input(false);
 
   toggleRegion = output<void>();
   toggleSegment = output<void>();
   toggleBikeMap = output<void>();
   toggleBikePlus = output<void>();
+  toggleRideStarts = output<void>();
 }
