@@ -1,3 +1,6 @@
 <div class="calendar-container">
+    <div class="header-actions">
+        <button mat-raised-button color="primary" (click)="close()">Close Calendar</button>
+    </div>
     <full-calendar #calendar [options]="calendarOptions()"></full-calendar>
 </div>

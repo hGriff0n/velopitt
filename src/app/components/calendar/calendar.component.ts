@@ -7,11 +7,12 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-calendar',
     standalone: true,
-    imports: [CommonModule, FullCalendarModule],
+    imports: [CommonModule, FullCalendarModule, MatButtonModule],
     templateUrl: './calendar.component.html',
     styleUrl: './calendar.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -30,15 +31,31 @@ export class CalendarComponent {
             center: 'title',
             right: 'dayGridMonth,listWeek'
         },
-        height: 'auto',
+        height: '100%', // Adjust height to fill container
         events: (info, success, failure) => {
             const events = this.eventService.generateEvents(info.start, info.end);
             success(events);
         },
         eventClick: (info) => {
             console.log('Event clicked', info.event);
+        },
+        eventContent: (arg) => {
+            // Custom rendering: Title + Group Name
+            const groupName = arg.event.extendedProps['groupName'] || '';
+            const location = arg.event.extendedProps['locationLabel'] || '';
+            // Basic HTML structure
+            return {
+                html: `<div class="fc-content" title="${groupName}: ${arg.event.title}\n${location}">
+                        <div class="fc-title" style="font-weight: bold;">${arg.event.title}</div>
+                        <div class="fc-group" style="font-size: 0.85em; opacity: 0.8;">${groupName}</div>
+                      </div>`
+            };
         }
     });
+
+    close() {
+        this.router.navigate(['/']);
+    }
 
     constructor() {
         // If rides data updates (e.g. finishes loading), refetch events
