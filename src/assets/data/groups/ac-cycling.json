@@ -30,6 +30,7 @@
             "recurrence": "Weekly",
             "dayOfWeek": 2,
             "activeMonths": [
+                2,
                 3,
                 4,
                 5,
