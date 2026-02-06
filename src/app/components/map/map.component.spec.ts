@@ -97,8 +97,8 @@ describe('AppMapComponent', () => {
         mapStateService = TestBed.inject(MapStateService) as unknown as MockMapStateService;
         eventService = TestBed.inject(EventService) as unknown as MockEventService;
 
-        // Suppress ngAfterViewInit to avoid real Map creation issues in test env
-        spyOn(component, 'ngAfterViewInit').and.stub();
+        // Suppress initMap to avoid real Map creation issues
+        spyOn(component as any, 'initMap').and.stub();
 
         fixture.detectChanges();
     });
@@ -201,6 +201,7 @@ describe('AppMapComponent', () => {
 
         // Should have added markers
         expect(component.createMarker).toHaveBeenCalled();
+        expect((component as any).rideMarkers.length).toBe(1);
         expect((component as any).rideMarkers.length).toBe(1);
 
         // Toggle OFF

@@ -43,7 +43,7 @@ export class EventService {
             this.rides.set(loadedRides);
 
         } catch (err) {
-            console.error('Failed to load groups', err);
+            // Logs removed
         } finally {
             this.loading.set(false);
         }

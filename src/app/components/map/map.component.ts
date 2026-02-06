@@ -101,7 +101,7 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
     createMarker(ride: any, map: Map) {
         const el = document.createElement('div');
         el.className = 'ride-marker';
-        el.style.backgroundImage = 'url(assets/icons/marker-start.svg)';
+        // el.style.backgroundImage = 'url(assets/icons/marker-start.svg)';
         el.style.width = '30px';
         el.style.height = '30px';
         el.style.backgroundSize = 'cover';
@@ -117,7 +117,10 @@ export class AppMapComponent implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit() {
         this.eventService.loadAllGroups(); // Start loading data
+        this.initMap();
+    }
 
+    protected initMap() {
         this.mapInstance = new Map({
             container: this.mapContainer.nativeElement,
             style: 'mapbox://styles/hgriff0n/cmds2q1t100u101s2063wbeh6',
